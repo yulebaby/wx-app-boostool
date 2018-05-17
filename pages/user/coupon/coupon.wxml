@@ -1,0 +1,34 @@
+<view class='coupon'>
+  <view class='item active'>
+    <view class='item-cell'>
+      <view class='item-box'>
+        <view class='item-h2'>首次体验优惠券</view>
+        <view class='item-h6'>条件：非会员首次体验使用</view>
+        <view class='item-h6'>有效期：2017/11/02 - 2018/02/17</view>
+      </view>
+    </view>
+    <view class='item-info'>
+      <view class='info-h2'>
+        <text class='large'>29</text>.<text>9</text>元
+      </view>
+      <view class='info-btn' hover-class='active'>使用</view>
+    </view>
+  </view>
+  <view class='item'>
+    <view class='item-cell'>
+      <view class='item-box'>
+        <view class='item-h2'>首次体验优惠券</view>
+        <view class='item-h6'>条件：非会员首次体验使用</view>
+        <view class='item-h6'>有效期：2017/11/02-2018/02/17</view>
+      </view>
+    </view>
+    <view class='item-info'>
+      <view class='info-h2'>
+        <text class='large'>29</text>.<text>9</text>元
+      </view>
+      <view class='info-btn' hover-class='active'>已使用</view>
+    </view>
+  </view>
+</view>
+
+<nothing>暂无优惠券</nothing>

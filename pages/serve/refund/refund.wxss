@@ -1,0 +1,150 @@
+page{
+  background: #F0F0F0;
+}
+
+.header{
+  margin: 20rpx 0;
+  padding: 65rpx 0 55rpx;
+  text-align: center;
+  background: #fff;
+}
+.status-title{
+  padding: 40rpx 0 12rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+}
+.status-desc{
+  color: #999;
+  font-size: 24rpx;
+  line-height: 24rpx;
+}
+
+
+.apply-info,
+.store-info{
+  padding: 0 35rpx;
+  margin-bottom: 20rpx;
+  background: #fff;
+}
+.apply-title{
+  height: 110rpx;
+  font-size: 32rpx;
+  line-height: 110rpx;
+  border-bottom: solid 1px #f0f0f0;
+  position: relative;
+  background: url(http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/icon-right.png) no-repeat right center;
+  background-size: 15rpx 26rpx;
+}
+.apply-cell{
+  padding-bottom: 11rpx;
+}
+.apply-cell > view{
+  overflow: hidden;
+}
+.apply-cell-title{
+  padding: 38rpx 0 30rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+}
+.apply-cell-title text:first-child{
+  float: left;
+}
+.apply-cell-title text:last-child{
+  float: right;
+}
+.apply-cell-desc{
+  color: #bbb;
+  font-size: 26rpx;
+  line-height: 26rpx;
+  padding-bottom: 24rpx;
+}
+
+.card-type{
+  height: 100rpx;
+  padding: 0 35rpx;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  background: #fff;
+}
+.card-type > view:first-child{
+  float: left;
+}
+.card-type > view:last-child{
+  float: right;
+}
+.card-type .large{
+  font-size: 38rpx;
+}
+
+.store-info{
+  padding-bottom: 26rpx;
+}
+.store-info .apply-title{
+  background: none;
+}
+.title-button,
+.order-num-copy{
+  width: 80rpx;
+  color: #F38A03;
+  font-size: 22rpx;
+  line-height: 33rpx;
+  text-align: center;
+  border: solid 1px #F38A03;
+  border-radius: 35rpx;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 9;
+  margin-top: -17rpx;
+  transition: all .2s;
+}
+.title-button.active,
+.order-num-copy.active{
+  color: #fff;
+  background: #F38A03;
+}
+.store-info-content{
+  padding-top: 26rpx;
+}
+.store-item{
+  padding-bottom: 8rpx;
+  color: #999;
+  font-size: 26rpx;
+  line-height: 40rpx;
+}
+
+.order-info{
+  padding: 40rpx 35rpx 14rpx;
+  color: #999;
+  font-size: 26rpx;
+  line-height: 26rpx;
+  background: #fff;
+  position: relative;
+}
+.order-info-item{
+  color: #999;
+  padding-bottom: 26rpx;
+}
+.order-info .order-num-copy{
+  top: 40rpx;
+  right: 35rpx;
+  margin: 0;
+}
+
+.footer{
+  padding: 40rpx 0;
+  width: 100%;
+  text-align: center;
+}
+.footer-phone{
+  color: #FF839A;
+  font-size: 26rpx;
+  line-height: 26rpx;
+}
+.footer-time{
+  color: rgb(150, 150, 150);
+  font-size: 23rpx;
+  line-height: 23rpx;
+  padding-top: 20rpx;
+}

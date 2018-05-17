@@ -1,0 +1,86 @@
+<view class='appointment'>
+  <view class='title'>
+    <view class='title-h2'>服务时间</view>
+    <view class='title-h6'>选择服务时间，以便我们为您更好的服务</view>
+  </view>
+
+  <view class='tab-head'>
+    <view class='tab-left' hover-class='active'></view>
+    <view class='tab-head-box'>
+      <view class='tab-content'>
+        <view class='tab-item active'>
+          <view class='item-h2'>11-30</view>
+          <view class='item-h6'>今天</view>
+        </view>
+        <view class='tab-item'>
+          <view class='item-h2'>12-01</view>
+          <view class='item-h6'>星期一</view>
+        </view>
+        <view class='tab-item'>
+          <view class='item-h2'>12-02</view>
+          <view class='item-h6'>星期二</view>
+        </view>
+        <view class='tab-item'>
+          <view class='item-h2'>12-03</view>
+          <view class='item-h6'>星期三</view>
+        </view>
+        <view class='tab-item'>
+          <view class='item-h2'>12-04</view>
+          <view class='item-h6'>星期四</view>
+        </view>
+        <view class='tab-item'>
+          <view class='item-h2'>12-05</view>
+          <view class='item-h6'>星期五</view>
+        </view>
+        <view class='tab-item'>
+          <view class='item-h2'>12-06</view>
+          <view class='item-h6'>星期六</view>
+        </view>
+      </view>
+    </view>
+    <view class='tab-right' hover-class='active'></view>
+  </view>
+
+  <view class='tab-body'>
+    <view class='body-content'>
+      <radio-group bindchange="radioChange">
+        <label class="body-item {{selectTime == '1' ? 'active' : ''}}">
+          <radio value="1" style='display: none'/>09:30
+        </label>
+        <label class="body-item {{selectTime == '2' ? 'active' : ''}}">
+          <radio value="2" style='display: none'/>09:30
+        </label>
+        <label class="body-item disabled {{selectTime == '3' ? 'active' : ''}}">
+          <radio value="3" style='display: none' disabled="{{ true }}"/>09:30
+        </label>
+        <label class="body-item {{selectTime == '4' ? 'active' : ''}}">
+          <radio value="4" style='display: none'/>09:30
+        </label>
+        <label class="body-item {{selectTime == '5' ? 'active' : ''}}">
+          <radio value="5" style='display: none'/>09:30
+        </label>
+        <label class="body-item {{selectTime == '6' ? 'active' : ''}}">
+          <radio value="6" style='display: none'/>09:30
+        </label>
+        <label class="body-item {{selectTime == '7' ? 'active' : ''}}">
+          <radio value="7" style='display: none'/>09:30
+        </label>
+        <label class="body-item {{selectTime == '8' ? 'active' : ''}}">
+          <radio value="8" style='display: none'/>09:30
+        </label>
+        <label class="body-item {{selectTime == '9' ? 'active' : ''}}">
+          <radio value="9" style='display: none'/>09:30
+        </label>
+      </radio-group>
+    </view>
+  </view>
+</view>
+
+<slot></slot>
+
+<view class='footer'>
+  <view class='select-input'>
+    <input class='input' disabled="true" value='您已经选择: 12/26 05:00' placeholder-style="color:rgb(210,210,210)" placeholder="请选择" />
+  </view>
+  <view class='enter-button disabled' hover-class='active'>确定预约</view>
+</view>

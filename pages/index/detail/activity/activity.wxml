@@ -1,0 +1,110 @@
+  <view wx-if="{{inActivity==1}}">
+  <view class='head-cover'>
+<image  src='https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/activity_banner_top.jpg'></image>
+
+</view>
+<view class='header'>
+  <view class='head-title'>百城千店，5.1欢乐游</view>
+  <view class='head-detail'>超值游泳体验卡</view>
+  <view class='head-price'><view>¥{{discountPrice}}</view><view>¥{{price}}</view></view>
+  <view class='head-label'>{{agio}}折</view>
+</view>
+
+    <view class='head-box' catchtap='details'>
+   
+      <view class='head-name'>
+        <text>{{storeItem.shopName}}</text>
+        <view>{{storeItem.distance}}</view>
+      </view>
+
+      <view class='head-address'>
+        <text>{{storeItem.address}}</text>
+        <view hover-class='active' catchtap='mapclick'>导航</view>
+      </view>
+
+    </view>
+    <view class='backindex' bindtap='backindex'>住的离这远？看看其他门店</view>
+
+<view class='detail'>
+  <view class='detail-title'>购买须知</view>
+
+  <view class='detail-content'>
+     <view class='detail-item'>
+
+      <view class='item-content'>• 有效期：2018-05-01至2018-05-30</view>    
+    </view>
+    <view class='detail-item'>
+
+      <view class='item-content'>• 到店体验后在门店支付费用即可</view>    
+    </view>
+ 
+    <view class='detail-item'>
+  
+      <view class='item-content'>• 本次活动适用于0-3岁的宝宝</view>
+    </view>
+    <view class='detail-item'>
+
+      <view class='item-content'>• 每张体验卡仅限1人使用</view>
+    </view>
+    <view class='detail-item'>
+
+      <view class='item-content'>• 体验卡仅限非门店会员首次体验使用</view>
+    </view>
+    <view class='detail-item'>
+
+      <view class='item-content'>• 体验卡不再与其他优惠同享</view>
+    </view>
+    <view class='detail-item'>
+
+      <view class='item-content'>• 使用时间：10:00 - 17:00</view>
+    </view>
+  </view>
+</view>
+
+
+<view class='footer'>
+  <view class='btn-info'>名额有限   抢完为止</view>
+  <view class='footer-btn' bindtap='reservation' hover-class='active'>立即抢购</view>
+</view>
+<view class='showfx' wx-if="{{showx}}" >
+      <view class='showfxmain'>
+          <view class='showfxbg'></view>
+           <image class='image_ico' src='https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/ylbb_top_ico.png'></image>
+            <view class='showfxcontent'>
+              <view class='content_main'>
+                <view class='showfxtitle'>{{showtit}}</view>
+                <view class='showfxnr'>{{textshow1}}</view>
+                <view class='showfxnr'>{{textshow2}}</view>
+                <!-- <view class='showfxbtn'><button>取消</button><button>分享</button></view> -->
+                 <view class='showfxbtn'>
+                      <view class='fxbtn' bindtap='hidefx'>取消</view>
+                      <view class='fxbtn' bindtap='onclick'>
+                      分享到群里
+                      <button open-type='share'  >点击</button>
+                      </view>
+                  </view>
+                  </view>
+            </view>
+      </view>
+</view>
+</view>
+  <view class='showfx'  wx-if="{{inActivity==0||inActivity==''||!inActivity}}">  
+      <view class='showfxmain'>
+          <view class='showfxbg'></view>
+          <image class='image_ico' src='https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/ylbb_top_ico.png'></image>
+            <view class='showfxcontent'>
+            <view class='content_main'>
+                <view class='showfxtitle'>温馨提示</view>
+                <view class='showfxnr'>门店活动已经结束咯~</view>
+                <view class='showfxnr'>您也可以看看其他门店的活动哦</view>
+                <!-- <view class='showfxbtn'><button>取消</button><button>分享</button></view> -->
+                 <view class='showfxbtn'>
+                      <view class='fxbtn' bindtap='backindex'>取消</view>
+                      <view class='fxbtn' bindtap='backindex'>
+                      看看别的店
+                      </view>
+                  </view>
+                  </view>
+            </view>
+      </view>
+</view>

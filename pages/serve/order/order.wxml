@@ -1,0 +1,37 @@
+<view class='header'>
+  <view class='head'>
+    <view class='head-title'>核对订单</view>
+    <view class='head-desc'>请认真核对订单后下单</view>
+  </view>
+
+  <view class='head-detail'>
+    <view class='detail-image'><image src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/weixin-logo.png' mode='widthFix'></image></view>
+    <view class='content'>
+      <view class='content-h2'>预约服务：暖冬游泳体验卡</view>
+      <view class='content-h6'>门店：北京甘露园物美店</view>
+      <view class='content-h6'>地址：北京甘露园物美店</view>
+    </view>
+  </view>
+</view>
+
+<view class='appointment'>
+  <view>预约时间</view>
+  <text>11-30今天 9:30</text>
+</view>
+
+<view class='payment'>
+  <view class='head'>支付方式</view>
+  <radio-group class="radio-group">
+    <label class="radio">
+      <view class='item-image'><image src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/weixin-logo.png' mode='widthFix'></image></view>
+      <view class='item-h2'>微信支付</view>
+      <view class='item-h6'>推荐使用微信支付</view>
+      <view class='item-radio'><radio value="1" checked="true"/></view>
+    </label>
+  </radio-group>
+</view>
+
+<view class='footer'>
+  <view class='price'>合计 <text>￥59.9</text></view>
+  <view class='button' hover-class='active'>立即支付</view>
+</view>

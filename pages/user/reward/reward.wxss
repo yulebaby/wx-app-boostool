@@ -1,0 +1,78 @@
+page{
+  background: #F0F0F0;
+}
+
+.header{
+  margin: 20rpx 0;
+  padding: 40rpx 0;
+  overflow: hidden;
+  background: #fff;
+}
+.header   view {
+  float: left;
+  width: 33.33333%;
+  text-align: center;
+  box-sizing: border-box;
+}
+.header   view:not(:last-child){
+  border-right: solid 1px #f5f5f5;
+}
+.header   view   text:first-child{
+  display: block;
+  padding-bottom: 17rpx;
+  color: #FF9700;
+  font-size: 36rpx;
+  line-height: 36rpx;
+}
+.header   view   text:last-child{
+  display: block;
+  color: #4D4D4D;
+  font-size: 24rpx;
+  line-height: 24rpx;
+}
+
+.item{
+  margin-top: 20rpx;
+  padding: 30rpx;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.head{
+  float: left;
+  width: 95rpx;
+  height: 95rpx;
+  overflow: hidden;
+}
+.head image{
+  width: 100%;
+  border-radius: 50%;
+}
+.cell{
+  padding-left: 130rpx;
+  padding-right: 140rpx;
+}
+
+.name{
+  padding: 8rpx 0 18rpx;
+  color: #333;
+  font-size: 32rpx;
+  line-height: 32rpx;
+}
+.store{
+  color: #666;
+  font-size: 28rpx;
+  line-height: 28rpx;
+}
+.price{
+  height: 95rpx;
+  color: #333;
+  font-size: 26rpx;
+  line-height: 95rpx;
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+}
+.price text{
+  color: #FF9700;
+}

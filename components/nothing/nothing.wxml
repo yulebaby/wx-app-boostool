@@ -1,0 +1,4 @@
+<view class="nothing" wx:if="{{ show }}">
+  <image mode='widthFix' class='image' src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/item-nothing.png'></image>
+  <view class='text'><slot></slot></view>
+</view>

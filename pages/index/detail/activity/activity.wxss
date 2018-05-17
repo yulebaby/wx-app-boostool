@@ -1,0 +1,297 @@
+
+.header{
+  padding: 0 30rpx 33rpx;
+  background: #fff;
+  position: relative;
+
+  border-bottom: solid 20rpx rgb(240, 240, 240);
+}
+.head-title{
+  padding: 42rpx 100rpx 19rpx 0;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+
+}
+.head-detail{
+  color: RGBA(153, 153, 153, 1);
+  font-size: 24rpx;
+  line-height: 24rpx;
+}
+.head-cover{
+  background: #999;
+  height: 366rpx;
+  overflow: hidden;
+
+}
+.head-cover image{
+  width: 750rpx;
+  height: 366rpx;
+}
+.head-price{
+  padding-top: 30rpx;
+  overflow: hidden;
+ 
+}
+.head-price view{
+  float: left;
+}
+.head-price view:first-child{
+  font-size: 46rpx;
+  line-height: 36rpx;
+  margin-right: 26rpx;
+  color: #f63;
+  font-weight: bold;
+  height: 50rpx;
+}
+.head-price view:last-child{
+  height: 36rpx;
+
+  font-size: 24rpx;
+  line-height: 46rpx;
+  text-decoration: line-through;
+    color: #63686e;
+}
+.head-label{
+  padding: 0 14rpx;
+  color: #fff;
+  font-size: 22rpx;
+  line-height: 44rpx;
+  border-radius: 8rpx;
+  background: #f63;
+  position: absolute;
+  top: 40rpx;
+  right: 45rpx;
+} 
+
+.detail{
+  padding: 0 30rpx;
+  background: #fff;
+}
+.detail-title{
+  padding: 40rpx 0 30rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  border-bottom: solid 1px rgba(238,238,238,1);
+}
+.detail-content{
+  padding-top: 17rpx;
+  padding-bottom: 100rpx;
+}
+.detail-item{
+  color: #63686e;
+
+  font-size: 26rpx;
+  line-height: 60rpx;
+  overflow: hidden;
+}
+.item-label{
+  float: left;
+  width: 130rpx;
+}
+
+.footer{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+.btn-info{
+  height: 100rpx;
+  color: RGBA(153, 153, 153, 1);
+  font-size: 26rpx;
+  line-height: 100rpx;
+  text-indent: 70rpx;
+  border-top: solid 1px RGBA(238, 238, 238, 1);
+  box-sizing: border-box;
+  background: #fff;
+}
+.footer-btn{
+  width: 240rpx;
+  color: #fff;
+  font-size: 34rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: RGBA(255, 131, 154, 1);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+}
+.footer-btn.active{
+  background: #fba0b1;
+}
+.showfx{
+  width: 100%;
+  height: 100%;
+  position:fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  float:left; 
+}
+.showfxmain{
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+}
+.showfxbg{
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+}
+.showfxcontent{
+  width: 504rpx;
+  height: 394rpx;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -197rpx;
+  margin-left: -252rpx;
+  z-index: 10;
+  border-radius: 20rpx;
+}
+.showfxtitle{
+  width: 100%;
+  color:#333;
+  font-size: 40rpx;
+  text-align: center;
+  margin-top: 80rpx;
+  font-weight: bold;
+  margin-bottom: 33rpx;
+}
+.showfxnr{
+  width: 100%;
+  font-size: 24rpx;
+  text-align: center;
+  color: #999999;
+  margin-bottom: 14rpx;
+}
+.showfxbtn{
+  width: 504rpx;
+  height:100rpx;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.fxbtn{
+  font-size: 30rpx;
+  width: 50%;
+  height: 100rpx;
+  float: left;
+  background: none;
+  outline: none;
+  text-align: center;
+  line-height: 100rpx;
+  border-top: solid 1rpx #ccc;
+
+}
+.fxbtn:nth-child(2){  
+  position: relative;
+  background: #ED7C8F;
+  color: #fff;
+  border-radius:0 0 20rpx;
+}
+.fxbtn:nth-child(2) button{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  opacity: 0;
+}
+
+/* 门店信息 */
+.head-box{
+  padding: 0 30rpx;
+  border-bottom:  solid 0.5px #e4e4e4;
+}
+.head-name{
+  padding: 33rpx 0 25rpx;
+  font-size: 36rpx;
+  line-height: 36rpx;
+  font-weight: bold;
+}
+.head-name view{
+  float: right;
+
+  font-size: 26rpx;
+  font-weight:normal;
+  color:rgb(163, 163, 163);
+}
+.head-name view.active{
+  color: #fff;
+  background: #FF839A;
+}
+.head-address{
+  padding-bottom: 30rpx;
+  color: rgb(163, 163, 163);
+  font-size: 26rpx;
+  overflow: hidden;
+}
+.head-card{
+  width:132rpx;
+  height:40rpx;
+  color: #fff;
+  font-size: 21rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background: #ff839a;
+  border-radius: 4rpx;
+  position: absolute;
+  top: 26rpx;
+  right: 15rpx;
+  z-index: 100;
+}
+
+
+.head-address text{
+  display: block;
+  width: 560rpx;
+  float: left;
+
+}
+.head-address view{
+
+
+    float: right;
+  height: 32rpx;
+  padding: 0 8rpx;
+  color: #FF839A;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  transition: all .2s;
+  border-radius: 4rpx;
+}
+.backindex{
+  width: 100%;
+  text-align: center;
+  font-size: 26rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #FF839A;
+  border-bottom: solid 20rpx rgb(240, 240, 240); 
+}
+.image_ico{
+  width: 152rpx;
+  height: 119rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  margin-left: -76rpx;
+   margin-top: -265rpx;
+}
+.content_main{
+  width: 100%;
+  height: 100%;
+  position: relative;
+    overflow: hidden;
+
+}

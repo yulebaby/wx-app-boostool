@@ -1,0 +1,14 @@
+.nothing{
+  padding-top: 260rpx;
+  text-align: center;
+}
+.image{
+  width: 345rpx;
+}
+
+.text{
+  padding-top: 60rpx;
+  color: rgb(151, 151, 151);
+  font-size: 24rpx;
+  line-height: 24rpx;
+}

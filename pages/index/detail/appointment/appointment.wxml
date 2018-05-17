@@ -1,0 +1,85 @@
+<view class='footer'>
+  <view class='select-input' wx:if='{{foottext}}'>
+    <input class='input' disabled="true" value='您已经选择: {{rq}} {{xhours}}:{{xminutes}}' placeholder-style="color:rgb(210,210,210)" placeholder="请选择" />
+  </view>
+  <view class='select-input' wx:else>
+    <input class='input' disabled="true" value='请选择游泳课时间' placeholder-style="color:rgb(210,210,210)" placeholder="请选择" />
+  </view>
+  <form bindsubmit="yabout" report-submit='true'>
+    <view class='enter-button {{aboutbtn?"":"disabled"}}' hover-class='active'>确定预约</view>
+    <button class='ipt-submit' hover-class='active' form-type="submit" type="default" size="mini">确定预约</button>
+  </form>
+</view>
+<scroll-view scroll-y class='appointment'>
+  <view class='activity-content' wx-if="{{activityType==1}}">
+    <view class='activity-item'>
+ 
+        <view class='item-name'>“鱼人游”超值体验卡</view>
+        <view class='item-detail'>服务包含：游泳+洗澡+抚触</view>
+        <view class='item-price'>￥{{discountPrice}}</view>
+
+    </view>
+  </view>
+  <view class='header' wx:if='{{tongMember}}'>
+    <view>
+      <text>{{totalTimes}}</text>
+      <text>总卡次</text>
+    </view>
+    <view>
+      <text>{{remainTimes}}</text>
+      <text>剩余总数</text>
+    </view>
+    <view>
+      <text>{{remainTong}}</text>
+      <text>通卡剩余</text>
+    </view>
+  </view>
+  <view class='appointment'>
+    <view class='title'>
+      <view class='title-h2'>服务时间</view>
+      <view class='title-h6'>选择服务时间，以便我们为您更好的服务</view>
+    </view>
+    <view class='tab-head'>
+      <view class="tab-left {{leftbtn==0?'active1':''}}" hover-class='active' bindtap='tapleft'></view>
+      <view class='tab-head-box'>
+        <view class='tab-content'>
+          <view class="tab-item {{weeks == item.sid+1 ? 'active' : ''}}" data-rq="{{item.date}}" wx:for="{{weekss}}" wx:key="key" catchtap='getlisthouse' data-value="{{item.sid+1}}" data-listHours="{{weekItems[item.sid].date}}">
+            <view class='item-h2'>{{item.date}}</view>
+            <view class='item-h6'>{{item.week}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="tab-right {{rightbtn==0?'active1':''}}" hover-class='active' bindtap='tapright'></view>
+    </view>
+
+    <view class='tab-body' wx:if="{{listtimes==1}}">
+      <view class='body-content'>
+        <view>
+          <view class="body-item  {{!item.flag?'disabled':''}} {{selectTime == index+1 ? 'active' : ''}}" bindtap="radioChanges" wx:for="{{listhours}}" data-index='{{index+1}}' data-value='{{item.hour.length==1?0+item.hour:item.hour}}{{item.minute}}' data-flag='{{item.flag}}'
+            wx:key="key">{{item.hour}}:{{item.minute}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='nonetimelist' wx:if="{{listtimes==0}}">
+      <image src='../../../../assets/images/aboutfull.png'> </image>
+      <text style='padding-top:50rpx;'>哎呀，今天游泳课预约满了</text>
+      <text>换一天吧</text>
+    </view>
+  </view>
+  <view class='select-teacher' wx:if="{{teachers}}">
+    <view class='select-head'>
+      <view class='select-title'>水育老师</view>
+      <view class='select-desc'>为宝宝选择喜欢的水育老师</view>
+    </view>
+    <view class='teacher-content'>
+      <view>
+        <view bindtap='teachertap' class="labers {{selectTeachId == index+1 ? 'active' : ''}}" wx:for="{{teachers}}" wx:key="key" data-tid='{{item.id}}' data-selectTeachId='{{index+1}}'>
+          <view class='teacher-head'>
+            <image src='{{item.img}}' mode='widthFix'></image>
+          </view>
+          <view class='teacher-name'>{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

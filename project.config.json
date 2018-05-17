@@ -1,0 +1,144 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.1",
+	"appid": "wx15bc903bd3ce9d4a",
+	"projectname": "%E9%B1%BC%E4%B9%90%E8%B4%9D%E8%B4%9D",
+	"svr": "",
+	"client": "",
+	"qcloudRoot": "",
+	"miniprogramRoot": "",
+	"pluginRoot": "",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "详情",
+					"pathName": "pages/index/detail/detail",
+					"query": "shopId=689"
+				},
+				{
+					"id": 1,
+					"name": "服务列表",
+					"pathName": "pages/serve/serve",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "绑定手机",
+					"pathName": "pages/user/bind-phone/bind-phone",
+					"query": "shopId=741&page=4"
+				},
+				{
+					"id": 3,
+					"name": "绑定信息",
+					"pathName": "pages/user/bind-info/bind-info",
+					"query": "shopId=741&page=1&discountPrice=741"
+				},
+				{
+					"id": -1,
+					"name": "个人",
+					"pathName": "pages/user/user",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的评价",
+					"pathName": "pages/user/evaluate/evaluate",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "活动",
+					"pathName": "pages/index/detail/activity/activity",
+					"query": "shopId=672"
+				},
+				{
+					"id": 7,
+					"name": "预约时间",
+					"pathName": "pages/index/detail/appointment/appointment",
+					"query": "shopid=741"
+				},
+				{
+					"id": -1,
+					"name": "订单",
+					"pathName": "pages/order/order",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "优惠券",
+					"pathName": "pages/user/coupon/coupon",
+					"query": ""
+				},
+				{
+					"id": 10,
+					"name": "退款",
+					"pathName": "pages/serve/refund/refund",
+					"query": ""
+				},
+				{
+					"id": 11,
+					"name": "服务详情",
+					"pathName": "pages/serve/serve-details/serve-details",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的打赏",
+					"pathName": "pages/user/reward/reward",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打赏",
+					"pathName": "pages/serve/serve-reward/serve-reward",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "评价",
+					"pathName": "pages/serve/serve-evaluate/serve-evaluate",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "调试",
+					"pathName": "pages/demo/demo",
+					"query": ""
+				},
+				{
+					"id": 16,
+					"name": "选择服务",
+					"pathName": "pages/index/detail/appointment/appointment",
+					"query": "shopId=741"
+				}
+			]
+		}
+	}
+}

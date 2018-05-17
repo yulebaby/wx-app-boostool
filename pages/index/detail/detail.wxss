@@ -1,0 +1,443 @@
+page{
+  background: #f5f6f8;
+}
+
+/* ------------------- header ------------------- */
+.header{
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+.head-cover{
+  background: #999;
+  height: 520.3125rpx;
+  overflow: hidden;
+
+}
+.head-cover image{
+  width: 750rpx;
+  height: 520.3125rpx;
+  
+}
+.slide-image{
+   width: 750rpx;
+  height: 520.3125rpx;
+
+}
+.swiper,swiper{
+   width: 750rpx;
+  height: 520.3125rpx;
+}
+.swiper img{
+   width: 750rpx;
+  height: 520.3125rpx;
+}
+
+.head-box{
+  padding: 0 30rpx;
+  border-bottom:  solid 0.5px #e4e4e4;
+}
+.head-name{
+  padding: 33rpx 0 25rpx;
+  font-size: 36rpx;
+  line-height: 36rpx;
+  font-weight: bold;
+}
+.head-name view{
+  float: right;
+
+  font-size: 26rpx;
+  font-weight:normal;
+  color:rgb(163, 163, 163);
+}
+.head-name view.active{
+  color: #fff;
+  background: #FF839A;
+}
+.head-address{
+  padding-bottom: 30rpx;
+  color: rgb(163, 163, 163);
+  font-size: 26rpx;
+  overflow: hidden;
+}
+.head-card{
+  width:132rpx;
+  height:40rpx;
+  color: #fff;
+  font-size: 21rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background: #ff839a;
+  border-radius: 4rpx;
+  position: absolute;
+  top: 26rpx;
+  right: 15rpx;
+  z-index: 100;
+}
+
+
+.head-address text{
+  display: block;
+  width: 560rpx;
+  float: left;
+
+}
+.head-address view{
+
+
+    float: right;
+  height: 32rpx;
+  padding: 0 8rpx;
+  color: #FF839A;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  transition: all .2s;
+  border-radius: 4rpx;
+}
+
+
+
+/* -------------------- 活动 -------------------- */
+.activity{
+  margin-bottom: 20rpx;
+  background: #fff;
+  
+}
+.activity-title{
+  padding: 40rpx 0 32rpx;
+  color: #333;
+  font-size: 32rpx;
+  border-bottom: solid 1px rgb(232, 232, 232);
+}
+.activity-content{
+  overflow: hidden;
+  position: relative;
+  padding: 20rpx 30rpx;
+  border: solid 1rpx  rgb(232, 232, 232);
+  border-left: none;
+   border-right: none;
+}
+.activity-item{
+  position: relative;
+  padding: 10rpx 0;
+  float: left;
+  width: 520rpx;
+  margin-left: 140rpx;
+}
+/* .activity-content .activity-item:not(:first-child){
+  border-top: dashed 1px rgb(232, 232, 232);
+} */
+.activity-img{
+  width: 120rpx;
+  height: 120rpx;
+  position: absolute;
+  top: 20rpx;
+}
+.activity-img image{
+  width: 120rpx;
+  height: 120rpx;
+display: block;
+}
+.activity-item navigator{
+  padding: 10rpx;
+  border-radius: 10rpx;
+}
+.activity-item navigator.active{
+  background: #f6f6f6;
+}
+.item-name{
+  padding-top: 10rpx;
+  padding-bottom: 20rpx;
+
+  font-size: 28rpx;
+  line-height: 32rpx;
+  color: #000;
+ 
+}
+.item-detail{
+
+  padding-bottom: 10rpx;
+  color: #999;
+  font-size: 24rpx;
+  line-height: 30rpx;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+/* .item-price{
+  padding-right: 26rpx;
+  font-size: 36rpx;
+  line-height: 36rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAnCAYAAAAVW4iAAAAC4klEQVRIS72Xz0sUYRjHv8+bG0G/1AJjhejUrfBQd+lWlzBoBPOQpDtuq7YQllLhXAryIB7W2BncloKgfyAE6VCHoC5R1KUOBVGrRERICjs7O994ZVaW1NVtZ3qPMzzfz7zz/JZsNtsrIrcBfAdgtrS0vDUMo4yQjti2/RVAu9Yj+QlAenFxcc6yLC8MhjiO84TkGS0mIgTwjeQl0zTnQwHkcrm453kPAXQC2BGIrpDsaW1tnTMMw20EJNrYcZyjACZJnq0S+wHgRrFYfDAyMlL8V8gqQJ9MJnMgFotNA+itEvslIuOJRCLbMEAL2La9n+S0iFwAEAtEtV+uLy0t3RsdHV2uF7R2g4phPp8/5LruTZJJEVGB85dJTnmeN5lKpX7XA1kH0MYzMzN7YrFYmuQEgKaK40UkVygU0pZl+duFbAjQxvl8flexWBxXSl0lubsiqCFKqWv9/f0/twPZFKCNc7nc3nK5fJnkLQAViA7bR77vjyWTSZ39NU9NgLa0LGtnPB7vJpkBsC9QK4nI0+bmZsMwjJo+2RIQQJra2tr6lFJ3ABysfDLJZ57nXUylUl+CKrDuNtsCBCEcI9mtlLpLMh4olUVk3nXd9NDQ0MeN/tW2AcFNVHt7e6fv+3kAhwNBHVHvXNftGh4e/vw3pC6ANiYps7Ozp33fnwFwpOp3fRCRnoWFhTfVYVw3IBCUbDZ7Sik1RfJ4Vca/9n3/SjKZfLEW1luFWa33tm0f09EM4GSQ8SRZ0KUmkUg8X33WCEDbOo7TQVL7pKNKawFAl2marxoGBBF2nuTjSu0CUCI5Njg4ONUwYLMbKKXODQwMvGwIoH1A8r6InAjbB9FFUaR5YFnWukwWkTLJ9w1nsm3b0dUiy7Ka4vF4H8nwq2mk/SDSjqZ7cqlUGgcQfk+uTBW+70+ISLhTRaRzUa3JTo9Lpmmu1Ft9/89sGul0Hfl+EPmGE/mOFmyZkwB0Hx0Ie8v8AwgT9DfYYGcBAAAAAElFTkSuQmCC) no-repeat right center;
+  background-size: 16rpx 26rpx;
+  position: absolute;
+  top: 48rpx;
+  right: 10rpx;
+  color:#f63;
+  font-weight: bold;
+} */
+
+/* .item-price{
+  font-size: 36rpx;
+  line-height: 36rpx;
+  position: absolute;
+  top: 48rpx;
+  right: 10rpx;
+  color:#f63;
+  font-weight: bold;
+} */
+.item-price{
+  font-size: 36rpx;
+  line-height: 36rpx;
+  position: absolute;
+  top: 0;
+  right: -30rpx;
+  color:#f63;
+  font-weight: bold;
+
+  width: 200rpx;
+  height: 122rpx;
+  text-align: center;
+}
+.price_main{
+  width: 100%;
+  height: 100%;
+}
+.price_top {
+  height:61rpx;
+  line-height: 61rpx;
+  font-size: 34rpx;
+  font-weight: normal;
+  text-align: right;
+}
+.price_top text{
+  height:36rpx;
+font-size:24rpx;
+line-height:46rpx;
+text-decoration:line-through;
+color:#999;
+font-weight: normal;
+margin-left: 10rpx;
+
+}
+.price_bottom{
+  width: 150rpx;
+  height: 50rpx;
+  background: #f63;
+  color: #fff;
+  float: right;
+  line-height: 50rpx;
+  font-weight: normal;
+  font-size: 24rpx;
+  border-radius: 5px;
+}
+/* -------------------- 详情 -------------------- */
+.storeinfo{
+ background: #fff;
+  padding:0 30rpx;
+ 
+  border-top:solid 0.5px #e4e4e4;
+  clear: both;
+}
+
+.storeinfo-title{
+  padding: 40rpx 0 32rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  border-bottom:solid 0.5px #e4e4e4;
+}
+.info-item{
+  color: #63686e;
+  font-size: 26rpx;
+  position: relative;
+  padding: 16rpx 0;
+}
+.info-item:not(:last-child){
+  border-bottom:solid 0.5px #e4e4e4;
+}
+.info-item.function{
+  line-height: 60rpx;
+}
+.info-item.function .item-icon{
+  display: inline-block;
+  height: 60rpx;
+  line-height: 60rpx;
+  position: relative;
+  top: auto;
+  left: auto;
+}
+.info-item.function .info-cell{
+  height: 60rpx;
+  display: inline-block;
+  margin-right: 30rpx;
+  padding-left: 10rpx;
+}
+.item-icon{
+  width: 28rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.item-icon image{
+  width: 100%;
+  vertical-align: middle;
+}
+.info-cell{
+  line-height: 60rpx;
+  padding-left: 36rpx;
+}
+
+/* ------------------- footer ------------------- */
+.footer{
+  width: 100%;
+  color: #fff;
+  font-size: 34rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: #FF839A;
+  position: fixed;
+  bottom: 0;
+  z-index: 9;
+  transition: all .25s;
+}
+.footer.active{
+  background: #fba0b1;
+}
+.footer-phone{
+   color: rgb(150, 150, 150);
+  font-size: 26rpx;
+  line-height: 36rpx;
+  text-align: center;
+
+}
+.footer-time{
+  color: rgb(150, 150, 150);
+  font-size: 23rpx;
+  line-height: 23rpx;
+  padding-top: 15rpx;
+   text-align: center;
+}
+.footer1{
+  width: 100%;
+  color: #fff;
+  font-size: 34rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: #FF839A;
+  position: fixed;
+  bottom: 0;
+  z-index: 9;
+  transition: all .25s;
+}
+.footer1 view:nth-child(1){
+  background: #fff;
+  width: 25%;
+  float: left;
+  color: #FF839A;
+}
+.footer1 view:nth-child(2){
+  width: 75%;
+  float: left;
+}
+/* .footer1 view:nth-child(1) image{
+  width: 60rpx;
+  height: 60rpx;
+  margin-top: 10rpx;
+} */
+
+.foots{
+  width: 100%; 
+  overflow: hidden;
+  padding: 80rpx 0;
+  background:#f5f6f8; 
+   padding-bottom:180rpx;
+   border-top:solid 0.5px #e4e4e4;
+
+}
+.shoptel{
+    background: url(https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/icon-right-o.png) no-repeat right center;
+    background-size: 15.2rpx 27.2rpx;
+    width: 80%;
+    padding-right: 12%;
+}
+
+
+.showfx{
+  width: 100%;
+  height: 100%;
+  position:fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: none;
+}
+.showfxmain{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.showfxbg{
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+}
+.showfxcontent{
+  width: 600rpx;
+  height: 400rpx;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -250rpx;
+  margin-left: -300rpx;
+  z-index: 10;
+  border-radius: 10rpx;
+}
+.showfxtitle{
+  width: 100%;
+  height: 100rpx;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 100rpx;
+}
+.showfxnr{
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  text-align: center;
+}
+.showfxbtn{
+  width: 600rpx;
+  height:100rpx;
+  overflow: hidden;
+  margin-top: 80rpx;
+}
+
+.fxbtn{
+  width: 299rpx;
+  height: 100rpx;
+  float: left;
+  background: none;
+  outline: none;
+  text-align: center;
+  line-height: 100rpx;
+  border-top: solid 1rpx #ccc;
+  border-right: solid 1px #ccc;
+}
+.fxbtn:nth-child(2){
+  border-right: none;
+  width: 300rpx;
+  position: relative;
+}
+.fxbtn:nth-child(2) button{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  opacity: 0;
+}

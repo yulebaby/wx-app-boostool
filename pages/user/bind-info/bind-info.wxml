@@ -1,0 +1,26 @@
+<view class='head'>
+  <image mode='widthFix' src='{{userInfo.avatarUrl}}'></image>
+</view>
+
+
+<view class='mform'>
+  <view class='item'>
+    <input placeholder='宝宝昵称' bindinput="babyname" placeholder-style="color:#b0b0b0" />
+  </view>
+  <view class='item'>
+    <picker mode="date" value="{{ birthday }}" start="2000-01-01" end="2020-01-01" maxlength="20" bindchange="birthdayChange">
+      <view class='select' wx:if="{{ birthday }}">{{ birthday }}</view>
+      <view class='notSelect' wx:if="{{ !birthday }}">宝宝生日</view>
+    </picker>
+  </view>
+  <view class='item'>
+    <picker bindchange="relationshipChange" value="{{relationshipIndex}}" range="{{relationshipArray}}">
+      <view class='select' wx:if="{{ relationshipArray[relationshipIndex] }}">{{ relationshipArray[relationshipIndex] }}</view>
+      <view class='notSelect' wx:if="{{ !relationshipArray[relationshipIndex] }}">您与宝宝的关系</view>
+    </picker>
+  </view>
+</view>
+
+
+
+<view class='ipt-submit' hover-class='active' bindtap='setuser'>确定</view>

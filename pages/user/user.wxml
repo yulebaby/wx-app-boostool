@@ -1,0 +1,51 @@
+ <!-- <view class='head' wx:if='{{!tongMember}}'>  -->
+<view class='head'> 
+  <view class='head-image'>
+    <image mode='widthFix' src='{{userInfo.avatarUrl}}'></image>
+  </view>
+
+  <view class='head-name'>{{userInfo.nickName}}</view>
+  <view class='head-phone'>{{userphone}}</view>
+
+</view>
+ <!-- <view class='card'>
+ <view class='membercard' wx:if='{{tongMember}}'>
+        <view class='logo'><image src='https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/ylbblogo.png'></image></view>
+        <view class='cardclass'>金卡</view>
+        <view class='shopname'>鱼乐贝贝婴幼儿水育馆（朝阳双桥店）</view>
+        <view class='shopaddress'>北京市朝阳区三间房双桥路3号东星时尚广场F3</view>
+        <view class='cardnumber'>
+          <view>748397 6786 7897</view>
+          <view>2019/10/28到期</view>
+        </view>
+    </view>
+    </view>  -->
+
+
+<view class='container' >
+    
+   <!-- <view class='header {{tongMember?"cli":""}}' wx:if='{{tongMember}}'> -->
+        <view class='header' wx:if='{{tongMember}}'>
+    <view>
+      <text>{{totalTimes}}</text>
+      <text>总卡次</text>
+    </view>
+    <view>
+      <text>{{remainTimes}}</text>
+      <text>剩余总数</text>
+    </view>
+    <view>
+      <text>{{remainTong}}</text>
+      <text>通卡剩余</text>
+    </view>
+  </view>
+
+  <view class='item'   hover-class='active' bindtap='myserve'>
+   我的预约
+  </view>
+</view>
+
+<view class='footer'>
+  <view class='footer-phone' bindtap='makePhone' data-num='400-6321531'>客服电话：400-6321531</view>
+  <view class='footer-time'>客服时间：09:00 - 18:00 周一至周日</view>
+</view>

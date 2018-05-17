@@ -1,0 +1,21 @@
+
+<view class='logo'>
+   <image src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/logo-large.png' mode='widthFix'></image> 
+</view>
+
+<view class='ipt-box'>
+  <view class='ipt-icon'>+86</view>
+  <input placeholder="请输入您的手机号" disabled='{{disabled}}' type='number' maxlength="11" bindinput="phoneInput" placeholder-style="color:#b0b0b0" class='ipt-phone' auto-focus/>
+  <view class='ipt-code'>
+    <input placeholder="请输入短信验证码" disabled='{{disabled}}'  focus="{{focus}}" type='number' maxlength="6" bindinput="codeInput" placeholder-style="color:#b0b0b0"/>
+    <view class='btn-code' hover-class='active' bindtap='getCode1'>{{sendFont}}</view>
+  </view>
+</view>
+
+ <form bindsubmit="getphonesuccess" report-submit='true' >
+<view class='ipt-submit'>提交</view>
+  <button class='ipt-submit' hover-class='active' form-type="submit" type="default" size="mini">提交</button>
+  </form>
+
+
+<view class='tip' >*若您输入的手机号未注册，将会进入注册流程</view>

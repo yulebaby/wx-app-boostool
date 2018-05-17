@@ -1,0 +1,61 @@
+.head{
+  width: 220rpx;
+  height: 220rpx;
+  margin: 60rpx auto;
+  padding: 8rpx;
+  border: solid 1px rgb(236, 236, 236);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.head image{
+  display: block;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.mform{
+  margin: 0 75rpx;
+  padding: 0 24rpx;
+  border: solid 1px rgb(236, 236, 236);
+  border-radius: 10rpx;
+  box-sizing: border-box;
+}
+
+.item{
+  height: 110rpx;
+  box-sizing: border-box;
+}
+.item:not(:last-child){
+  border-bottom: solid 1px rgb(236, 236, 236);
+}
+.item > input{
+  height: 100%;
+  color: #494949;
+  font-size: 32rpx;
+}
+.select{
+  height: 109rpx;
+  color: #494949;
+  font-size: 32rpx;
+  line-height: 109rpx;
+}
+.notSelect{
+  height: 109rpx;
+  color: #b0b0b0;
+  font-size: 32rpx;
+  line-height: 109rpx;
+}
+
+.ipt-submit{
+  margin: 0 75rpx;
+  margin-top: 50rpx;
+  color: #fff;
+  font-size: 34rpx;
+  line-height: 110rpx;
+  text-align: center;
+  background: -webkit-gradient(linear, 0 0, right bottom, from(#FF998E), to(#FB6180));
+  border-radius: 10rpx;
+}
+.ipt-submit.active{
+  background: #DFDFDf;
+}

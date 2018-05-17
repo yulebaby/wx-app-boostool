@@ -1,0 +1,131 @@
+<view class='store-container'>
+
+  <!-- header -->
+  <view class='header'>
+
+    <view class='head-cover'>
+      
+      
+      <view class='head-card' wx:if="{{countryCardStatus}}">全国通卡店</view>
+  
+  <view class='swiper' wx:if="{{swiperArray}}">
+    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="300" circular="true">
+      <block wx:for="{{swiperArray}}" wx:key="key">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" width="355" height="150"/>
+        </swiper-item>
+      </block>
+    </swiper>  
+    </view>
+    <image src='{{shopImg}}' wx:else></image>
+    </view>
+
+    <view class='head-box'>
+    
+      <view class='head-name'>
+        <text>{{shopName}}</text>
+        <view>{{distance}}</view>
+      </view>
+
+      <view class='head-address'>
+        <text>{{address}}</text>
+        <view hover-class='active' bindtap='mapclick'>导航</view>
+      </view>
+
+    </view>
+
+  </view>
+  <!-- 判断门店是否有活动 -->
+     <view class='activity' wx:if='{{inActivity==1}}'>
+    <!-- <view class='activity-title'>门店活动</view> -->
+    <view class='activity-content' bindtap='activity_yry'>
+      <view class='activity-img'><image src='https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/content_img.jpg'></image></view>
+      <view class='activity-item' >
+          <view class='item-name'>百城千店，五一欢乐游</view>
+          <view class='item-detail'>超值游泳体验卡</view>
+          <view class='item-price'>
+            <view class='price_main'>
+              <view class='price_top'>￥{{discountPrice}}<text>{{price}}</text></view>
+              <view class='price_bottom'>立即抢购</view>
+            </view>
+          </view>
+      
+      </view>
+ 
+    </view>
+  </view>
+
+
+  <!-- 详情 -->
+  <view class='storeinfo'>
+    <view class='storeinfo-title'>门店信息</view>
+    <view class='storeinfo-content'>
+      <view class='info-item function' wx:if="{{facilitie}}">
+        <view class='item-icon' wx:if="{{facilitie1}}"><image mode='widthFix' src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/icon-rest.png'></image></view>
+        <view class='info-cell' wx:if="{{facilitie1}}">家长休息区</view>
+        <view class='item-icon' wx:if="{{facilitie2}}"><image mode='widthFix' src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/icon-time.png'></image></view>
+        <view class='info-cell' wx:if="{{facilitie2}}">寄存区</view>
+        <view class='item-icon' wx:if="{{facilitie3}}"><image mode='widthFix' src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/icon-parking.png'></image></view>
+        <view class='info-cell' wx:if="{{facilitie3}}">停车场</view>
+        <view class='item-icon' wx:if="{{facilitie4}}"><image mode='widthFix' src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/icon-wifi.png'></image></view>
+        <view class='info-cell' wx:if="{{facilitie4}}">免费WIFI</view>
+      </view>
+      <view class='info-item'  wx:if="{{businessTime}}">
+        <view class='item-icon'><image mode='widthFix' src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/icon-time.png'></image></view>
+        <view class='info-cell'>{{businessTime}}</view>
+      </view>
+      <view class='info-item' wx:if="{{address}}">
+        <view class='item-icon'><image mode='widthFix' src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/icon-marker.png'></image></view>
+        <view class='info-cell shoptel' bindtap='mapclick'>{{address}}</view>
+      </view>
+      <view class='info-item' wx:if="{{shopTel}}" >
+        <view class='item-icon'><image mode='widthFix' src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/userphone.png'></image></view>
+        <view class='info-cell shoptel' bindtap='cellme' >{{shopTel}}</view>
+      </view>
+      <view class='info-item' wx:if="{{trafficInformation}}">
+        <view class='item-icon'><image mode='widthFix' src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/icon-map.png'></image></view>
+        <view class='info-cell' >
+          <!-- <view>地铁：6号线 北京市朝阳区朝阳路79号甘露园物美</view>-->
+          <view>公交：{{trafficInformation}}</view>
+        </view>
+      </view>
+      <view class='info-item' wx:if="{{parkingInformation}}">
+        <view class='item-icon'><image mode='widthFix' src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/icon-parking.png'></image></view>
+        <view class='info-cell'>
+          <view>名称：{{parkingInformation}}</view>
+          <!-- <view>参考价格：1元/0.5小时(07:00-21:00)</view>
+          <!--<view>地址：{{add ress}}</view>-->
+        </view>
+      </view>
+       <view class='info-item' wx:if="{{warmPrompt}}">
+        <view class='item-icon'><image mode='widthFix' src='https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/prompt.png'></image></view>
+        <view class='info-cell' >
+          <!-- <view>地铁：6号线 北京市朝阳区朝阳路79号甘露园物美</view>-->
+          <view>温馨提示：{{warmPrompt}}</view>
+        </view>
+        </view>
+       <view class='info-item' wx:if="{{healthSafe}}">
+        <view class='item-icon'><image mode='widthFix' src='https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/safe.png'></image></view>
+        <view class='info-cell' >
+          <!-- <view>地铁：6号线 北京市朝阳区朝阳路79号甘露园物美</view>-->
+          <view>卫生安全：{{healthSafe}}</view>
+        </view>
+      </view>
+
+
+
+    </view>
+
+  </view>
+      <view class='foots'>
+      <view class='footer-phone' bindtap='makePhone' data-num='400-6321531'>客服电话：400-6321531</view>
+  <view class='footer-time'>客服时间：09:00 - 18:00 周一至周日</view>
+  </view>
+
+
+
+  <!-- footer -->
+
+<view class='footer' wx:if="{{books_yy}}"   hover-class='active' bindtap='booking'>去预约游泳课</view>
+
+</view>

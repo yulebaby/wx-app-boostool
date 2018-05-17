@@ -1,0 +1,25 @@
+<scroll-view scroll-y class='reward'>
+
+  <view class='header'>
+    <view>
+      <text>1</text>
+      <text>打赏次数</text>
+    </view>
+    <view>
+      <text>254</text>
+      <text>打赏金额(元)</text>
+    </view>
+  </view>
+
+
+  
+  <view class='item'>
+    <view class='head'><image src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/default-teacher.png' mode='widthFix'></image></view>
+    <view class='cell'>
+      <view class='name'>黄大仙</view>
+      <view class='store'>北京甘露园物美店</view>
+    </view>
+    <view class='price'>送出<text>1.1</text>元</view>
+  </view>
+
+</scroll-view>

@@ -1,0 +1,56 @@
+{
+  "pages": [
+      "pages/index/index",
+      "pages/index/addweb/addweb",
+    "pages/index/detail/detail",
+    "pages/demo/demo",
+    "pages/index/detail/activity/activity",
+    "pages/user/user",
+    "pages/user/bind-phone/bind-phone",
+    "pages/user/bind-info/bind-info",
+    "pages/user/coupon/coupon",
+    "pages/user/evaluate/evaluate",
+    "pages/user/reward/reward",
+    "pages/serve/serve",
+    "pages/serve/order/order",
+    "pages/serve/check-order/check-order",
+    "pages/serve/serve-details/serve-details",
+    "pages/serve/refund/refund",
+    "pages/index/detail/appointment/appointment",
+    "pages/serve/serve-reward/serve-reward",
+    "pages/serve/serve-evaluate/serve-evaluate"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "鱼乐贝贝",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#C2C2C3",
+    "selectedColor": "#FF839A",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "selectedIconPath": "assets/images/tabbar-fish-active.png",
+        "iconPath": "assets/images/tabbar-fish.png",
+        "pagePath": "pages/index/index",
+        "text": "门店"
+      },
+      {
+        "selectedIconPath": "assets/images/tabbar-serve-active.png",
+        "iconPath": "assets/images/tabbar-serve.png",
+        "pagePath": "pages/serve/serve",
+        "text": "服务"
+      },
+      {
+        "selectedIconPath": "assets/images/tabbar-baby-active.png",
+        "iconPath": "assets/images/tabbar-baby.png",
+        "pagePath": "pages/user/user",
+        "text": "我的"
+      }
+    ]
+  }
+}

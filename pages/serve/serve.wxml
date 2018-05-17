@@ -1,0 +1,117 @@
+<view class='container'>
+
+<view class="swiper-tab">  
+  <view class="swiper-list {{ currentTab == 0 ? 'active' : '' }}" data-current="0" bindtap="swichNav">全部</view>
+  <view class="swiper-list {{ currentTab == 1 ? 'active' : '' }}" data-current="1" bindtap="swichNav">待服务</view>
+  <view class="swiper-list {{ currentTab == 2 ? 'active' : '' }}" data-current="2" bindtap="swichNav">已完成</view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" bindchange="swichChange">  
+    <swiper-item>
+      <view class='serve-list' wx:for='{{arrays}}' wx:key="key" wx:if="{{arrays.length>=1}}">
+        <view class='serve-item' bindtap='toDetails'>
+          <view class='item-title'>
+            <text>{{item.shopName}}</text>
+            <text class='item-status' wx:if='{{item.reserveStatus==0}}' style="color:#ff839a;">待服务</text>
+            <text class='item-status' wx:if='{{item.reserveStatus==1}}' style="color:#ccc;">已取消</text>
+            <text class='item-status' wx:if='{{item.reserveStatus==2}}' style="color:#000;">已完成</text>
+          </view>
+          <view class='item-detail'>
+              <!-- <navigator hover-class='active' url='serve-details/serve-details?severid={{item.id}}&status={{item.reserveStatus}}'>   -->
+              <view class='fwlist'>
+               <view class='item-detail-image'><image mode="widthFix" src="{{item.shopCoverImag}}"></image></view> 
+              <view class='item-detail-title'></view>
+              <view>时间：{{item.reserveDate}}</view>
+              <view>类型：婴幼儿游泳</view>
+              <view>老师：{{item.teacher}}</view>
+             </view>
+              <!-- </navigator>   -->
+          </view>
+            <view class='item-footer'  wx:if='{{item.reserveStatus==0}}' >  
+              <!-- wx:if='{{item.reserveStatus==0}}' -->
+            <view class='item-btns'>
+              <form bindsubmit="cancel" data-id="{{item.id}}" report-submit='true' >
+              <view class='item-btn' hover-class="active">取消预约</view>
+              <button class='ipt-submit' hover-class='active'  form-type="submit" type="default" size="mini">提交</button>
+              </form>
+            </view>
+          </view>
+        </view>
+      </view>  
+       <view class='wkong' wx:if="{{arrays.length<1}}" >
+          <image src='../../assets/images/service.png'></image>
+           <text>您还没有给宝宝约过游泳课哦</text>
+          <text style='height:30rpx; line-height:30rpx; padding-top:0;'>现在去约吧</text>
+      </view> 
+    </swiper-item>    
+    <swiper-item>
+      <view class='serve-list' wx:for='{{arrays1}}' wx:key="key" wx:if="{{arrays1.length>=1}}">
+        <view class='serve-item' bindtap='toDetails'>
+          <view class='item-title'>
+            <text>{{item.shopName}}</text>
+         <text class='item-status' wx:if='{{item.reserveStatus==0}}' style="color:#ff839a;">待服务</text>
+            <text class='item-status' wx:if='{{item.reserveStatus==1}}' style="color:#ccc;">已取消</text>
+            <text class='item-status' wx:if='{{item.reserveStatus==2}}' style="color:#000;">已完成</text>
+          </view>
+          <view class='item-detail'>
+            <!-- <navigator hover-class='active' url='serve-details/serve-details?severid={{item.id}}&status={{item.reserveStatus}}'> -->
+            <view class='fwlist'>
+               <view class='item-detail-image'><image mode="widthFix" src="{{item.shopCoverImag}}"></image></view> 
+              <view class='item-detail-title'></view>
+              <view>时间：{{item.reserveDate}}</view>
+              <view>类型：婴幼儿游泳</view>
+              <view>老师：{{item.teacher}}</view>
+             </view>
+            <!-- </navigator> -->
+          </view>
+          <view class='item-footer' wx:if='{{item.reserveStatus==0}}'>
+            <view class='item-btns'>
+              <form bindsubmit="cancel" report-submit='true' >
+              <view class='item-btn' hover-class="active">取消预约</view>
+              <button class='ipt-submit' hover-class='active' data-id="{{item.id}}" form-type="submit" type="default" size="mini">提交</button>
+              </form>
+            </view>
+          </view>
+        </view>
+      </view>  
+    <view class='wkong' wx:if="{{arrays1.length<1}}" >
+          <image src='../../assets/images/service.png'></image>
+           <text>您还没有给宝宝约过游泳课哦</text>
+          <text style='height:30rpx; line-height:30rpx; padding-top:0;'>现在去约吧</text>
+      </view>  
+    </swiper-item>    
+    <swiper-item>
+      <view class='serve-list' wx:for='{{arrays2}}' wx:key="key" wx:if="{{arrays2.length>=1}}">
+        <view class='serve-item' bindtap='toDetails'>
+          <view class='item-title'>
+            <text>{{item.shopName}}</text>
+         <text class='item-status' wx:if='{{item.reserveStatus==0}}' style="color:#ff839a;">待服务</text>
+            <text class='item-status' wx:if='{{item.reserveStatus==1}}' style="color:#ccc;">已取消</text>
+            <text class='item-status' wx:if='{{item.reserveStatus==2}}' style="color:#000;">已完成</text>
+          </view>
+          <view class='item-detail'>
+            <!-- <navigator hover-class='active' url='serve-details/serve-details?severid={{item.id}}&status={{item.reserveStatus}}'> -->
+          <view class='fwlist'>
+               <view class='item-detail-image'><image mode="widthFix" src="{{item.shopCoverImag}}"></image></view> 
+              <view class='item-detail-title'></view>
+              <view>时间：{{item.reserveDate}}</view>
+              <view>类型：婴幼儿游泳</view>
+              <view>老师：{{item.teacher}}</view>
+             </view>
+            <!-- </navigator> -->
+          </view>
+          <view class='item-footer' wx:if='{{item.reserveStatus==0}}'>
+            <view class='item-btns'>
+              <view class='item-btn' hover-class="active"  bindtap='cancel' data-id="{{item.id}}">取消预约</view>
+            </view>
+          </view>
+        </view>
+      </view>  
+      <view class='wkong' wx:if="{{arrays2.length<1}}" >
+          <image src='../../assets/images/service.png'></image>
+          <text>您的宝宝没有上过游泳课哦</text>
+      </view>  
+    </swiper-item>  
+</swiper>
+
+</view>

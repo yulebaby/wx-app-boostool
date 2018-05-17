@@ -1,0 +1,149 @@
+
+.header{
+  border-top: solid 20rpx #F0F0F0;
+  border-bottom: solid 20rpx #F0F0F0;
+  padding: 30rpx;
+  background: #fff;
+  position: relative;
+}
+.head{
+  float: left;
+  width: 95rpx;
+  height: 95rpx;
+  overflow: hidden;
+}
+.head image{
+  width: 100%;
+  border-radius: 50%;
+}
+.name{
+  padding: 8rpx 0 18rpx 130rpx;
+  color: #333;
+  font-size: 32rpx;
+  line-height: 32rpx;
+}
+.store{
+  padding-left:  130rpx;
+  color: #666;
+  font-size: 28rpx;
+  line-height: 28rpx;
+}
+
+
+.score{
+  height: 26rpx;
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+}
+.score > view{
+  float: left;
+  width: 26rpx;
+  height: 26rpx;
+  background: url(http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/score-select.png) no-repeat;
+  background-size: 26rpx;
+}
+.score > view.active{
+  background: url(http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/score-select-active.png) no-repeat;
+  background-size: 26rpx;
+}
+.score > view:not(:last-child){
+  margin-right: 5rpx;
+}
+.score-text{
+  color: #666;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 84rpx;
+}
+.score-text > text{
+  color: #FF839A;
+}
+
+.content{
+  padding: 0 70rpx;
+  background: #fff;
+}
+.title{
+  padding: 90rpx 0 67rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+}
+.price{
+  line-height: 1;
+  text-align: center;
+}
+.price label{
+  display: inline-block;
+  width: 125rpx;
+  font-size: 24rpx;
+  line-height: 53rpx;
+  text-align: center;
+  border: solid 1px #c2c2c2;
+  border-radius: 1px;
+}
+.price label:not(:last-child){
+  margin-right: 26rpx;
+}
+.price label.active{
+  color: #FF839A;
+  border-color: #FF839A;
+}
+
+.record{
+  margin-top: 118rpx;
+  padding: 40rpx;
+  overflow: hidden;
+}
+.record-head{
+  float: left;
+  padding-right: 30rpx;
+  background: url(http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/icon-right.png) no-repeat right center;
+  background-size: 19rpx 34rpx;
+  overflow: hidden;
+}
+.record-head > view{
+  float: left;
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 8rpx;
+  box-sizing: border-box;
+   border: solid 1px #D1D1D1; 
+  border-radius: 50%;
+  overflow: hidden;
+}
+.record-head > view image{
+  width: 100%;
+}
+.record-text{
+  float: right;
+  color: #666;
+  font-size: 24rpx;
+  line-height: 50rpx;
+}
+
+.record-desc{
+  padding: 32rpx 0 55rpx;
+  color: #666;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  text-align: center;
+}
+
+.submit{
+  width: 610rpx;
+  height: 90rpx;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 32rpx;
+  line-height: 90rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  background: #FF839A;
+}
+.submit.active{
+  opacity: .8;
+}

@@ -1,0 +1,42 @@
+<scroll-view scroll-y class='evaluate'>
+
+<view class='content' wx:if='{{listshow}}'>
+  <view class='item'>
+    <view class='head'><image src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/default-teacher.png' mode='widthFix'></image></view>
+    <view class='score'>2018年3月17日</view>
+    <view class='cell'>
+      <view class='name'>黄大仙</view>
+      <view class='store'><text>打分</text> <view class='active'></view> <view></view> <view></view> <view></view> <view></view></view>
+      <view class='evaluatemain'>老师服务很好,对宝宝很好。老师服务很好,对宝宝很好。老师服务很好,对宝宝很好。</view>
+      <view class='shopTeacher'>
+          <view class='teacherimg'><image src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/default-teacher.png'></image></view>
+          <view class='teach'>
+          <view class='teachername'>李翠娟</view>
+          <view class='shopname'>北京甘露园物美店</view>
+          </view>
+      </view>
+    </view>
+  </view>
+  <view class='item'>
+    <view class='head'><image src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/default-teacher.png' mode='widthFix'></image></view>
+    <view class='score'>2018年3月17日</view>
+    <view class='cell'>
+      <view class='name'>黄大仙</view>
+      <view class='store'><text>打分</text> <view class='active'></view> <view></view> <view></view> <view></view> <view></view></view>
+      <view class='evaluatemain'>老师服务很好,对宝宝很好。老师服务很好,对宝宝很好。老师服务很好,对宝宝很好。</view>
+      <view class='shopTeacher'>
+          <view class='teacherimg'><image src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/default-teacher.png'></image></view>
+          <view class='teach'>
+          <view class='teachername'>李翠娟</view>
+          <view class='shopname'>北京甘露园物美店</view>
+          </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:else class='nodata'>
+    <image src='https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/noevaluate.png'></image>
+    <text>您还没有给我们评价过哦~</text>
+</view>
+
+</scroll-view>

@@ -1,0 +1,106 @@
+.header{
+
+
+  background: #fff;
+  position: relative;
+}
+.head{
+
+  width: 95rpx;
+  height: 95rpx;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 88rpx;
+}
+.head image{
+  width: 100%;
+  border-radius: 50%;
+}
+.name{
+  text-align: center;
+  color: #333;
+  font-size: 32rpx;
+  line-height: 32rpx;
+ margin-top: 32rpx;
+}
+.store{
+  margin-top: 14rpx;
+  color: #999;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  text-align: center;
+}
+
+
+
+
+.content{
+  padding: 0 70rpx;
+  background: #fff;
+}
+.title{
+  margin: 50rpx auto;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  height: 1px;
+  width: 570rpx;
+
+  background: #F0F0F0;
+}
+
+.score{
+  line-height: 1;
+  text-align: center;
+  padding-bottom: 70rpx;
+}
+.score label{
+  display: inline-block;
+  width: 75rpx;
+  height: 71rpx;
+  background: url(http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/score.png) no-repeat center center;
+  background-size: contain;
+  border-radius: 10px;
+}
+.score label.active{
+  background: url(https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/score-active.png) no-repeat center center;
+  background-size: contain;
+}
+.score label:not(:last-child){
+  margin-right: 25rpx;
+}
+.label{
+  margin-bottom: 72rpx;
+  text-align: center;
+  overflow: hidden;
+}
+.label label{
+  display: inline-block;
+  height: 53rpx;
+  padding: 0 24rpx;
+  margin: 18rpx 20rpx;
+  font-size: 24rpx;
+  line-height: 53rpx;
+  border: solid 1px #c2c2c2;
+  border-radius: 30rpx;
+  float: left;
+}
+.label label.active{
+  color: #FF839A;
+  border-color: #FF839A;
+}
+
+.submit{
+  width: 610rpx;
+  height: 90rpx;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 32rpx;
+  line-height: 90rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  background: #FF839A;
+}
+.submit.active{
+  opacity: .8;
+}

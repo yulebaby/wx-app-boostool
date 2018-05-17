@@ -1,0 +1,46 @@
+<scroll-view scroll-y class='serve-reward'>
+  <view class='header'>
+    <view class='head'><image src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/default-teacher.png' mode='widthFix'></image></view>
+    <view class='name'>黄大仙</view>
+    <view class='store'>北京甘露园物美店</view>
+  </view>
+
+
+  <view class='content'>
+    <view class='title'></view>
+
+    <view class='score'>
+      <image style='display: none;' src='http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/score-active.png'></image>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="{{ scoreNum >= 1 ? 'active' : '' }}">
+          <radio value="1" style='display: none;'/>
+        </label>
+        <label class="{{ scoreNum >= 2 ? 'active' : '' }}">
+          <radio value="2" style='display: none;'/>
+        </label>
+        <label class="{{ scoreNum >= 3 ? 'active' : '' }}">
+          <radio value="3" style='display: none;'/>
+        </label>
+        <label class="{{ scoreNum >= 4 ? 'active' : '' }}">
+          <radio value="4" style='display: none;'/>
+        </label>
+        <label class="{{ scoreNum >= 5 ? 'active' : '' }}">
+          <radio value="5" style='display: none;'/>
+        </label>
+        
+      </radio-group>
+    </view>
+
+    <view class='label'>
+      <checkbox-group bindchange="checkboxChange">
+        <label class="{{ item.checked ? 'active' : '' }}" wx:for="{{ checkItems }}">
+          <checkbox value="{{ item.value }}" checked='{{ item.checked }}' style='display: none;'/>{{ item.name }}
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+
+
+  <view class='submit' hover-class='active'>提交评价</view>
+
+</scroll-view>
