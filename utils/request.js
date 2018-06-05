@@ -10,16 +10,15 @@
  * @author phuhoang 
  * @time 2018-01-16
  */
-const Domain = 'https://swx.beibeiyue.com/ylbb_weixin';
-//const Domain = 'http://192.168.1.205:8800';
+const App = getApp();
 
-const Get = (url, param) => {
+const Get = (url, params) => {
   return new Promise((resolve, reject) => {
-    let requestPath = url.substr(0, 4) === 'http' ? url : `${Domain}${url}`;
+    let requestPath = url.substr(0, 4) === 'http' ? url : `${App.domain + url}`;
     wx.request({
       url: requestPath,
       method: 'GET',
-      data: param,
+      data: params,
       dataType: 'json',
       success(res) {
         resolve(res.data);
@@ -31,13 +30,13 @@ const Get = (url, param) => {
   }) ;
 }
 
-const Post = (url, param) => {
+const Post = (url, params) => {
   return new Promise( (resolve, reject) => {
-    let requestPath = url.substr(0, 4) === 'http' ? url : `${Domain}${url}`;
+    let requestPath = url.substr(0, 4) === 'http' ? url : `${App.domain + url}`;
     wx.request({
       url: requestPath,
       method: "POST",
-      data: Serialize(param),
+      data: Serialize(params),
       dataType: 'json',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'

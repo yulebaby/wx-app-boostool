@@ -10,44 +10,17 @@ Page({
       '/assets/images/banner2.jpg',
       '/assets/images/banner3.jpg',
     ],
-    pageNo: 1,
-    pageSize: 10,
+    pageNo    : 1,
+    pageSize  : 10,
     storeItems: [],
-    address: ['', '定位中', ''],
-    openweb:false,
+    address   : ['', '定位中', ''],
+    openweb   : false,
   },
   onLoad: function () {
-
+    this.getcode();
     this.getaddress();
-    var timestamp = Date.parse(new Date());
-    wx.setStorage({
-      key: 'shoplistdata',
-      data: timestamp,
-    })
-
-
   },
   onShow: function () {
-    var that = this;
-
-    that.getcode();
-    wx.getStorage({
-      key: 'shoplistdata',
-      success: function (res) {
-        var timestamp = Date.parse(new Date());
-        /*******************设置时间戳，十分钟更新一次列表************************ */
-        if (timestamp - res.data > (1000 * 60 * 10)) {
-          wx.setStorage({
-            key: 'shoplistdata',
-            data: timestamp,
-          });
-          that.getaddress();
-        }
-      },
-    })
-
-
-
   },
   /*******************下拉触底事件************************ */
   onReachBottom: function () {
@@ -69,7 +42,6 @@ Page({
         district: null,
       });
       this.getStoreItems();
-  
     })
   },
 
@@ -110,7 +82,6 @@ Page({
   },
   /*******************向后台发送数据获取门店列表************************ */
   getStoreItems(param) {
-
     var paramJson;
     if (this.data.district) {
       paramJson = JSON.stringify({
@@ -185,10 +156,10 @@ Page({
   },
   /*******************获取用户状态************************ */
   getcode() {
-    let that = this;
+    let _this = this;
     wx.login({
       success(res) {
-        that.getuserstatus(res.code);
+        _this.getuserstatus(res.code);
       }
     });
   },
@@ -299,44 +270,5 @@ Page({
     }, _ => {
       wx.hideLoading();
     });
-  },
-  dz(e){
-    let data = e.currentTarget.dataset.dz;
-    this.setData({
-      openweb: false,
-    });
-
-    if (data == "北京市") {
-      this.setData({
-        openweb: true,
-        weburl: 'http://wx.beibeiyue.com/activeThreebj/index.html?activityId=1'
-      })
-    };
-    if (data == "太原市") {
-      this.setData({
-        openweb: true,
-        weburl: 'http://wx.beibeiyue.com/activeThreety/index.html?activityId=4'
-      })
-    };
-    if (data == "天津市") {
-      this.setData({
-        openweb: true,
-        weburl: 'http://wx.beibeiyue.com/activeThreetj/index.html?activityId=5'
-      })
-    };
-    if (data == "郑州市") {
-      this.setData({
-        openweb: true,
-        weburl: 'http://wx.beibeiyue.com/activeThreezz/index.html?activityId=3'
-      })
-    };
-    if (data == "沈阳市") {
-      this.setData({
-        openweb: true,
-        weburl: 'http://wx.beibeiyue.com/activeThreesy/index.html?activityId=2'
-      })
-    };
-
-
   }
 })

@@ -156,6 +156,76 @@ const GetOpenid = () => {
     }
   })
 }
+/* ------------------------- 获取用户标示 ------------------------- */
+// const GetOpenId = () => {
+//   return new Promise((resolve, reject) => {
+//     if (app.globalData.openId) {
+//       resolve({ openId: app.globalData.openId, sessionKey: app.globalData.sessionKey });
+//     } else {
+//       wx.checkSession({
+//         success: function () {
+//           let [openId, sessionKey] = [wx.getStorageSync('openId'), wx.getStorageSync('sessionKey')];
+//           if (openId && sessionKey) {
+//             app.globalData.openId = openId;
+//             app.globalData.sessionKey = sessionKey;
+//             resolve({ openId: app.globalData.openId, sessionKey: app.globalData.sessionKey });
+//           } else {
+//             wx.login({
+//               success(res) {
+//                 wx.request({
+//                   // url: `${app.domain}/getCodeAndLogin/${JSON.stringify({ code: res.code })}`,
+//                   url: 'http://kedd.beibeiyue.com/kb/manager/register',
+//                   method: "POST",
+//                   dataType: 'json',
+//                   success(res) {
+//                     if (res.data.success) {
+//                       app.globalData.openId = res.data.result.openId;
+//                       app.globalData.sessionKey = res.data.result.sessionKey;
+//                       resolve({ openId: app.globalData.openId, sessionKey: app.globalData.sessionKey });
+
+//                       wx.setStorageSync('openId', res.data.result.openId);
+//                       wx.setStorageSync('sessionKey', res.data.result.sessionKey);
+//                     } else {
+//                       resolve(null);
+//                     }
+//                   },
+//                   fail(err) {
+//                     reject(err);
+//                   }
+//                 })
+//               }
+//             })
+//           }
+//         },
+//         fail: function () {
+//           wx.login({
+//             success(res) {
+//               wx.request({
+//                 url: `${app.domain}/getCodeAndLogin/${JSON.stringify({ code: res.code })}`,
+//                 method: "POST",
+//                 dataType: 'json',
+//                 success(res) {
+//                   if (res.data.success) {
+//                     app.globalData.openId = res.data.result.openId;
+//                     app.globalData.sessionKey = res.data.result.sessionKey;
+//                     resolve({ openId: app.globalData.openId, sessionKey: app.globalData.sessionKey });
+//                     wx.setStorage('openId', res.data.result.openId);
+//                     wx.setStorage('sessionKey', res.data.result.sessionKey);
+//                   } else {
+//                     resolve(null);
+//                   }
+//                 },
+//                 fail(err) {
+//                   reject(err);
+//                 }
+//               })
+//             }
+//           })
+//         }
+//       })
+//     }
+//   })
+// }
 
 
 module.exports = {

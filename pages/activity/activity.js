@@ -1,5 +1,5 @@
 
-const format = require('./../..//utils/util.js');
+const format = require('./../..//utils/format.js');
 
 Page({
 
