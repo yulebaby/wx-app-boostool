@@ -9,8 +9,7 @@ App({
   globalData: {
     userOpenid: null,
     userLocation: null,
-    userAddress: null,
-    opentest: null
+    userAddress: null
   },
   userInfo: {
     openid          : null,           // 用户唯一标识

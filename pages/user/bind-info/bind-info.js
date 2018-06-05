@@ -10,11 +10,11 @@ Page({
   },
   onLoad: function (options) {
     let that = this;
-    App.getUserInfo(function (userInfo) {
-      that.setData({
-        userInfo: userInfo
-      })
-    });
+    // App.getUserInfo(function (userInfo) {
+    //   that.setData({
+    //     userInfo: userInfo
+    //   })
+    // });
     that.branchpost();
     //设置门店id和来源
     if (options.shopId) {

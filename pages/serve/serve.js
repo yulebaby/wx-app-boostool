@@ -6,22 +6,9 @@ Page({
     arrays: []
   },
   onLoad: function (options) {
-    this.onopenshow();
+    
   },
-  onReady: function () {
-  },
-  onShow: function (options) {
-    /**********初始化选项卡**********/
-    if (app.globalData.opentest) {
-      this.setData({
-        currentTab: 1
-      });
-      app.globalData.opentest = null;
-    } else {
-      this.setData({
-        currentTab: 0
-      });
-    }
+  onShow: function () {
     this.onopenshow();
     wx.getStorage({
       key: 'status',

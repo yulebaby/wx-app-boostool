@@ -10,7 +10,7 @@
 
 <view class='container' >
 
-  <view class='header' wx:if='{{tongMember}}'>
+  <view class='header' wx:if='{{ userInfo.tongMember == 1 }}'>
     <view>
       <text>{{totalTimes}}</text>
       <text>总卡次</text>

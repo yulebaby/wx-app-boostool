@@ -17,7 +17,6 @@
             <text class='item-status' wx:if='{{item.reserveStatus==2}}' style="color:#000;">已完成</text>
           </view>
           <view class='item-detail'>
-              <!-- <navigator hover-class='active' url='serve-details/serve-details?severid={{item.id}}&status={{item.reserveStatus}}'>   -->
               <view class='fwlist'>
                <view class='item-detail-image'><image mode="widthFix" src="{{item.shopCoverImag}}"></image></view> 
               <view class='item-detail-title'></view>
@@ -27,8 +26,7 @@
              </view>
               <!-- </navigator>   -->
           </view>
-            <view class='item-footer'  wx:if='{{item.reserveStatus==0}}' >  
-              <!-- wx:if='{{item.reserveStatus==0}}' -->
+            <view class='item-footer'  wx:if='{{item.reserveStatus==0}}' >
             <view class='item-btns'>
               <form bindsubmit="cancel" data-id="{{item.id}}" report-submit='true' >
               <view class='item-btn' hover-class="active">取消预约</view>
@@ -54,7 +52,6 @@
             <text class='item-status' wx:if='{{item.reserveStatus==2}}' style="color:#000;">已完成</text>
           </view>
           <view class='item-detail'>
-            <!-- <navigator hover-class='active' url='serve-details/serve-details?severid={{item.id}}&status={{item.reserveStatus}}'> -->
             <view class='fwlist'>
                <view class='item-detail-image'><image mode="widthFix" src="{{item.shopCoverImag}}"></image></view> 
               <view class='item-detail-title'></view>
@@ -62,7 +59,6 @@
               <view>类型：婴幼儿游泳</view>
               <view>老师：{{item.teacher}}</view>
              </view>
-            <!-- </navigator> -->
           </view>
           <view class='item-footer' wx:if='{{item.reserveStatus==0}}'>
             <view class='item-btns'>
@@ -90,7 +86,6 @@
             <text class='item-status' wx:if='{{item.reserveStatus==2}}' style="color:#000;">已完成</text>
           </view>
           <view class='item-detail'>
-            <!-- <navigator hover-class='active' url='serve-details/serve-details?severid={{item.id}}&status={{item.reserveStatus}}'> -->
           <view class='fwlist'>
                <view class='item-detail-image'><image mode="widthFix" src="{{item.shopCoverImag}}"></image></view> 
               <view class='item-detail-title'></view>
@@ -98,7 +93,6 @@
               <view>类型：婴幼儿游泳</view>
               <view>老师：{{item.teacher}}</view>
              </view>
-            <!-- </navigator> -->
           </view>
           <view class='item-footer' wx:if='{{item.reserveStatus==0}}'>
             <view class='item-btns'>

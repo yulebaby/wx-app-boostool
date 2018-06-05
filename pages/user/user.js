@@ -1,115 +1,68 @@
 const app = getApp();
 const Http = require('../../utils/request.js');
+
+const getUserInfo = require('./../../utils/getUserInfo.js');
+
 Page({
   data: {
-    userHeadImage: null,
     userphone: '加载中...'
   },
   onLoad: function (options) {
-    
-  },
-  onShow: function () {
-    var that = this;
-    wx.getStorage({
-      key: 'tongMember',
-      success: function (res) {
-        if (res.data == 0) {
-          that.setData({
-            tongMember: ""
-          })
-        } else {
-          that.setData({
-            tongMember: 1
-          })
-        }
-      },
-      fail: function () {
-        wx.showToast({
-          icon: "none",
-          title: '登陆超时',
-        })
-        setTimeout(function () {
-          wx.switchTab({
-            url: '../../index',
-          })
-        }, 1000);
+    /* ----------------- 获取用户信息 ----------------- */
+    getUserInfo().then(userInfo => {
+      this.setData({ userInfo });
+      console.log(userInfo)
+
+      /* --------- 如果会员ID存在 请求会员卡信息 --------- */
+      if (userInfo.memberId) {
+        this.getCardDetail(userInfo.memberId);
       }
-    });
-    wx.getStorage({
-      key: 'memberId',
-      success: function (res) {
-        that.setData({
-          memberId: res.data
+
+      /* --------- 判断是否绑定过信息 未绑定则跳转到绑定信息页 --------- */
+      if (userInfo.status == 0) {
+        wx.navigateTo({
+          url: '../user/bind-phone/bind-phone?page=2',
         })
-
-        if (that.data.memberId != 0) {
-          that.getCardDetail();
-        }
-      },
-      fail: function () {
-      }
-    })
-
-    wx.getStorage({
-      key: 'status',
-      success: function (res) {
-        if (res.data == 0) {
-          setTimeout(function () {
-            wx.navigateTo({
-              url: '../user/bind-phone/bind-phone?page=2',
-            })
-          }, 1000);
-          return false;
-        } else {
-          wx.getStorage({
-            key: 'baseInfo',
-            success: function (res) {
-              if (res.data == 0 || !res.data) {
-                setTimeout(function () {
-                  wx.navigateTo({
-                    url: '../user/bind-info/bind-info?page=2',
-                  })
-                }, 1000)
-                return false;
-              }
-
-            },
-
-          });
-        }
-      },
-
-    });
-    wx.getStorage({
-      key: 'userphone',
-      success: function (res) {
-        that.setData({
-          userphone: res.data,
-        })
-      },
-      fail: function () {
-        //that.userphone();
-      }
-    });
-    wx.getStorage({
-      key: 'openid',
-      success: function (res) {
-        that.setData({
-          openid: res.data
+      } else if (userInfo.baseInfo == 0) {
+        wx.navigateTo({
+          url: '../user/bind-info/bind-info?page=2',
         });
-        that.userphone();
-      },
-      fail: function () {
-        wx.showToast({
-          icon: "none",
-          title: '登陆超时',
-        })
-        setTimeout(function () {
-          wx.switchTab({
-            url: '../index/index',
-          })
-        }, 1000);
       }
+
+      /* --------- 根据openid 获取用户绑定手机号 --------- */
+      this.getUserphone(userInfo.openid);
+    })
+  },
+  getUserphone(openid) {
+    var _this = this;
+    wx.showLoading({
+      title: '加载中...',
+    })
+    Http.post('/user/getUserInfo', { onlyId: openid }).then(res => {
+      wx.hideLoading();
+      if (res.code == 1000) {
+        let userphone = res.result.userPhone;
+        let phoneSubstring = userphone.substring(3, 7);
+        userphone = userphone.replace(phoneSubstring, '****');
+        _this.setData({ userphone });
+      }
+    }, err => {
+      wx.hideLoading();
+    });
+  },
+  getCardDetail(memberId) {
+    wx.showLoading({ title: '加载中...' });
+    Http.post('/reserve/getCardDetail', { memberId }).then(res => {
+      wx.hideLoading();
+      if (res.code == 1000) {
+        this.setData({
+          totalTimes: res.result.totalTimes,
+          remainTimes: res.result.remainTimes,
+          remainTong: res.result.remainTong
+        })
+      }
+    }, err => {
+      wx.hideLoading();
     });
   },
   makePhone(e) {
@@ -117,58 +70,4 @@ Page({
       phoneNumber: e.target.dataset.num
     })
   },
-  userphone() {
-    var that = this;
-    wx.showLoading({
-      title: '加载中...',
-    })
-    Http.post('/user/getUserInfo', {
-      onlyId: that.data.openid,
-    }).then(res => {
-      wx.hideLoading();
-      if (res.code == 1000) {
- 
-        var userphone = res.result.userPhone;
-        var phonenum ="";
-        
-         phonenum = userphone.substring(3, 7);
-         userphone = userphone.replace(phonenum, '****');
-      
-      
-        
-        that.setData({
-          userphone: userphone
-        });
-        wx.setStorage({
-          key: 'userphone',
-          data: userphone,
-        });
-      } else {
-      }
-    }, _ => {
-      wx.hideLoading();
-    });
-  },
-  getCardDetail() {
-    var that = this;
-    wx.showLoading({
-      title: '加载中...',
-    })
-    Http.post('/reserve/getCardDetail', {
-      memberId: that.data.memberId
-    }).then(res => {
-      wx.hideLoading();
-      if (res.code == 1000) {
-        that.setData({
-          tongMember: 1,
-          totalTimes: res.result.totalTimes,
-          remainTimes: res.result.remainTimes,
-          remainTong: res.result.remainTong
-        })
-      } else {
-      }
-    }, _ => {
-      wx.hideLoading();
-    });
-  }
 })
