@@ -1,12 +1,18 @@
 const app = getApp();
 const Http = require('../../utils/request.js');
+
+const getUserInfo = require('./../../utils/getUserInfo.js');
+
 Page({
   data: {
     currentTab: 0,
     arrays: []
   },
   onLoad: function (options) {
-    
+    getUserInfo().then(userInfo => {
+      console.log(userInfo);
+      // if (userInfo.)
+    })
   },
   onShow: function () {
     this.onopenshow();

@@ -24,8 +24,6 @@ Page({
     this.getaddressIndex();
 
   },
-  onShow: function () {
-  },
   /*******************下拉触底事件************************ */
   onReachBottom: function () {
     this.getStoreItems();
