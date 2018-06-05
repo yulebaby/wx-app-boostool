@@ -30,7 +30,6 @@ Page({
       })
     };
 
-    let activityType = "0";
     let discountPrice = 0;
     let price = 0;
     let activityId = 0;
@@ -75,7 +74,7 @@ Page({
       }
     });
 
-//设置门店是否是通卡店
+    //设置门店是否是通卡店
     if (that.data.page == 1) {
       wx.getStorage({
         key: 'countryCardStatus',
@@ -100,8 +99,8 @@ Page({
       });
     };
   },
- /*********获取code*************/
-  getCode1() {
+  /*********获取code*************/
+  getCode() {
     if (this.data.cdown == 0) {
       wx.showToast({
         icon: "none",
@@ -153,52 +152,15 @@ Page({
     }
   },
 
-  onReady: function () {
-
-  },
-
   onShow: function () {
-    let that = this;
-     set = setTimeout(function () {
-      that.setData({
-        disabled:true
-      });
-      wx.showModal({
-        showCancel: false,
-        title: '温馨提示',
-        content: '如果您是会员请绑定会员手机号',
-        success: function (res) {
-          if (res.confirm) {
-            that.setData({
-                disabled:false
-            });
-          }
-        }
-      });
-    }, 1000)
-
+    wx.showModal({
+      showCancel: false,
+      title: '温馨提示',
+      content: '如果您是会员请绑定会员手机号'
+    });
   },
 
-  onHide: function () {
-
-  },
-
-  onUnload: function () {
-    clearTimeout(set);
-  },  
-
-  onPullDownRefresh: function () {
-
-  },
-
-  onReachBottom: function () {
-
-  },
-
-  onShareAppMessage: function () {
-
-  },
- /*********倒计时*************/
+  /*********倒计时*************/
   Countdown() {
     let that = this;
     let count = 60;
@@ -218,8 +180,9 @@ Page({
       }
     }, 1000);
   },
-   /*********点击发送验证码验证*************/
+  /*********点击发送验证码验证*************/
   getphonesuccess(e) {
+    console.log(e)
     var that = this;
     var formId = e.detail.formId; //获取formid
     if (that.data.codeInput) {
@@ -251,7 +214,7 @@ Page({
       })
     }
   },
-   /**********绑定手机************/
+  /**********绑定手机************/
   orbind(formId) {
     var that = this;
     if (that.data.manphone != that.data.phone) {
@@ -294,7 +257,7 @@ Page({
       wx.hideLoading();
     });
   },
-   /**********判断手机号是不是会员，有没有绑定************/
+  /**********判断手机号是不是会员，有没有绑定************/
   UserPhone() {
   
     let that = this;
@@ -471,6 +434,9 @@ Page({
     }, _ => {
       wx.hideLoading();
     });
+  },
+  onUnload: function () {
+    clearTimeout(set);
   },
 
 

@@ -22,7 +22,6 @@ Page({
   onLoad: function () {
     this.getcode();
     this.getaddressIndex();
-
   },
   /*******************下拉触底事件************************ */
   onReachBottom: function () {

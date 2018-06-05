@@ -30,8 +30,12 @@
   </view>
 
   <view class='tab-box'>
-    <view class='item' hover-class='active'><navigator url="/pages/user/coupon/coupon" hover-class="none">我的卡券</navigator></view>
-    <view class='item' hover-class='active'><navigator url="/pages/user/prize/prize" hover-class="none">我的奖品</navigator></view>
+    <view class='item' hover-class='active'>
+      <navigator url="/pages/user/coupon/coupon?ab=1" hover-class="none">我的卡券</navigator>
+    </view>
+    <view class='item' hover-class='active'>
+      <navigator url="/pages/user/prize/prize" hover-class="none">我的奖品</navigator>
+    </view>
   </view>
 </view>
 
