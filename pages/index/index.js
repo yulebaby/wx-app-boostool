@@ -16,18 +16,15 @@ Page({
     pageNo    : 1,
     pageSize  : 10,
     storeItems: [],
-    address   : ['', '定位中', ''],
-    openweb   : false,
+    address   : ['', '定位中', '']
   },
   onLoad: function () {
-    this.getcode();
     this.getaddressIndex();
   },
-  /*******************下拉触底事件************************ */
   onReachBottom: function () {
     this.getStoreItems();
   },
-  /*******************获取当前城市************************ */
+  /* ------------------- 获取用户地理位置信息 ------------------- */
   getaddressIndex() {
     getAddress(address => {
       this.setData({
@@ -46,7 +43,7 @@ Page({
     })
   },
 
-  /*******************选择城市列表************************ */
+  /* ------------------ 选择城市列表 ------------------ */
   bindRegionChange: function (e) {
     this.setData({
       address: e.detail.value
@@ -81,7 +78,7 @@ Page({
     });
     this.getStoreItems();
   },
-  /*******************向后台发送数据获取门店列表************************ */
+  /* ------------ 获取列表数据 ------------ */
   getStoreItems(param) {
     var paramJson;
     if (this.data.district) {
@@ -126,12 +123,8 @@ Page({
         pageSize: this.data.pageSize
       });
     }
-    wx.showLoading({
-      title: '加载中...',
-    })
-    Http.post('/shop/listShop', {
-      paramJson: paramJson
-    }).then(res => {
+    wx.showLoading({ title: '加载中...' });
+    Http.post('/shop/listShop', { paramJson }).then(res => {
       wx.hideLoading();
       if (res.code == 1000 && res.result.shopList) {
         let storeItem = res.result.shopList;
@@ -150,123 +143,6 @@ Page({
 
         }
       } else {
-      }
-    }, _ => {
-      wx.hideLoading();
-    });
-  },
-  /*******************获取用户状态************************ */
-  getcode() {
-    let _this = this;
-    wx.login({
-      success(res) {
-        _this.getuserstatus(res.code);
-      }
-    });
-  },
-  getuserstatus(code) {
-    Http.post('/user/judgeUserStatus', {
-      code: code
-    }).then(res => {
-
-      if (res.code == 1000) {
-        let openid = res.result.openid;
-
-        var openid;
-        if (res.result.openid) {
-          openid = res.result.openid;
-        } else {
-          openid = 0;
-        }
-        wx.setStorage({
-          key: 'openid',
-          data: openid,
-        });
-
-        var status;
-        if (res.result.status) {
-          status = res.result.status;
-        } else {
-          status = 0;
-        }
-        wx.setStorage({
-          key: 'status',
-          data: status
-        });
-
-        var potentialMember;
-        if (res.result.potentialMember) {
-          potentialMember = res.result.potentialMember;
-        } else {
-          potentialMember = 0;
-        }
-        wx.setStorage({
-          key: 'potentialMember',
-          data: potentialMember,
-        });
-
-        var isMember;
-        if (res.result.isMember) {
-          isMember = res.result.isMember;
-        } else {
-          isMember = 0;
-        }
-        wx.setStorage({
-          key: 'isMember',
-          data: isMember,
-        });
-
-
-        var tongMember;
-        if (res.result.tongMember) {
-          tongMember = res.result.tongMember;
-        } else {
-          tongMember = 0;
-        }
-        wx.setStorage({
-          key: 'tongMember',
-          data: tongMember,
-        });
-
-        var memberId;
-        if (res.result.memberId) {
-          memberId = res.result.memberId;
-        } else {
-          memberId = 0;
-        }
-        wx.setStorage({
-          key: 'memberId',
-          data: memberId,
-        });
-
-        if (res.result.memberId) {
-          wx.setStorage({
-            key: 'baseInfo',
-            data: 1,
-          });
-        } else {
-          var baseInfo;
-          if (res.result.baseInfo) {
-            baseInfo = res.result.baseInfo;
-          } else {
-            baseInfo = 0;
-          }
-          wx.setStorage({
-            key: 'baseInfo',
-            data: baseInfo,
-          });
-        }
-        var storeId;
-        if (res.result.storeId) {
-          storeId = res.result.storeId;
-        } else {
-          storeId = 0;
-        }
-        wx.setStorage({
-          key: 'storeId',
-          data: storeId,
-        });
-
       }
     }, _ => {
       wx.hideLoading();

@@ -34,13 +34,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
-					"name": "详情",
+					"name": "门店详情",
 					"pathName": "pages/index/detail/detail",
-					"query": "shopId=689"
+					"query": "shopId=1458"
 				},
 				{
 					"id": 1,

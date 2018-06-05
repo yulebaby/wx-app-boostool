@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/index/addweb/addweb",
     "pages/index/detail/detail",
     "pages/user/user",
     "pages/user/bind-phone/bind-phone",
