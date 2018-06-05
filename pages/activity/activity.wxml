@@ -1,0 +1,37 @@
+<view class='container'>
+  <view class='header'>
+    <image src='/assets/images/shop-cover-default.png' mode='widthFix'></image>
+    <view class='head-cell'>
+      <view class='head-h1'>北京甘露园物美店</view>
+      <view class='head-p'>地址：建国路29号兴隆家园7号楼2层202</view>
+      <view class='head-span'>505M</view>
+    </view>
+  </view>
+
+  <view class='content'>
+    <view class='content-box'>
+      <view class='activity-amount'>100</view>
+      <form class='form' bindsubmit="formSubmit" report-submit='true'>
+        <view class='form-item'>
+          <view class='form-label'>宝宝小名</view>
+          <view class='form-control'><input placeholder='请输入宝宝小名' name="name" placeholder-style='color: #ccc;'></input></view>
+        </view>
+        <view class='form-item'>
+          <view class='form-label'>宝宝生日</view>
+          <view class='form-control'>
+            <picker mode="date" name="birthday" end="{{ nowDate }}" bindchange="birthdayChange">
+              <view class="picker" style='color: {{ birthday ? "#999" : "#ccc" }}'>{{ birthday ? birthday : '请选择宝宝生日' }}</view>
+            </picker>
+          </view>
+        </view>
+        <view class='form-item'>
+          <view class='form-label'>+86</view>
+          <view class='form-control'><input placeholder='请输入手机号' name="phone" maxlength='11' placeholder-style='color: #ccc;'></input></view>
+        </view>
+        <view class='submit' hover-class='tab-active'>
+          <button formType="submit"></button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>

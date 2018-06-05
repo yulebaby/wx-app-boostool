@@ -1,9 +1,8 @@
 {
   "pages": [
-      "pages/index/index",
-      "pages/index/addweb/addweb",
+    "pages/index/index",
+    "pages/index/addweb/addweb",
     "pages/index/detail/detail",
-    "pages/demo/demo",
     "pages/index/detail/activity/activity",
     "pages/user/user",
     "pages/user/bind-phone/bind-phone",
@@ -18,7 +17,10 @@
     "pages/serve/refund/refund",
     "pages/index/detail/appointment/appointment",
     "pages/serve/serve-reward/serve-reward",
-    "pages/serve/serve-evaluate/serve-evaluate"
+    "pages/serve/serve-evaluate/serve-evaluate",
+    "pages/activity/activity",
+    "pages/user/prize/prize",
+    "pages/activity/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -29,9 +31,8 @@
   "tabBar": {
     "color": "#C2C2C3",
     "selectedColor": "#FF839A",
-    "borderStyle": "white",
-    "backgroundColor": "#fff",
     "borderStyle": "black",
+    "backgroundColor": "#fff",
     "list": [
       {
         "selectedIconPath": "assets/images/tabbar-fish-active.png",

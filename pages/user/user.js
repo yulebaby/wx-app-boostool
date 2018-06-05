@@ -8,15 +8,7 @@ Page({
     userphone: '加载中...'
   },
   onLoad: function (options) {
-    var that = this;
-    app.getUserInfo(function (userInfo) {
-      that.setData({
-        userInfo: userInfo
-      });
-     
-    });
-  },
-  onReady: function () {
+    
   },
   onShow: function () {
     var that = this;
@@ -122,30 +114,9 @@ Page({
       }
     });
   },
-  onHide: function () {
-
-  },
-  onUnload: function () {
-
-  },
-  onPullDownRefresh: function () {
-
-  },
-  onReachBottom: function () {
-
-  },
-  onShareAppMessage: function () {
-
-  },
   makePhone(e) {
     wx.makePhoneCall({
       phoneNumber: e.target.dataset.num
-    })
-  },
-  myserve() {
-    app.globalData.opentest = 1;
-    wx.switchTab({
-      url: '../serve/serve',
     })
   },
   userphone() {
@@ -202,10 +173,4 @@ Page({
       wx.hideLoading();
     });
   }
-
-  
-
-
-
-
 })

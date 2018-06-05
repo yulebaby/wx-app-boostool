@@ -1,3 +1,7 @@
 view {
   font-family: 'Microsoft Yahei'
 }
+.tap-active {
+  opacity: .8;
+  transition: all .1s;
+}

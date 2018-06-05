@@ -6,9 +6,9 @@ var addresslist = cityAddress.postList;
 Page({
   data: {
     swiperArray: [
-      '../../assets/images/banner1.jpg',
-      '../../assets/images/banner2.jpg',
-      '../../assets/images/banner3.jpg',
+      '/assets/images/banner1.jpg',
+      '/assets/images/banner2.jpg',
+      '/assets/images/banner3.jpg',
     ],
     pageNo: 1,
     pageSize: 10,

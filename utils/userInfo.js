@@ -130,7 +130,7 @@ const GetCity = (obj) => {
 
 
 /* ------------------------- 获取用户标示 ------------------------- */
-const GetOpenid = (callback) => {
+const GetOpenid = () => {
   return new Promise((resolve, reject) => {
     if (app.globalData.openid) {
       resolve(app.globalData.openid);

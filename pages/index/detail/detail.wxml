@@ -36,7 +36,7 @@
 
   </view>
   <!-- 判断门店是否有活动 -->
-     <view class='activity' wx:if='{{inActivity==1}}'>
+     <view class='activity'>
     <!-- <view class='activity-title'>门店活动</view> -->
     <view class='activity-content' bindtap='activity_yry'>
       <view class='activity-img'><image src='https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/content_img.jpg'></image></view>

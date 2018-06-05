@@ -61,8 +61,8 @@
 					"query": "shopId=741&page=1&discountPrice=741"
 				},
 				{
-					"id": -1,
-					"name": "个人",
+					"id": 4,
+					"name": "个人中心",
 					"pathName": "pages/user/user",
 					"query": ""
 				},
@@ -137,6 +137,24 @@
 					"name": "选择服务",
 					"pathName": "pages/index/detail/appointment/appointment",
 					"query": "shopId=741"
+				},
+				{
+					"id": -1,
+					"name": "鱼乐贝贝-代金券",
+					"pathName": "pages/activity/activity",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的奖品",
+					"pathName": "pages/user/prize/prize",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "pages/activity/detail/detail",
+					"query": ""
 				}
 			]
 		}

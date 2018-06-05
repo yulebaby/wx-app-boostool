@@ -1,4 +1,4 @@
-// pages/index/demo/demo.js
+// pages/activity/detail/detail.js
 Page({
 
   /**
