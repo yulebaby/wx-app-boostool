@@ -3,24 +3,24 @@ const Http = require('../../../utils/request.js');
 const app = getApp();
 Page({
   data: {
-    lats: "39.94973",
-    lngs: "116.29598",
+    lats    : "39.94973",
+    lngs    : "116.29598",
     shopName: "加载中...",
-    address: "加载中...",
+    address : "加载中...",
     books_yy:true
 
   },
   onLoad: function (options) {
-    var that = this;
+    var _this = this;
     var ids = options.shopId; 
    
  
-    that.getactivity(ids);
+    _this.getactivity(ids);
    /******获取缓存*****/
     wx.getStorage({
       key: 'openid',
       success: function (res) {
-        that.setData({
+        _this.setData({
           openid: res.data
         });
 
@@ -28,7 +28,7 @@ Page({
         wx.getStorage({
           key: 'memberId',
           success: function (res) {
-            that.setData({
+            _this.setData({
               memberId: res.data
             });
           }
@@ -36,7 +36,7 @@ Page({
         wx.getStorage({
           key: 'storeId',
           success: function (res) {
-            that.setData({
+            _this.setData({
               storeId: res.data
             });
           }
@@ -44,7 +44,7 @@ Page({
         wx.getStorage({
           key: 'tongMember',
           success: function (res) {
-            that.setData({
+            _this.setData({
               tongMember: res.data
             });
           }
@@ -54,7 +54,7 @@ Page({
 
       },
       fail: function () {
-        that.getcode();
+        _this.getcode();
       }
     });
 
@@ -72,12 +72,9 @@ Page({
     });
 
   },
-  onUnload: function () {
-   
-  },
 /***************判断是否有门店活动************************/
   getactivity(storeId){
-    let that = this;
+    let _this = this;
     wx.showLoading({
       title: '加载中...',
     })
@@ -89,7 +86,7 @@ Page({
     }).then(res => {
       wx.hideLoading();
       if (res.code == 1000) {
-          that.setData({
+          _this.setData({
             discountPrice: res.result.discountPrice,//活动价格
             inActivity: res.result.inActivity, //门店是否有活动
             price: res.result.price, //活动原价
@@ -103,7 +100,7 @@ Page({
                   key: 'status',
                   success: function (res) {
                       if(res.data==1){
-                        that.setData({
+                        _this.setData({
                           books_yy: false
                         })
                       }
@@ -257,10 +254,10 @@ Page({
   },
    /************门店内点击预约检测*************/
   booking (){
-    var that = this;
-    if (that.data.tongMember==0){ 
-    if (that.data.memberId != 0) {
-      if (that.data.shopId != that.data.storeId){ 
+    var _this = this;
+    if (_this.data.tongMember==0){ 
+    if (_this.data.memberId != 0) {
+      if (_this.data.shopId != _this.data.storeId){ 
         wx.showModal({
           title: '提示',
           content: '您的卡不支持跨店预约',
@@ -274,14 +271,14 @@ Page({
           }
         })
       }else{
-        that.bookings();
+        _this.bookings();
       }
     }else{          
-      that.bookings();
+      _this.bookings();
     }
     }else{
-      if (that.data.countryCardStatus){
-        that.bookings();
+      if (_this.data.countryCardStatus){
+        _this.bookings();
       }else{
         wx.showModal({
           title: '提示',
@@ -306,15 +303,15 @@ Page({
    /************门店内点击预约*************/
   bookings :function(){
     let shopId = this.data.shopId;
-    let that = this;
+    let _this = this;
     wx.setStorage({
       key: 'countryCardStatus',
-      data: that.data.countryCardStatus,
+      data: _this.data.countryCardStatus,
     });
     wx.getStorage({
       key: 'countryCardStatus',
       success: function (res) {
-        that.setData({
+        _this.setData({
           countryCardStatus: res.data,
         });    
         
@@ -349,7 +346,7 @@ Page({
                         });
 
                         Http.post('/user/getUserInfo', {
-                          onlyId: that.data.openid,
+                          onlyId: _this.data.openid,
                         }).then(res => {
                           let userphone = res.result.userPhone;
                           
@@ -362,7 +359,7 @@ Page({
                             Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
                                 phone: userphone,
                                 birthday: birthday,
-                                shopId:that.data.shopId,
+                                shopId:_this.data.shopId,
                                 spreadId:'18',
                               }).then(res => {
                                 wx.hideLoading();
@@ -394,7 +391,7 @@ Page({
                         }
                     },
                     fail: function () {
-                      that.getcode();
+                      _this.getcode();
                       
                     }
                   })
@@ -416,7 +413,7 @@ Page({
   /************点击门店活动*************/
   activity_yry : function () {
     let shopId = this.data.shopId;
-    let that = this;
+    let _this = this;
     wx.navigateTo({
       url: './activity/activity?shopId=' + shopId,//跳转活动详情页面
     })
@@ -429,9 +426,9 @@ Page({
       phoneNumber : this.data.shopTel
     });
     //保存用户点击电话
-    var that = this;
+    var _this = this;
     Http.post('/user/saveUserClick', {
-      onlyId: that.data.openid,
+      onlyId: _this.data.openid,
     }).then(res => {
       if (res.code == 1000) {
       } else {
@@ -442,7 +439,7 @@ Page({
 
 
   },
-  /*********拨打电话功能*************/
+  /* ------------- 拨打电话功能 ------------- */
   makePhone(e) {
     wx.makePhoneCall({
       phoneNumber: e.target.dataset.num
@@ -450,10 +447,10 @@ Page({
   },
   /*******************获取用户状态************************ */
   getcode() {
-    let that = this;
+    let _this = this;
     wx.login({
       success(res) {
-        that.getuserstatus(res.code);
+        _this.getuserstatus(res.code);
       }
     });
   },
@@ -574,10 +571,5 @@ Page({
     }, _ => {
       wx.hideLoading();
     });
-  },
-  backindex(){
-    wx.switchTab({
-      url: '../index',
-    })
   }
 })

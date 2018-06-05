@@ -2,6 +2,9 @@ const app = getApp();
 const User = require('./../../utils/userInfo.js');
 const Http = require('./../../utils/request.js');
 const cityAddress = require('./../../data/cityAddress.js');
+
+const getUserInfo = require('./../../utils/getUserInfo.js');
+
 var addresslist = cityAddress.postList;
 Page({
   data: {
@@ -19,6 +22,7 @@ Page({
   onLoad: function () {
     this.getcode();
     this.getaddress();
+
   },
   onShow: function () {
   },
