@@ -3,9 +3,7 @@ const getUserInfo = require('../../../utils/getUserInfo.js');
 const Http = require('../../../utils/request.js');
 const app = getApp();
 Page({
-  data: {
-    
-  },
+  data: {},
   onLoad: function (options) {
     this.setData({ shopId: options.shopId });
   
@@ -17,7 +15,6 @@ Page({
       this.getStoreItems(options.shopId, address.location.lat, address.location.lng);
     });
   },
-
 
   /* --------------- 获取门店详细信息 --------------- */
   getStoreItems(shopId, lat, lon) {
@@ -72,109 +69,60 @@ Page({
       }
     })
   },
-  /* --------------- 门店内点击预约检测 --------------- */
-  booking() {
+  /* --------------- 点击预约 --------------- */
+  makeAppointment() {
     getUserInfo().then(userInfo => {
-      console.log(userInfo)
-
-      if (userInfo.tongMember == 0) {
-        if (userInfo.memberId != 0) {
-          if (this.data.shopId != userInfo.storeId) {
-            wx.showModal({
-              title: '提示',
-              content: '您的卡不支持跨店预约'
-            })
-          } else {
-            this.bookings(userInfo);
-          }
-        } else {
-          this.bookings(userInfo);
-        }
-      } else {
-        if (this.data.shopInfo.countryCardStatus == 1) {
-          this.bookings(userInfo);
-        } else {
-          wx.showModal({
-            title: '提示',
-            content: '当前门店不是通卡店'
-          })
-        }
-      }
-    })
-
-  },
-
-
-  /************门店内点击预约*************/
-  bookings(userInfo) {
-    let _this = this;
-    let shopId = this.data.shopId;
-
-    if (userInfo.isMember == 0) {    //监测用户是否是会员 //用户不是会员
-      if (userInfo.status == 0) { //用户没有绑定手机
-        wx.navigateTo({
-          url: '../../user/bind-phone/bind-phone?shopId=' + shopId + '&page=1', //跳转到绑定手机页面
-        })
-      } else if (userInfo.baseInfo == 0 || !userInfo.baseInfo) { //是否填写过信息
-        wx.navigateTo({
-          url: '../../user/bind-info/bind-info?shopId=' + shopId + '&page=1',//跳转到绑定信息页面
-        })
-      } else {
-        //非会员预约
-        wx.showLoading({
-          title: '加载中...',
-        });
-
-        Http.post('/user/getUserInfo', {
-          onlyId: userInfo.openid,
-        }).then(res => {
+      if (userInfo.isMember == 0) {
+        /* --------- 非会员 获取到用户信息推送到客多多 --------- */
+        wx.showLoading({ title: '加载中...' });
+        Http.post('/user/getUserInfo', { onlyId: userInfo.openid }).then(res => {
           let userphone = res.result.userPhone;
-
           Http.post('/user/getBabyInfoByPhone', {
             userPhone: userphone,
           }).then(res => {
-
             let birthday = res.result.birthday;
-            //客多多推送 
             Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
               phone: userphone,
               birthday: birthday,
-              shopId: _this.data.shopId,
+              shopId: this.data.shopId,
               spreadId: '18',
             }).then(res => {
               wx.hideLoading();
-
-              if (res.code == 1000) {
-                wx.showModal({
-                  title: '温馨提示',
-                  content: '请保持手机通畅，稍后门店会联系您',
-                })
-              } else if (res.code == 1022) {
-                wx.showModal({
-                  title: '温馨提示',
-                  content: '每天只能预约一次哦~',
-                })
-              } else {
-                wx.showModal({
-                  title: '提示',
-                  content: '系统错误',
-                })
-              }
-            }, _ => {
-              wx.hideLoading();
+              wx.showModal({
+                title: '温馨提示',
+                showCancel: false,
+                content: res.code == 1000 ? '请保持手机通畅，稍后门店会联系您' : res.code == 1022 ? '每天只能预约一次哦~' : '系统错误，请刷新重试',
+              })
             });
-          }, _ => {
-            wx.hideLoading();
           });
         });
+      } else if (userInfo.storeId == this.data.shopId) {
+        /* ---------- 是会员 归属门店与当前门店一致 ---------- */
+        wx.navigateTo({
+          url: './appointment/appointment?shopId=' + this.data.shopId,
+        });
+      } else if (userInfo.tongMember == 0) {
+        /* ---------- 不是通卡会员 ---------- */
+        wx.showModal({
+          title: '提示',
+          showCancel: false,
+          content: '您的卡不支持跨店预约'
+        })
+      } else if (this.shopInfo.countryCardStatus == 1) {
+        /* ----------- 是通卡店 ----------- */
+        wx.navigateTo({
+          url: './appointment/appointment?shopId=' + this.data.shopId,
+        });
+      } else {
+        /* ---------- 不是通卡店 ---------- */
+        wx.showModal({
+          title: '提示',
+          showCancel: false,
+          content: '当前门店不是通卡店'
+        })
       }
-    } else {
-      wx.navigateTo({
-        url: './appointment/appointment?shopId=' + shopId + '&page=1',
-      })
-    } 
+    })
   },
-
 
   /* ------------- 拨打电话功能 ------------- */
   makePhone(e) {

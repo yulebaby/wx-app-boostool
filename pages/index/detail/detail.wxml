@@ -122,6 +122,6 @@
 
 
   <!-- footer -->
-  <view class='footer' hover-class='active' bindtap='booking'>去预约游泳课</view>
+  <view class='footer' hover-class='active' bindtap='makeAppointment'>去预约游泳课</view>
 
 </view>
