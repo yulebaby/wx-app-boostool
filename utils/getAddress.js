@@ -89,6 +89,4 @@ const GetCity = (obj) => {
   })
 }
 
-module.exports = {
-  getAddress: GetAddress
-};
+module.exports = GetAddress;

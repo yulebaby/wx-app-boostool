@@ -1,5 +1,3 @@
-// pages/serve/serve-details/serve-details.js
-const User = require('../../../utils/userInfo.js');
 const Http = require('../../../utils/request.js');
 Page({
 

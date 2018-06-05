@@ -1,4 +1,4 @@
-const User = require('../../../utils/userInfo.js');
+const getAddress = require('../../../utils/getAddress.js');
 const Http = require('../../../utils/request.js');
 const app = getApp();
 Page({
@@ -62,7 +62,7 @@ Page({
 
    
 
-    User.getAddress(address => {
+    getAddress(address => {
       this.setData({
         lat: address.location.lat,
         lon: address.location.lng,

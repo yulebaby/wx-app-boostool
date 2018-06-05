@@ -1,4 +1,3 @@
-const User = require('../../../../utils/userInfo.js');
 const Http = require('../../../../utils/request.js');
 Page({
   data: {

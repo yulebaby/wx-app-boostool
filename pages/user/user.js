@@ -1,7 +1,5 @@
 const app = getApp();
-const User = require('../../utils/userInfo.js');
 const Http = require('../../utils/request.js');
-const userInfo = require('./../../utils/userInfo.js');
 Page({
   data: {
     userHeadImage: null,

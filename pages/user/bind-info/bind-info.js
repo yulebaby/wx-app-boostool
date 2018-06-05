@@ -1,5 +1,4 @@
 const App = getApp();
-const User = require('./../../../utils/userInfo.js');
 const Http = require('./../../../utils/request.js');
 Page({
   data: {
@@ -28,16 +27,16 @@ Page({
         page: options.page
       })
     }
-    User.getUserInfo(res => {
-      if (res.rawData) {
-        let info = JSON.parse(res.rawData);
-        if (info.avatarUrl) {
-          this.setData({
-            userHeadImg: info.avatarUrl
-          })
-        }
-      }
-    });
+    // User.getUserInfo(res => {
+    //   if (res.rawData) {
+    //     let info = JSON.parse(res.rawData);
+    //     if (info.avatarUrl) {
+    //       this.setData({
+    //         userHeadImg: info.avatarUrl
+    //       })
+    //     }
+    //   }
+    // });
     wx.getStorage({
       key: 'baseInfo',
       success: function (res) {

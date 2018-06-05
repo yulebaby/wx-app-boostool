@@ -1,5 +1,5 @@
 const app = getApp();
-const User = require('./../../utils/userInfo.js');
+const getAddress = require('./../../utils/getAddress.js');
 const Http = require('./../../utils/request.js');
 const cityAddress = require('./../../data/cityAddress.js');
 
@@ -21,7 +21,7 @@ Page({
   },
   onLoad: function () {
     this.getcode();
-    this.getaddress();
+    this.getaddressIndex();
 
   },
   onShow: function () {
@@ -31,8 +31,8 @@ Page({
     this.getStoreItems();
   },
   /*******************获取当前城市************************ */
-  getaddress() {
-    User.getAddress(address => {
+  getaddressIndex() {
+    getAddress(address => {
       this.setData({
         location: address.location,
         address: [address.address_component.province, address.address_component.city],
