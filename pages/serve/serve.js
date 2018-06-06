@@ -11,147 +11,33 @@ Page({
   onLoad: function (options) {
     getUserInfo().then(userInfo => {
       console.log(userInfo);
-      // if (userInfo.)
+      this.setData({ userInfo });
+      this.switchChange(this.currentTab);
     })
   },
-  onShow: function () {
-    
-  },
-  swichNav(e) {
-    let that = this;
+  /* --------------- 切换表单 --------------- */
+  switchTab(e) {
     let index = e.target.dataset.current;
     if (index !== this.data.currentTab) {
       this.setData({
         currentTab: e.target.dataset.current
-      })
-    }
-  },
-  swichChange(e) {
-    var that = this;
-    this.setData({
-      currentTab: e.detail.current
-    });
-    if (that.data.currentTab == 0) {
-      that.postlistallfei();
-    } else if (that.data.currentTab == 1) {
-      that.postlistallfei1();
-    } else if (that.data.currentTab == 2) {
-      that.postlistallfei2();
-    }
-
-  },
-  toDetails() {
-  },
-  updateTime() {
-  },
-  /**********全部**********/
-  postlistallfei() {
-    var that = this;
-    if (!that.data.memberId) {
-
-      wx.showLoading({
-        title: '加载中...',
-      })
-      Http.post('/reserve/reserveListFei', {
-        paramJson: JSON.stringify({
-          onlyId: that.data.openid,
-          pageNo: 1,
-          pageSize: 99
-        })
-      }).then(res => {
-        wx.hideLoading();
-        if (res.code == 1000 && res.result.list) {
-          let arrays = res.result.list;
-          let arr1 = []; //待服务
-          let arr2 = []; //已完成
-          let arr3 = []; //已取消
-          for (let i = 0; i < arrays.length; i++) {
-            if (arrays[i].reserveStatus == 0) {
-              arr1.push(arrays[i]);
-            } else if (arrays[i].reserveStatus == 1) {
-              arr2.push(arrays[i]);
-            } else {
-              arr3.push(arrays[i]);
-            }
-          }
-          arrays = [];
-          for (let i = 0; i < arr1.length; i++) {
-            arrays.push(arr1[i]);
-          }
-          for (let i = 0; i < arr2.length; i++) {
-            arrays.push(arr2[i]);
-          }
-          for (let i = 0; i < arr3.length; i++) {
-            arrays.push(arr3[i]);
-          }
-          for (var i = 0; i < arrays.length; i++) {
-            let arrayss = arrays[i].rHour + ':' + arrays[i].rMinute;
-            arrays[i].reserveDate = arrays[i].reserveDate.replace('00:00:00', arrayss);
-          }
-          that.setData({
-            arrays: arrays
-          })
-        } else {
-
-        }
-      }, _ => {
-        wx.hideLoading();
       });
-    } else {     /**********全部会员列表**********/
-
-      wx.showLoading({
-        title: '加载中...',
-      })
-      Http.post('/reserve/reserveList', {
-        paramJson: JSON.stringify({
-          memberId: that.data.memberId,
-          pageNo: 1,
-          pageSize: 99
-        })
-      }).then(res => {
-        wx.hideLoading();
-
-        if (res.code == 1000 && res.result.list) {
-          let arrays = res.result.list;
-          let arr1 = []; //待服务
-          let arr2 = []; //已完成
-          let arr3 = []; //已取消
-          for (let i = 0; i < arrays.length; i++) {
-            if (arrays[i].reserveStatus == 0) {
-              arr1.push(arrays[i]);
-            } else if (arrays[i].reserveStatus == 1) {
-              arr2.push(arrays[i]);
-            } else {
-              arr3.push(arrays[i]);
-            }
-          }
-          arrays = [];
-          for (let i = 0; i < arr1.length; i++) {
-            arrays.push(arr1[i]);
-          }
-          for (let i = 0; i < arr2.length; i++) {
-            arrays.push(arr2[i]);
-          }
-          for (let i = 0; i < arr3.length; i++) {
-            arrays.push(arr3[i]);
-          }
-          for (let i = 0; i < arrays.length; i++) {
-            arrays[i].reserveDate = arrays[i].time;
-            if (arrays[i].reserveStatus != 0 && arrays[i].reserveStatus != 1) {
-              arrays[i].reserveStatus = 2;
-            }
-          }
-          that.setData({
-            arrays: arrays
-          })
-
-        } else {
-
-        }
-      }, _ => {
-        wx.hideLoading();
-      });
+      this.switchChange(index);
     }
+  },
+  switchChange(index) {
+    wx.showLoading({ title: '加载中...' });
+    let requestPath = index == 0 ? '/reserve/reserveListFei' : '/reserve/reserveListFei';
+    let params = {
+      onlyId: this.data.userInfo.openid,
+      reserveStatus: index == 0 ? 0 : 2,
+      pageNo: 1,
+      pageSize: 99
+    };
+    Http.post(requestPath, { paramJson: JSON.stringify(params) }).then( res => {
+      wx.hideLoading();
+      this.setData({ serveItems: res.code == 1000 ? res.result.list : [] });
+    })
   },
   /**********待服务**********/
   postlistallfei1() {
@@ -162,12 +48,7 @@ Page({
         title: '加载中...',
       })
       Http.post('/reserve/reserveListFei', {
-        paramJson: JSON.stringify({
-          onlyId: that.data.openid,
-          reserveStatus: 0,
-          pageNo: 1,
-          pageSize: 99
-        })
+        paramJson: JSON.stringify()
       }).then(res => {
         wx.hideLoading();
         if (res.code == 1000) {
@@ -410,14 +291,12 @@ Page({
       formId:formId
     })
     if (that.data.memberId) {
-
       wx.showModal({
         title: '尊敬的会员',
         content: '您确定要取消预约吗?',
         success: function (res) {
           if (res.confirm) {
             that.reserveCancel(reserveId, that.data.memberId);
-          } else if (res.cancel) {
           }
         }
       })
@@ -428,7 +307,6 @@ Page({
         success: function (res) {
           if (res.confirm) {
             that.reserveCancelFei(reserveId);
-          } else if (res.cancel) {
           }
         }
       })

@@ -108,7 +108,7 @@ Page({
           showCancel: false,
           content: '您的卡不支持跨店预约'
         })
-      } else if (this.shopInfo.countryCardStatus == 1) {
+      } else if (this.data.shopInfo.countryCardStatus == 1) {
         /* ----------- 是通卡店 ----------- */
         wx.navigateTo({
           url: './appointment/appointment?shopId=' + this.data.shopId,

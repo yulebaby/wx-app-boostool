@@ -6,6 +6,8 @@ const app = getApp();
  * ---------------------------------------------------------------
  * @description 
  * 
+ *      latest 为 true 则直接请求服务器最新数据
+ * 
  *      判断App.js 是否存储用户信息（是否为第一次调用）
  *        
  *          第一次调用：
@@ -49,31 +51,40 @@ const Login = () => {
     })
   })
 }
-const GetUserInfo = () => {
+const GetUserInfo = (latest) => {
   return new Promise( (resolve, reject) => {
-    if (app.userInfo.openid) { resolve(app.userInfo); }
-    wx.checkSession({
-      success(res) {
-        try {
-          let userInfo = wx.getStorageSync('userInfo');
-          app.userInfo = JSON.parse(userInfo);
-          resolve(app.userInfo);
-        } catch (e) {
+    if (latest) {
+      Login().then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(null)
+      })
+    } else if (app.userInfo.openid) { 
+      resolve(app.userInfo); 
+    } else {
+      wx.checkSession({
+        success(res) {
+          try {
+            let userInfo = wx.getStorageSync('userInfo');
+            app.userInfo = JSON.parse(userInfo);
+            resolve(app.userInfo);
+          } catch (e) {
+            Login().then(res => {
+              resolve(res)
+            }).catch(err => { 
+              reject(null)
+            })
+          }
+        },
+        fail() {
           Login().then(res => {
             resolve(res)
-          }).catch(err => { 
+          }).catch(err => {
             reject(null)
           })
         }
-      },
-      fail() {
-        Login().then(res => {
-          resolve(res)
-        }).catch(err => {
-          reject(null)
-        })
-      }
-    });
+      });
+    }
 
   })
 }
