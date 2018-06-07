@@ -51,15 +51,31 @@ const Login = () => {
     })
   })
 }
-const GetUserInfo = (latest) => {
+
+const Source = (userInfo) => {
+  /* --------- 判断是否绑定过信息 未绑定则跳转到绑定信息页 --------- */
+  if (userInfo.status == 0) {
+    wx.navigateTo({
+      url: '/pages/user/bind-phone/bind-phone',
+    })
+  } else if (userInfo.baseInfo == 0) {
+    wx.navigateTo({
+      url: 'pages/user/bind-info/bind-info',
+    });
+  }
+}
+
+const GetUserInfo = (gobind, latest) => {
   return new Promise( (resolve, reject) => {
     if (latest) {
       Login().then(res => {
+        if (gobind != false) { Source(res); }
         resolve(res)
       }).catch(err => {
         reject(null)
       })
     } else if (app.userInfo.openid) { 
+      if (gobind != false) { Source(app.userInfo); }
       resolve(app.userInfo); 
     } else {
       wx.checkSession({
@@ -67,9 +83,11 @@ const GetUserInfo = (latest) => {
           try {
             let userInfo = wx.getStorageSync('userInfo');
             app.userInfo = JSON.parse(userInfo);
+            if (gobind != false) { Source(app.userInfo); }
             resolve(app.userInfo);
           } catch (e) {
             Login().then(res => {
+              if (gobind != false) { Source(res); }
               resolve(res)
             }).catch(err => { 
               reject(null)
@@ -78,6 +96,7 @@ const GetUserInfo = (latest) => {
         },
         fail() {
           Login().then(res => {
+            if (gobind != false) { Source(res); }
             resolve(res)
           }).catch(err => {
             reject(null)

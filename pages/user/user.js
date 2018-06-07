@@ -9,24 +9,12 @@ Page({
   },
   onLoad: function (options) {
     /* ----------------- 获取用户信息 ----------------- */
-    getUserInfo().then(userInfo => {
+    getUserInfo(true).then(userInfo => {
       this.setData({ userInfo });
-      console.log(userInfo)
 
       /* --------- 如果会员ID存在 请求会员卡信息 --------- */
       if (userInfo.memberId) {
         this.getCardDetail(userInfo.memberId);
-      }
-
-      /* --------- 判断是否绑定过信息 未绑定则跳转到绑定信息页 --------- */
-      if (userInfo.status == 0) {
-        wx.navigateTo({
-          url: '../user/bind-phone/bind-phone?page=2',
-        })
-      } else if (userInfo.baseInfo == 0) {
-        wx.navigateTo({
-          url: '../user/bind-info/bind-info?page=2',
-        });
       }
 
       /* --------- 根据openid 获取用户绑定手机号 --------- */

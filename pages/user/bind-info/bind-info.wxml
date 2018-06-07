@@ -23,4 +23,4 @@
 
 
 
-<view class='ipt-submit' hover-class='active' bindtap='setuser'>确定</view>
+<view class='ipt-submit' hover-class='active' bindtap='submit'>确定</view>

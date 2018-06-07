@@ -9,7 +9,7 @@ Page({
   },
   onLoad: function (options) {
     /* ---------------- 记录来源页 ---------------- */
-    getUserInfo().then(userInfo => this.setData({ userInfo, options }));
+    getUserInfo().then(userInfo => this.setData({ userInfo }));
   },
   onShow: function () {
     wx.showModal({
@@ -92,8 +92,14 @@ Page({
       })
     }).then(res => {
       wx.hideLoading();
-      getUserInfo(true).then(userInfo => {
-        if (userInfo) {}
+      getUserInfo(false, true).then(userInfo => {
+        if (userInfo.isMember == 0) { 
+          wx.redirectTo({
+            url: '/pages/user/bind-info/bind-info',
+          });
+        } else {
+          wx.navigateBack();
+        }
       });
     })
   },
