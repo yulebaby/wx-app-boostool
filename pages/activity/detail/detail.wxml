@@ -1,6 +1,6 @@
 <view class='container'>
-  <view class='header'>
-    <view class='head-h1'>提交成功</view>
+  <view class='header' wx:if="{{ type }}">
+    <view class='head-h1'>{{ type }}</view>
     <view class='head-p'>请保持手机通畅，稍后门店会联系您</view>
   </view>
 

@@ -5,7 +5,7 @@
     <view class="swiper-list {{ currentTab == 1 ? 'active' : '' }}" data-current="1" bindtap="switchTab">已完成</view>
   </view>
 
-  <swiper current="{{currentTab}}" class="swiper-box" duration="300" bindchange="swichChange">   
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" bindchange="switchChange">   
     <swiper-item>
       <view class='serve-list' wx:for='{{ serveItems }}' wx:key="key" wx:if="{{ serveItems.length }}">
         <view class='serve-item' bindtap='toDetails'>
@@ -34,10 +34,9 @@
           </view>
         </view>
       </view>  
-      <view class='wkong' wx:if="{{ !arrays.length }}" >
+      <view class='wkong' wx:if="{{ !serveItems.length }}" >
         <image src='../../assets/images/service.png'></image>
-        <text>您还没有给宝宝约过游泳课哦</text>
-        <text style='height:30rpx; line-height:30rpx; padding-top:0;'>现在去约吧</text>
+        <text>您的宝宝没有上过游泳课哦</text>
       </view>  
     </swiper-item>    
     <swiper-item>
@@ -45,9 +44,7 @@
         <view class='serve-item' bindtap='toDetails'>
           <view class='item-title'>
             <text>{{item.shopName}}</text>
-          <text class='item-status' wx:if='{{item.reserveStatus==0}}' style="color:#ff839a;">待服务</text>
-            <text class='item-status' wx:if='{{item.reserveStatus==1}}' style="color:#ccc;">已取消</text>
-            <text class='item-status' wx:if='{{item.reserveStatus==2}}' style="color:#000;">已完成</text>
+            <text class='item-status' style="color:#000;">已完成</text>
           </view>
           <view class='item-detail'>
           <view class='fwlist'>
@@ -58,11 +55,6 @@
               <view>老师：{{item.teacher}}</view>
               </view>
           </view>
-          <view class='item-footer' wx:if='{{item.reserveStatus==0}}'>
-            <view class='item-btns'>
-              <view class='item-btn' hover-class="active"  bindtap='cancel' data-id="{{item.id}}">取消预约</view>
-            </view>
-          </view>
         </view>
       </view>  
       <view class='wkong' wx:if="{{ !serveItems.length }}" >
@@ -71,5 +63,6 @@
       </view>  
     </swiper-item>  
   </swiper>
+
 
 </view>

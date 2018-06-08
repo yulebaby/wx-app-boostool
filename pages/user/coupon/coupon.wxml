@@ -1,34 +1,19 @@
-<view class='coupon'>
-  <view class='item active'>
+<view class='coupon' wx:if="{{ couponItems.length }}">
+  <view wx:for="{{ couponItems }}" class='item {{ item.useStatus == 1 ? "active" : "" }}'>
     <view class='item-cell'>
       <view class='item-box'>
-        <view class='item-h2'>首次体验优惠券</view>
-        <view class='item-h6'>条件：非会员首次体验使用</view>
-        <view class='item-h6'>有效期：2017/11/02 - 2018/02/17</view>
+        <view class='item-h2'>{{ item.couponName }}</view>
+         <view class='item-h6'>{{ item.shopName }}(专用)</view> 
+        <view class='item-p'>有效期：{{ item.startDate }} 至 {{ item.endDate }}</view>
       </view>
     </view>
     <view class='item-info'>
       <view class='info-h2'>
-        <text class='large'>29</text>.<text>9</text>元
+        <text class='large'>{{ item.couponAmount }}</text>元
       </view>
-      <view class='info-btn' hover-class='active'>使用</view>
-    </view>
-  </view>
-  <view class='item'>
-    <view class='item-cell'>
-      <view class='item-box'>
-        <view class='item-h2'>首次体验优惠券</view>
-        <view class='item-h6'>条件：非会员首次体验使用</view>
-        <view class='item-h6'>有效期：2017/11/02-2018/02/17</view>
-      </view>
-    </view>
-    <view class='item-info'>
-      <view class='info-h2'>
-        <text class='large'>29</text>.<text>9</text>元
-      </view>
-      <view class='info-btn' hover-class='active'>已使用</view>
+       <view class='info-btn' style='opacity: .6'>{{ item.useStatus == 1 ? "待使用" : "已使用" }}</view> 
     </view>
   </view>
 </view>
 
-<nothing>暂无优惠券</nothing>
+<nothing wx:if="{{ !couponItems.length }}">暂无优惠券</nothing> 

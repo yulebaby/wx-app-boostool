@@ -4,7 +4,7 @@
   <view class='header'>
 
     <view class='head-cover'>
-      
+
       <view class='head-card' wx:if="{{ shopInfo.countryCardStatus == 1 }}">全国通卡店</view>
   
       <view class='swiper' wx:if="{{ shopInfo.shopInfoImag.length }}">
@@ -20,19 +20,23 @@
     </view>
 
     <view class='head-box'>
-    
       <view class='head-name'>
         <text>{{ shopInfo.shopName }}</text>
         <view>{{ shopInfo.distance }}</view>
       </view>
-
       <view class='head-address'>
         <text>{{ shopInfo.address }}</text>
         <view hover-class='active' bindtap='mapclick'>导航</view>
       </view>
-
     </view>
 
+  </view>
+
+  <view class='activity-box' wx-if="{{ shopInfo.isActivity == 1 }}">
+    <view class='activity-coupon'>
+      <view class='coupon-price'>{{ shopInfo.coupon }}</view>
+      <view class='coupon-btn' hover-class='active' bindtap='couponSubmit'></view>
+    </view>
   </view>
 
 

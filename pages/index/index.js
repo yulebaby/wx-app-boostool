@@ -9,20 +9,30 @@ var addresslist = cityAddress.postList;
 Page({
   data: {
     swiperArray: [
-      '/assets/images/banner1.jpg',
-      '/assets/images/banner2.jpg',
-      '/assets/images/banner3.jpg',
+      // 'https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/index-banner1.png',
+      'https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/index-banner2.png'
     ],
     pageNo    : 1,
     pageSize  : 10,
     storeItems: [],
-    address   : ['', '定位中', '']
+    address   : ['', '定位中', ''],
+    showCount: 0
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    this.setData({ isActivity: options.isActivity });
+  },
+  onShow() {
+    let showCount = this.data.showCount + 1;
+    if (showCount > 1) {
+      this.setData({ isActivity: false });
+    }
+    this.setData({ showCount })
     this.getaddressIndex();
   },
   onReachBottom: function () {
-    this.getStoreItems();
+    if (!this.data.isActivity) {
+      this.getStoreItems();
+    }
   },
   /* ------------------- 获取用户地理位置信息 ------------------- */
   getaddressIndex() {
@@ -119,12 +129,12 @@ Page({
         city: citycode,
         lon: this.data.location.lng,
         lat: this.data.location.lat,
-        pageNo: this.data.pageNo,
-        pageSize: this.data.pageSize
+        pageNo: this.data.isActivity ? '' : this.data.pageNo,
+        pageSize: this.data.isActivity ? '' :  this.data.pageSize
       });
     }
     wx.showLoading({ title: '加载中...' });
-    Http.post('/shop/listShop', { paramJson }).then(res => {
+    Http.post(this.data.isActivity ? '/shop/listActivityShop' : '/shop/listShop', { paramJson }).then(res => {
       wx.hideLoading();
       if (res.code == 1000 && res.result.shopList) {
         let storeItem = res.result.shopList;

@@ -8,8 +8,11 @@ Page({
     userphone: '加载中...'
   },
   onLoad: function (options) {
+  },
+  onShow() {
     /* ----------------- 获取用户信息 ----------------- */
-    getUserInfo(true).then(userInfo => {
+    getUserInfo().then(userInfo => {
+      console.log(userInfo)
       this.setData({ userInfo });
 
       /* --------- 如果会员ID存在 请求会员卡信息 --------- */

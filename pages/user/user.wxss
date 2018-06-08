@@ -7,7 +7,8 @@ page{
   padding: 50rpx;
   background: #fff;
   box-sizing: border-box;
-    border-bottom: solid 0.5px #e4e4e4;
+  border-bottom: solid 0.5px #e4e4e4;
+  overflow: hidden;
 }
 .head navigator{
   height: 140rpx;
@@ -21,10 +22,7 @@ page{
   float: left;
   width: 140rpx;
   height: 140rpx;
-  padding: 5rpx;
-  border: solid 1px rgb(236, 236, 236);
   border-radius: 50%;
-  box-sizing: border-box;
   overflow: hidden;
 }
 .head-image image{
@@ -32,6 +30,7 @@ page{
   border-radius: 50%;
 }
 .head-name{
+  height: 32rpx;
   padding: 30rpx 0 0 160rpx;
   font-size: 32rpx;
   line-height: 32rpx;

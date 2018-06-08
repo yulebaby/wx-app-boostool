@@ -1,5 +1,5 @@
 page{
-  background: #f5f6f8;
+  background:rgba(240,240,240,1);
 }
 
 /* ------------------- header ------------------- */
@@ -79,12 +79,10 @@ page{
   display: block;
   width: 560rpx;
   float: left;
-
 }
+
 .head-address view{
-
-
-    float: right;
+  float: right;
   height: 32rpx;
   padding: 0 8rpx;
   color: #FF839A;
@@ -94,142 +92,32 @@ page{
   border-radius: 4rpx;
 }
 
-
-
 /* -------------------- 活动 -------------------- */
-.activity{
-  margin-bottom: 20rpx;
-  background: #fff;
-  
-}
-.activity-title{
-  padding: 40rpx 0 32rpx;
-  color: #333;
-  font-size: 32rpx;
-  border-bottom: solid 1px rgb(232, 232, 232);
-}
-.activity-content{
-  overflow: hidden;
+.activity-coupon {
+  width: 734rpx;
+  height: 208rpx;
+  margin: 0 auto;
+  background: url('https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/shop-detail-coupon.png') no-repeat center;
+  background-size: contain;
   position: relative;
-  padding: 20rpx 30rpx;
-  border: solid 1rpx  rgb(232, 232, 232);
-  border-left: none;
-   border-right: none;
 }
-.activity-item{
-  position: relative;
-  padding: 10rpx 0;
-  float: left;
-  width: 520rpx;
-  margin-left: 140rpx;
-}
-/* .activity-content .activity-item:not(:first-child){
-  border-top: dashed 1px rgb(232, 232, 232);
-} */
-.activity-img{
-  width: 120rpx;
-  height: 120rpx;
+.coupon-price {
+  color: #FF5500;
+  font-size: 96rpx;
+  line-height: 112rpx;
   position: absolute;
-  top: 20rpx;
+  top: 14rpx;
+  left: 170rpx;
 }
-.activity-img image{
-  width: 120rpx;
-  height: 120rpx;
-display: block;
-}
-.activity-item navigator{
-  padding: 10rpx;
-  border-radius: 10rpx;
-}
-.activity-item navigator.active{
-  background: #f6f6f6;
-}
-.item-name{
-  padding-top: 10rpx;
-  padding-bottom: 20rpx;
-
-  font-size: 28rpx;
-  line-height: 32rpx;
-  color: #000;
- 
-}
-.item-detail{
-
-  padding-bottom: 10rpx;
-  color: #999;
-  font-size: 24rpx;
-  line-height: 30rpx;
-  overflow:hidden;
-  white-space:nowrap;
-  text-overflow:ellipsis;
-}
-/* .item-price{
-  padding-right: 26rpx;
-  font-size: 36rpx;
-  line-height: 36rpx;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAnCAYAAAAVW4iAAAAC4klEQVRIS72Xz0sUYRjHv8+bG0G/1AJjhejUrfBQd+lWlzBoBPOQpDtuq7YQllLhXAryIB7W2BncloKgfyAE6VCHoC5R1KUOBVGrRERICjs7O994ZVaW1NVtZ3qPMzzfz7zz/JZsNtsrIrcBfAdgtrS0vDUMo4yQjti2/RVAu9Yj+QlAenFxcc6yLC8MhjiO84TkGS0mIgTwjeQl0zTnQwHkcrm453kPAXQC2BGIrpDsaW1tnTMMw20EJNrYcZyjACZJnq0S+wHgRrFYfDAyMlL8V8gqQJ9MJnMgFotNA+itEvslIuOJRCLbMEAL2La9n+S0iFwAEAtEtV+uLy0t3RsdHV2uF7R2g4phPp8/5LruTZJJEVGB85dJTnmeN5lKpX7XA1kH0MYzMzN7YrFYmuQEgKaK40UkVygU0pZl+duFbAjQxvl8flexWBxXSl0lubsiqCFKqWv9/f0/twPZFKCNc7nc3nK5fJnkLQAViA7bR77vjyWTSZ39NU9NgLa0LGtnPB7vJpkBsC9QK4nI0+bmZsMwjJo+2RIQQJra2tr6lFJ3ABysfDLJZ57nXUylUl+CKrDuNtsCBCEcI9mtlLpLMh4olUVk3nXd9NDQ0MeN/tW2AcFNVHt7e6fv+3kAhwNBHVHvXNftGh4e/vw3pC6ANiYps7Ozp33fnwFwpOp3fRCRnoWFhTfVYVw3IBCUbDZ7Sik1RfJ4Vca/9n3/SjKZfLEW1luFWa33tm0f09EM4GSQ8SRZ0KUmkUg8X33WCEDbOo7TQVL7pKNKawFAl2marxoGBBF2nuTjSu0CUCI5Njg4ONUwYLMbKKXODQwMvGwIoH1A8r6InAjbB9FFUaR5YFnWukwWkTLJ9w1nsm3b0dUiy7Ka4vF4H8nwq2mk/SDSjqZ7cqlUGgcQfk+uTBW+70+ISLhTRaRzUa3JTo9Lpmmu1Ft9/89sGul0Hfl+EPmGE/mOFmyZkwB0Hx0Ie8v8AwgT9DfYYGcBAAAAAElFTkSuQmCC) no-repeat right center;
-  background-size: 16rpx 26rpx;
-  position: absolute;
-  top: 48rpx;
-  right: 10rpx;
-  color:#f63;
-  font-weight: bold;
-} */
-
-/* .item-price{
-  font-size: 36rpx;
-  line-height: 36rpx;
-  position: absolute;
-  top: 48rpx;
-  right: 10rpx;
-  color:#f63;
-  font-weight: bold;
-} */
-.item-price{
-  font-size: 36rpx;
-  line-height: 36rpx;
-  position: absolute;
-  top: 0;
-  right: -30rpx;
-  color:#f63;
-  font-weight: bold;
-
-  width: 200rpx;
-  height: 122rpx;
-  text-align: center;
-}
-.price_main{
-  width: 100%;
-  height: 100%;
-}
-.price_top {
-  height:61rpx;
-  line-height: 61rpx;
-  font-size: 34rpx;
-  font-weight: normal;
-  text-align: right;
-}
-.price_top text{
-  height:36rpx;
-font-size:24rpx;
-line-height:46rpx;
-text-decoration:line-through;
-color:#999;
-font-weight: normal;
-margin-left: 10rpx;
-
-}
-.price_bottom{
-  width: 150rpx;
-  height: 50rpx;
-  background: #f63;
-  color: #fff;
+.coupon-btn {
   float: right;
-  line-height: 50rpx;
-  font-weight: normal;
-  font-size: 24rpx;
-  border-radius: 5px;
+  width: 212rpx;
+  height: 182rpx;
 }
+.coupon-btn.active {
+  background: rgba(240,240,240,.3);
+}
+
 /* -------------------- 详情 -------------------- */
 .storeinfo{
  background: #fff;
@@ -281,6 +169,7 @@ margin-left: 10rpx;
 }
 .item-icon image{
   width: 100%;
+  max-height: 30rpx !important;
   vertical-align: middle;
 }
 .info-cell{
@@ -340,11 +229,6 @@ margin-left: 10rpx;
   width: 75%;
   float: left;
 }
-/* .footer1 view:nth-child(1) image{
-  width: 60rpx;
-  height: 60rpx;
-  margin-top: 10rpx;
-} */
 
 .foots{
   width: 100%; 

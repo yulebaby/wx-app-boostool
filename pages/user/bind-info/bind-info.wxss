@@ -2,10 +2,7 @@
   width: 220rpx;
   height: 220rpx;
   margin: 60rpx auto;
-  padding: 8rpx;
-  border: solid 1px rgb(236, 236, 236);
   border-radius: 50%;
-  box-sizing: border-box;
 }
 .head image{
   display: block;

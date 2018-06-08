@@ -9,7 +9,7 @@ Page({
   },
   onLoad: function (options) {
     /* ---------------- 记录来源页 ---------------- */
-    getUserInfo().then(userInfo => this.setData({ userInfo }));
+    getUserInfo(false).then(userInfo => this.setData({ userInfo }));
   },
   onShow: function () {
     wx.showModal({
@@ -73,7 +73,7 @@ Page({
       });
       return;
     }
-    if (this.data.code == this.data.verificationCode && this.data.phone == this.data.getCodePhone) {
+    if (this.data.code != this.data.verificationCode && this.data.phone != this.data.getCodePhone) {
       wx.showToast({
         icon: "none",
         title: '验证码错误',

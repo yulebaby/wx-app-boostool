@@ -8,7 +8,7 @@
   </view>
  
   <view class='swiper'>
-    <swiper indicator-dots="true" autoplay="true" interval="5000" duration="300"  indicator-active-color="#FFF" circular="true">
+    <swiper indicator-dots="{{ swiperArray.length > 1 }}" autoplay="true" interval="5000" duration="300"  indicator-active-color="#FFF" circular="true">
       <block wx:for="{{ swiperArray }}" wx:key="key">
         <swiper-item>
           <image src="{{ item }}" class="slide-image" width="355" height="178"/>
@@ -34,9 +34,9 @@
           <view>{{ item.address }}</view>
           <text>{{ item.distance }}</text>
         </view>
-      <view class='activity' wx:if="{{ item.isActivity == 1 }}">
-          <view class='activity-icon'>限时特惠</view>
-          <view class='activity-text'>百城千店，五一欢乐游超值体验卡</view>
+        <view class='activity' wx:if="{{ item.isActivity == 1 }}">
+          <view class='activity-icon'>劵</view>
+          <view class='activity-text'>{{ item.couponName }}</view>
         </view>
 
       </navigator>

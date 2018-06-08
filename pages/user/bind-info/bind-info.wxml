@@ -1,5 +1,5 @@
 <view class='head'>
-  <image mode='widthFix' src='{{userInfo.avatarUrl}}'></image>
+  <image mode='widthFix' src='/assets/images/head-default.png'></image>
 </view>
 
 

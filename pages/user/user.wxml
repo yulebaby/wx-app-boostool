@@ -1,10 +1,10 @@
 <view class='head'> 
   <view class='head-image'>
-    <image mode='widthFix' src='{{userInfo.avatarUrl}}'></image>
+    <image mode='widthFix' src='/assets/images/head-default.png'></image>
   </view>
 
-  <view class='head-name'>{{userInfo.nickName || '默认昵称'}}</view>
-  <view class='head-phone'>{{userphone}}</view>
+   <!-- <view class='head-name'>{{userInfo.nickName}}</view>  -->
+  <view class='head-phone'>{{ userphone }}</view>
 </view>
 
 
@@ -25,9 +25,9 @@
     </view>
   </view>
 
-  <view class='activity-banner' hover-class='tap-active'>
+  <!-- <view class='activity-banner' hover-class='tap-active'>
     <image mode='widthFix' src='/assets/images/user/activity-banner.png'></image>
-  </view>
+  </view> -->
 
   <view class='tab-box'>
     <view class='item' hover-class='active'>

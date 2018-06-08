@@ -124,6 +124,33 @@ Page({
     })
   },
 
+  /* --------------- 领取代金券 --------------- */
+  couponSubmit() {
+    getUserInfo().then(userInfo => {
+      if (userInfo.isMember == 1) {
+        wx.showModal({
+          title: '提示',
+          content: '会员无法领取，代金券进针对首次游泳体验有效',
+          showCancel: false
+        })
+        return; 
+      }
+      let sharePhone = wx.getStorageSync('sharePhone') || '';
+      let param = JSON.stringify({
+        onlyId: userInfo.openid,
+        storeId: this.data.shopId,
+        sendPhone: sharePhone,
+        couponAmount: this.data.shopInfo.coupon
+      });
+      wx.showLoading({ title: '领取中...', mask: true });
+      Http.post('/coupon/saveCoupon', { paramJson: param }).then( res => {
+        wx.navigateTo({
+          url: `/pages/activity/detail/detail?text=${res.code == 1000 ? '领取代金券成功' : res.info}`,
+        });
+      })
+    })
+  },
+
   /* ------------- 拨打电话功能 ------------- */
   makePhone(e) {
     wx.makePhoneCall({

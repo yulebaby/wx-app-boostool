@@ -10,7 +10,7 @@ Page({
     babyname: ''
   },
   onLoad: function (options) {
-
+    getUserInfo(false).then( userInfo => this.setData({ userInfo }));
   },
   /**********验证宝宝姓名生日关系----提交*************/
   submit() {
@@ -45,39 +45,38 @@ Page({
     })
     
 
-    this.branchpost(); //往客多多推送信息
     //erp接口 
     Http.post('/user/saveUserBaseInfo', {
       paramJson: JSON.stringify({
-        onlyId: this.data.openid,
+        onlyId: this.data.userInfo.openid,
         nickName: this.data.babyname,
-        relationship: relationship,
+        relationship: this.data.relationshipIndex,
         birthday: this.data.birthday
       })
     }).then(res => {
       wx.hideLoading();
-      getUserInfo(false, true).then(_ => {
+      getUserInfo(false, true).then(userInfo => {
         wx.navigateBack();
+        this.branchpost(); //往客多多推送信息
       })
     });
   
   },
   //非会员录入信息
   branchpost() {
-    let that = this;
     Http.post('/user/getUserInfo', {
-      onlyId: that.data.openid,
+      onlyId: this.data.userInfo.openid,
     }).then(res => {
       wx.hideLoading();
       if (res.code == 1000) {
         var userphone = res.result.userPhone + '';
-        Http.post('https://sale.beibeiyue.com/kb/manager/register', {
-          typeStyle: 1,
-          phone: userphone,
-          spreadId: '10000002',
-          birthday: birthday,
-          babyName: that.data.babyname,
-        })
+        // Http.post('https://sale.beibeiyue.com/kb/manager/register', {
+        //   typeStyle: 1,
+        //   phone: userphone,
+        //   spreadId: '10000002',
+        //   birthday: birthday,
+        //   babyName: _this.data.babyname,
+        // })
       }
     });
   },

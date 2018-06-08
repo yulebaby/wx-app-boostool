@@ -49,7 +49,7 @@ page {
   font-size: 28rpx;
   line-height: 40rpx;
 }
-.head-btn {
+.head-share {
   padding: 0 20rpx;
   height: 60rpx;
   color: #fff;
@@ -60,4 +60,8 @@ page {
   position: absolute;
   right: 20rpx;
   bottom: 20rpx;
+  z-index: 2;
+}
+.head-share::after {
+  display: none;
 }

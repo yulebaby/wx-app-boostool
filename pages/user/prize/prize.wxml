@@ -3,7 +3,7 @@
     <image src='/assets/images/shop-cover-default.png' mode='widthFix'></image>
     <view class='head-cell'>
       <view class='head-h1'>北京甘露园物美店</view>
-      <!-- <view class='head-btn'>继续邀请</view> -->
+      <button open-type='share' class='head-share'>继续邀请</button>
       <view class='head-box'>
         <view class='head-p'>距离拿奖/领奖地址</view>
          <view class='head-span'>地址：建国路29号兴隆家园7号楼2层202建国路29号兴隆家园7号楼2层202</view> 

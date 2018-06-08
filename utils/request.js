@@ -25,6 +25,9 @@ const Get = (url, params) => {
       },
       fail(err) {
         reject(err);
+      },
+      complete() {
+        wx.hideLoading();
       }
     });
   }) ;
@@ -46,6 +49,9 @@ const Post = (url, params) => {
       },
       fail(err) {
         reject(err);
+      },
+      complete() {
+        wx.hideLoading();
       }
     })
   }) 

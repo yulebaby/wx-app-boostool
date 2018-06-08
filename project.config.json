@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -34,13 +34,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 20,
 			"list": [
 				{
 					"id": 0,
 					"name": "门店详情",
 					"pathName": "pages/index/detail/detail",
-					"query": "shopId=1458"
+					"query": "shopId=197"
 				},
 				{
 					"id": 1,
@@ -67,9 +67,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "我的评价",
-					"pathName": "pages/user/evaluate/evaluate",
+					"id": 5,
+					"name": "我的卡卷",
+					"pathName": "pages/user/coupon/coupon",
 					"query": ""
 				},
 				{
@@ -155,6 +155,12 @@
 					"name": "活动详情",
 					"pathName": "pages/activity/detail/detail",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": "isActivity=true"
 				}
 			]
 		}
