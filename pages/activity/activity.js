@@ -23,8 +23,9 @@ Page({
   onLoad: function (options) {
     this.setData({
       nowDate: format.formatTime(new Date()),
-      sharePhone: options.phone
+      sharePhone: options.phone || null
     });
+    wx.setStorageSync('sharePhone', options.phone || null);
 
     getUserInfo(false).then(userInfo => {
       this.setData({ userInfo });
@@ -63,7 +64,6 @@ Page({
         })
       } else {
         wx.showLoading({ title: '加载中...' });
-        wx.setStorageSync('sharePhone', options.phone);
         getAddress(address => {
           let paramJson = JSON.stringify({
             lon: address.location.lng,
