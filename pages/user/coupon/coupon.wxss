@@ -148,8 +148,19 @@ page{
 .alert-footer-text {
   text-align: center;
   line-height: 96rpx;
+  box-sizing: border-box;
+}
+.alert-footer-text.width {
+  width: 50%;
+  float: left;
+  border-right: solid 1px #F0F0F0;
+}
+.alert-footer-btn {
+  width: 50%;
+  float: left;
 }
 .alert-footer-btn button {
+  color: #4caf50;
   background: none;
   font-size: 32rpx;
   line-height: 96rpx;

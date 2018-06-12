@@ -28,6 +28,7 @@ page {
   line-height: 40rpx;
 }
 .head-p {
+  margin-top: 20rpx;
   color: #989898;
   font-size: 24rpx;
   line-height: 34rpx;
@@ -35,9 +36,10 @@ page {
 .head-span {
   color: #989898;
   font-size: 24rpx;
-  line-height: 1;
+  line-height: 40rpx;
   position: absolute;
-  bottom: 20rpx;
+  right: 20rpx;
+  top: 20rpx;
 }
 
 .content {
@@ -60,9 +62,8 @@ page {
   line-height: 1;
   position: absolute;
   top: 140rpx;
-  left: 50%;
-  margin-left: -222rpx;
-  font-weight: bold;
+  right: 50%;
+  margin-right: -10rpx;
 }
 .form {
   display: block;

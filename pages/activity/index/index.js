@@ -12,9 +12,6 @@ Page({
     address   : ['', '定位中', '']
   },
   onLoad: function (options) {
-    
-  },
-  onShow() {
     this.getaddressIndex();
   },
   /* ------------------- 获取用户地理位置信息 ------------------- */

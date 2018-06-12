@@ -5,7 +5,8 @@ page {
   padding-bottom: 400rpx;
 }
 .header {
-  padding: 94rpx 0;
+  padding: 40rpx 0;
+  border-bottom: solid 10rpx #fff;
 }
 .head-h1 {
   color: #35BB64;
@@ -25,6 +26,7 @@ page {
   font-size: 32rpx;
   line-height: 76rpx;
   text-indent: 32rpx;
+  text-align: center;
   background: #fff;
 }
 
@@ -34,7 +36,7 @@ page {
   background: #fff;
   position: fixed;
   bottom: 0;
-  box-shadow: 0 -2px 4px #f5f5f5;
+  border-top: solid 1px #f5f5f5;
   z-index: 9;
 }
 .foot-h1 {
@@ -133,12 +135,11 @@ page {
 }
 .coupon-money {
   color:rgba(255,120,113,1);
-  font-size: 160rpx;
+  font-size: 140rpx;
   line-height: 186rpx;
   position: absolute;
-  top: 110rpx;
-  left: 50%;
-  margin-left: -240rpx;
+  top: 114rpx;
+  right: 50%;
 }
 
 .welfare {
@@ -153,11 +154,11 @@ page {
   margin-left: -173rpx;
 }
 .welfare-title {
-  color: #D02202;
+  color: #999;
   font-size: 36rpx;
   line-height: 1;
   text-align: center;
-  margin-bottom: 48rpx;
+  margin: 48rpx 0;
 }
 .activity-prize-box {
   width: 694rpx;
@@ -193,4 +194,16 @@ page {
 }
 .icon-false {
   width: 34rpx;
+}
+.head-btn {
+  color: #2196f3;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  text-align: center;
+}
+.head-btn navigator.active {
+  display: inline-block;
+  padding: 0 10rpx;
+  border-radius: 6rpx;
+  background: rgba(0, 0, 0, .05);
 }

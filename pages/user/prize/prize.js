@@ -16,6 +16,7 @@ Page({
   onLoad: function (options) {
     wx.showLoading({ title: '加载中...' });
     getUserInfo().then(userInfo => {
+      this.setData({ userInfo });
       Http.post('/coupon/listPrize', { onlyId: userInfo.openid }).then(res => {
         wx.hideLoading();
         if (res.code == 1000) { this.setData({ prizeItems: res.result }); }
@@ -24,8 +25,9 @@ Page({
   },
   onShareAppMessage() {
     return {
-      title: '首次游泳体验超值代金券快去领，请叫我雷锋~',
-      path: '/page/user?id=123'
+      title: '首次游泳体验代金券快去领，请叫我雷锋~',
+      path: `/pages/activity/activity?phone=${this.data.userInfo.userPhone}`,
+      imageUrl: 'https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/store-coupon-share.jpg'
     }
   }
 })

@@ -61,28 +61,20 @@ Page({
       wx.hideLoading();
       getUserInfo(false, true).then(userInfo => {
         wx.navigateBack();
-        this.branchpost(); //往客多多推送信息
+        this.branchpost(userInfo); //往客多多推送信息
       })
     });
   
   },
   //非会员录入信息
-  branchpost() {
-    Http.post('/user/getUserInfo', {
-      onlyId: this.data.userInfo.openid,
-    }).then(res => {
-      wx.hideLoading();
-      if (res.code == 1000) {
-        var userphone = res.result.userPhone + '';
-        // Http.post('https://sale.beibeiyue.com/kb/manager/register', {
-        //   typeStyle: 1,
-        //   phone: userphone,
-        //   spreadId: '10000002',
-        //   birthday: birthday,
-        //   babyName: _this.data.babyname,
-        // })
-      }
-    });
+  branchpost(userInfo) {
+    Http.post('https://sale.beibeiyue.com/kb/manager/register', {
+      typeStyle: 1,
+      phone: userInfo.userPhone,
+      spreadId: '10000002',
+      birthday: this.data.birthday,
+      babyName: this.data.babyname,
+    })
   },
   relationshipChange(e) {
     this.setData({

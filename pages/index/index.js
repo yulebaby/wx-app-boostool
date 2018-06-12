@@ -17,9 +17,6 @@ Page({
     address   : ['', '定位中', '']
   },
   onLoad: function (options) {
-
-  },
-  onShow() {
     this.getaddressIndex();
   },
   onReachBottom: function () {

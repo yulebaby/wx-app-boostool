@@ -13,7 +13,8 @@ Page({
     nowDate : null,                     // 记录当前年月日
     birthday: null,                     // 宝宝生日
     showConfirm: false,
-    getCodeTime: 60
+    getCodeTime: 60,
+    hidePage: false
   },
 
   /**
@@ -28,36 +29,56 @@ Page({
     getUserInfo(false).then(userInfo => {
       this.setData({ userInfo });
       if (userInfo.status == 1) {
-        wx.showModal({
-          title: '温馨提示',
-          content: '选择离您最近的门店领劵吧',
-          showCancel: false,
-          confirmText: '去领取',
-          success(res) {
-            if (res.confirm) {
-              wx.redirectTo({
-                url: '/pages/activity/index/index',
-              })
-            }
+        this.setData({ hidePage: true });
+        Http.post('/coupon/countCoupon', { onlyId: userInfo.openid }).then(res => {
+          if (res.code == 1000) {
+            wx.showModal({
+              title: '温馨提示',
+              content: '选择离您最近的门店领劵吧',
+              showCancel: false,
+              confirmText: '去领取',
+              success(res) {
+                if (res.confirm) {
+                  wx.redirectTo({
+                    url: '/pages/activity/index/index',
+                  })
+                }
+              }
+            })
+          } else {
+            wx.showModal({
+              title: '温馨提示',
+              content: '您的代金券已经领取过咯~',
+              showCancel: false,
+              confirmText: '好的',
+              success(res) {
+                if (res.confirm) {
+                  wx.redirectTo({
+                    url: '/pages/activity/detail/detail'
+                  })
+                }
+              }
+            });
           }
+        })
+      } else {
+        wx.showLoading({ title: '加载中...' });
+        wx.setStorageSync('sharePhone', options.phone);
+        getAddress(address => {
+          let paramJson = JSON.stringify({
+            lon: address.location.lng,
+            lat: address.location.lat
+          });
+          Http.post('/shop/listActivityShop', { paramJson }).then(res => {
+            let optimumShop = res.result.shopList[0] || {};
+            optimumShop.distance = optimumShop.distance > 1000 ? (optimumShop.distance / 1000).toFixed(1) + 'km' : optimumShop.distance + 'm';
+            this.setData({ optimumShop });
+            wx.hideLoading();
+          })
         })
       }
     })
 
-    wx.showLoading({ title: '加载中...' });
-    wx.setStorageSync('sharePhone', options.phone);
-    getAddress(address => {
-      let paramJson = JSON.stringify({
-        lon: address.location.lng,
-        lat: address.location.lat
-      });
-      Http.post('/shop/listActivityShop', { paramJson }).then( res => {
-        let optimumShop = res.result.shopList[0] || {};
-        optimumShop.distance = optimumShop.distance > 1000 ? (optimumShop.distance / 1000).toFixed(1) + 'km' : optimumShop.distance + 'm';
-        this.setData({ optimumShop });
-        wx.hideLoading();
-      })
-    })
   },
   /* ---------------- 宝宝生日改变事件 ---------------- */
   birthdayChange(e) {
@@ -67,6 +88,7 @@ Page({
   },
   formSubmit(e) {
     let [params, formId] = [e.detail.value, e.detail.formId];
+    this.setData({ formId });
     let isMobile = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
     if (!params.nickName) {
       wx.showToast({ title: '请输入宝宝小名' });
@@ -145,43 +167,6 @@ Page({
         this.getCoupon(userInfo);
       });
     });
-
-    /* ----------- 推送数据到客多多 ----------- */
-    // Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
-    //   phone: this.data.userx.userPhone,
-    //   birthday: this.data.userx.birthday,
-    //   shopId: this.data.optimumShop.id,
-    //   activityId: '5',
-    //   spreadId: '17',
-    // }).then(res => {
-    //   wx.hideLoading();
-    //   //判断参没参加过   
-    //   if (res.code == 1000) {
-    //     //预约成功
-    //     that.setData({
-    //       showx: true,
-    //       showtit: '报名成功！',
-    //       textshow1: '请保持手机通畅，稍后门店会联系您',
-    //       textshow2: '您可以将活动分享给朋友，好东西给好朋友',
-    //     });
-    //   } else if (res.code == 1020) {
-
-    //     that.setData({
-    //       showx: true,
-    //       showtit: '温馨提示',
-    //       textshow1: '您已经参加过“5.1欢乐游”的活动咯~',
-    //       textshow2: '您可以将活动分享给朋友，好东西给好朋友',
-    //     });
-
-    //   } else {
-    //     wx.showModal({
-    //       title: '提示',
-    //       content: '系统错误',
-    //     })
-    //   }
-
-    // });
-
   },
   /* ---------------- 倒计时 ---------------- */
   setIntervalCode() {
@@ -207,14 +192,26 @@ Page({
             onlyId: userInfo.openid,
             storeId: _this.data.optimumShop.id,
             sendPhone: sharePhone,
-            couponAmount: _this.data.optimumShop.couponPrice
+            couponAmount: _this.data.optimumShop.couponPrice,
+            formId: _this.data.formId
           });
           wx.showLoading({ title: '领取中...', mask: true });
           Http.post('/coupon/saveCoupon', { paramJson: param }).then(res => {
             wx.redirectTo({
               url: `/pages/activity/detail/detail?text=${res.code == 1000 ? '领取代金券成功' : res.info}&shopId=${_this.data.optimumShop.id}`,
             });
-          })
+          });
+
+          /* ----------- 推送数据到客多多 ----------- */
+          Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
+          // Http.post('http://192.168.1.110:8090/customerDetail/weChatWithNoVerifyNum', {
+            phone: _this.data.userx.userPhone,
+            birthday: _this.data.userx.birthday,
+            shopId: _this.data.optimumShop.id,
+            babyName: _this.data.userx.nickName,
+            activityId: '7',
+            spreadId: '19',
+          });
         } else if (res.cancel) {
           wx.redirectTo({
             url: '/pages/activity/index/index',

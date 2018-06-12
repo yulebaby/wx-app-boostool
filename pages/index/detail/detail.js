@@ -74,28 +74,7 @@ Page({
     getUserInfo().then(userInfo => {
       if (userInfo.isMember == 0) {
         /* --------- 非会员 获取到用户信息推送到客多多 --------- */
-        wx.showLoading({ title: '加载中...' });
-        Http.post('/user/getUserInfo', { onlyId: userInfo.openid }).then(res => {
-          let userphone = res.result.userPhone;
-          Http.post('/user/getBabyInfoByPhone', {
-            userPhone: userphone,
-          }).then(res => {
-            let birthday = res.result.birthday;
-            Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
-              phone: userphone,
-              birthday: birthday,
-              shopId: this.data.shopId,
-              spreadId: '18',
-            }).then(res => {
-              wx.hideLoading();
-              wx.showModal({
-                title: '温馨提示',
-                showCancel: false,
-                content: res.code == 1000 ? '请保持手机通畅，稍后门店会联系您' : res.code == 1022 ? '每天只能预约一次哦~' : '系统错误，请刷新重试',
-              })
-            });
-          });
-        });
+        this.pushKdd(userInfo, '18');
       } else if (userInfo.storeId == this.data.shopId) {
         /* ---------- 是会员 归属门店与当前门店一致 ---------- */
         wx.navigateTo({
@@ -125,7 +104,8 @@ Page({
   },
 
   /* --------------- 领取代金券 --------------- */
-  couponSubmit() {
+  couponSubmit(e) {
+    let formId = e.detail.formId;
     getUserInfo().then(userInfo => {
       if (userInfo.isMember == 1) {
         wx.showModal({
@@ -140,15 +120,49 @@ Page({
         onlyId: userInfo.openid,
         storeId: this.data.shopId,
         sendPhone: sharePhone,
-        couponAmount: this.data.shopInfo.coupon
+        couponAmount: this.data.shopInfo.coupon,
+        formId: formId
       });
       wx.showLoading({ title: '领取中...', mask: true });
       Http.post('/coupon/saveCoupon', { paramJson: param }).then( res => {
+        if (res.code == 1000) {
+          this.pushKdd(userInfo, '19');
+        }
         wx.navigateTo({
           url: `/pages/activity/detail/detail?text=${res.code == 1000 ? '领取代金券成功' : res.info}&shopId=${this.data.shopId}`,
         });
-      })
+      });
+
     })
+  },
+  /* ----------- 推送数据到客多多 ----------- */
+  pushKdd(userInfo, spreadId) {
+    if (spreadId == 18) {
+      wx.showLoading({ title: '加载中...' });
+    }
+    Http.post('/user/getBabyInfoByPhone', {
+      userPhone: userInfo.userPhone,
+    }).then(res => {
+      let birthday = res.result.birthday;
+      let babyName = res.result.nickName;
+      Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
+      // Http.post('http://192.168.1.110:8090/customerDetail/weChatWithNoVerifyNum', {
+        phone: userInfo.userPhone,
+        birthday: birthday,
+        shopId: this.data.shopId,
+        babyName: babyName,
+        spreadId: spreadId,
+      }).then(res => {
+        if (spreadId == 18) {
+          wx.hideLoading();
+          wx.showModal({
+            title: '温馨提示',
+            showCancel: false,
+            content: res.code == 1000 ? '请保持手机通畅，稍后门店会联系您' : res.code == 1022 ? '每天只能预约一次哦~' : '系统错误，请刷新重试',
+          })
+        }
+      });
+    });
   },
 
   /* ------------- 拨打电话功能 ------------- */

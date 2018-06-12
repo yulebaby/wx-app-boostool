@@ -4,19 +4,14 @@ const Http = require('./../../../utils/request.js');
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     text: null,
     receiveItems: []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-    this.setData({ type: options.text || null, shopId: options.shopId });
+    wx.showLoading({ title: '加载中...' });
+    this.setData({ type: options.text || null, shopId: options.shopId || null });
     wx.removeStorageSync('userPhone');
     getUserInfo().then(userInfo => {
       this.setData({ userInfo });
@@ -27,20 +22,33 @@ Page({
         }
       })
     });
-    getAddress( res => {
-        wx.showLoading({ title: '加载中...' });
-        Http.post('/shop/getShopDetail', {
-          paramJson: JSON.stringify({
-            id: options.shopId,
-            lon: res.location.lng,
-            lat: res.location.lat
-          })
-        }).then(res => {
-          wx.hideLoading();
-          this.setData({ shopInfo: res.code == 1000 ? res.result : {} });
+    getAddress( address => {
+      if (options.shopId) {
+        this.getShopDetail(options.shopId, address)
+      } else {
+        let paramJson = JSON.stringify({
+          lon: address.location.lng,
+          lat: address.location.lat
         });
+        Http.post('/shop/listActivityShop', { paramJson }).then(res => {
+          let optimumShop = res.result.shopList[0] || {};
+          this.getShopDetail(optimumShop.id, address)
+        })
+      }
     });
 
+  },
+  getShopDetail(shopId, address) {
+    Http.post('/shop/getShopDetail', {
+      paramJson: JSON.stringify({
+        id: shopId,
+        lon: address.location.lng,
+        lat: address.location.lat
+      })
+    }).then(res => {
+      wx.hideLoading();
+      this.setData({ shopInfo: res.code == 1000 ? res.result : {} });
+    });
   },
 
   /**
@@ -48,8 +56,9 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '首次游泳体验超值代金券快去领，请叫我雷锋~',
-      path: `/pages/activity/activity?phone=${this.data.userInfo.userPhone}`
+      title: '首次游泳体验代金券快去领，请叫我雷锋~',
+      path: `/pages/activity/activity?phone=${this.data.userInfo.userPhone}`,
+      imageUrl: 'https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/store-coupon-share.jpg'
     }
   }
 })

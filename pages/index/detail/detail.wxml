@@ -35,7 +35,9 @@
   <view class='activity-box' wx-if="{{ shopInfo.isActivity == 1 }}">
     <view class='activity-coupon'>
       <view class='coupon-price'>{{ shopInfo.coupon }}</view>
-      <view class='coupon-btn' hover-class='active' bindtap='couponSubmit'></view>
+      <form bindsubmit="couponSubmit" report-submit='true'>
+        <button formType="submit" class='coupon-btn' hover-class='active'></button>
+      </form>
     </view>
   </view>
 

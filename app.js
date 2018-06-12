@@ -3,8 +3,8 @@ App({
     
   },
 
-  // domain: 'https://swx.beibeiyue.com/ylbb_weixin',
-  domain: 'http://192.168.1.205:8800',
+  domain: 'https://swx.beibeiyue.com/ylbb_weixin',
+  // domain: 'http://192.168.1.205:8800',
 
   /* ------------- ------------- 全局数据存储 -------------------------- */
   globalData: {
@@ -20,7 +20,8 @@ App({
     tongMember      : null,           // 是否是通卡会员 1:是通卡会员,0:不是通卡会员
     memberId        : null,           // 会员id
     baseInfo        : null,           // 是否录入过基本信息 1:录入过,0:没有录入过
-    storeId         : null            // 会员归属门店
+    storeId         : null,           // 会员归属门店
+    userPhone       : null,           // 绑定手机号
   }
 
 })
