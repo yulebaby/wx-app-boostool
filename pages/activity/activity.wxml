@@ -1,20 +1,20 @@
 <view class='container'>
-  <view class='header'>
-    <image src='/assets/images/shop-cover-default.png' mode='widthFix'></image>
+  <view class='header' wx:if="{{ optimumShop.shopName }}">
+    <image src='{{ optimumShop.coverImag }}' mode='widthFix'></image>
     <view class='head-cell'>
-      <view class='head-h1'>北京甘露园物美店</view>
-      <view class='head-p'>地址：建国路29号兴隆家园7号楼2层202</view>
-      <view class='head-span'>505M</view>
+      <view class='head-h1'>{{ optimumShop.shopName }}</view>
+      <view class='head-p'>地址：{{ optimumShop.address }}</view>
+      <view class='head-span'>{{ optimumShop.distance }}</view>
     </view>
   </view>
 
   <view class='content'>
     <view class='content-box'>
-      <view class='activity-amount'>100</view>
+      <view class='activity-amount'>{{ optimumShop.couponPrice }}</view>
       <form class='form' bindsubmit="formSubmit" report-submit='true'>
         <view class='form-item'>
           <view class='form-label'>宝宝小名</view>
-          <view class='form-control'><input placeholder='请输入宝宝小名' name="name" placeholder-style='color: #ccc;'></input></view>
+          <view class='form-control'><input placeholder='请输入宝宝小名' name="nickName" placeholder-style='color: #ccc;'></input></view>
         </view>
         <view class='form-item'>
           <view class='form-label'>宝宝生日</view>
@@ -26,12 +26,27 @@
         </view>
         <view class='form-item'>
           <view class='form-label'>+86</view>
-          <view class='form-control'><input placeholder='请输入手机号' name="phone" maxlength='11' placeholder-style='color: #ccc;'></input></view>
+          <view class='form-control'><input placeholder='请输入手机号' name="userPhone" maxlength='11' placeholder-style='color: #ccc;'></input></view>
         </view>
         <view class='submit' hover-class='tab-active'>
           <button formType="submit"></button>
         </view>
       </form>
+    </view>
+  </view>
+</view>
+
+
+<view class='confirm-box' hidden="{{ !showConfirm }}">
+  <view class='confirm'>
+    <view class='confirm-tip'>请输入短信验证码</view>
+    <view class='code-control'>
+      <view class='code-input'><input maxlength='6' bindinput='ewCode'></input></view>
+      <view class='code-btn {{ getCodeTime == 60 ? "" : "active" }}' bindtap='getCode'>{{ getCodeTime == 60 ? '获取验证码' : getCodeTime + 's后重新获取' }}</view>
+    </view>
+    <view class='confirm-btns'>
+      <view bindtap='hideConfirm' hover-class='active'>取消</view>
+      <view bindtap='validateCode' hover-class='active'>提交</view>
     </view>
   </view>
 </view>

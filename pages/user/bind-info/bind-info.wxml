@@ -8,7 +8,7 @@
     <input placeholder='宝宝昵称' bindinput="babyname" placeholder-style="color:#b0b0b0" />
   </view>
   <view class='item'>
-    <picker mode="date" value="{{ birthday }}" start="2000-01-01" end="2020-01-01" maxlength="20" bindchange="birthdayChange">
+    <picker mode="date" value="{{ birthday }}" start="2000-01-01" end="{{ nowDate }}" bindchange="birthdayChange">
       <view class='select' wx:if="{{ birthday }}">{{ birthday }}</view>
       <view class='notSelect' wx:if="{{ !birthday }}">宝宝生日</view>
     </picker>

@@ -145,7 +145,7 @@ Page({
       wx.showLoading({ title: '领取中...', mask: true });
       Http.post('/coupon/saveCoupon', { paramJson: param }).then( res => {
         wx.navigateTo({
-          url: `/pages/activity/detail/detail?text=${res.code == 1000 ? '领取代金券成功' : res.info}`,
+          url: `/pages/activity/detail/detail?text=${res.code == 1000 ? '领取代金券成功' : res.info}&shopId=${this.data.shopId}`,
         });
       })
     })

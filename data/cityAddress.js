@@ -1205,6 +1205,22 @@ const cityAddressItems = [
         ],
         "value": "131100",
         "label": "衡水市"
+      },
+      {
+        "children": [
+          {
+            "value": "130682",
+            "label": "定州市",
+            isLeaf: true
+          },
+          {
+            "value": "130181",
+            "label": "辛集市",
+            isLeaf: true
+          },
+        ],
+        "value": "131200",
+        "label": "省直辖县级行政区划"
       }
     ],
     "value": "130000",

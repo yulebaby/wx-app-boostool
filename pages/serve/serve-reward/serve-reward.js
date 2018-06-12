@@ -15,7 +15,6 @@ Page({
   
   },
   checkboxChange (e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
     this.setData({
       checkedPrice: e.detail.value
     });

@@ -8,11 +8,11 @@
   <view class='content'>
     <view class='content-head'>给好友发福利</view>
     <view class='content-tip'>
-      <view><view>北京兴隆家园店，100元代金劵送给你，门店单游价159元呢。</view><view>请叫我雷锋</view></view>
+      <view><view>{{ shopInfo.shopName }}，{{ shopInfo.coupon }}元代金劵送给你，门店单游价{{ shopInfo.originPrice }}元呢。</view><view>请叫我雷锋</view></view>
     </view>
     <view class='content-image'><image mode='widthFix' src='/assets/images/activity/shop-default-head.png'></image></view>
     <view class='content-cover'>
-      <view class='coupon-money'>100</view>  
+      <view class='coupon-money'>{{ shopInfo.coupon }}</view>  
     </view>
   </view>
 
@@ -21,28 +21,18 @@
   <view class='welfare'>
     <view class='content-head'>2人到店我得奖品</view>
   </view>
-  <view class='welfare-title'>---您已给3位好友发福利---</view>
+  <view class='welfare-title'>---{{ receiveItems.length ? '您已给' +  receiveItems.length + '位好友发福利' : '暂无好友接受邀请' }}---</view>
   <view class='activity-prize-box'>
-    <view class='invitation-item'>
-      <text>135 **** **11</text>
+    <view class='invitation-item' wx:for="{{ receiveItems }}" wx:key="">
+      <text>{{ item.receivePhone }}</text>
       <image src='/assets/images/activity/invitation-true.png' class='icon-true' mode='widthFix'></image>
-      <image src='/assets/images/activity/invitation-true.png' class='icon-true' mode='widthFix'></image>
-    </view>
-    <view class='invitation-item'>
-      <text>135 **** **11</text>
-      <image src='/assets/images/activity/invitation-true.png' class='icon-true' mode='widthFix'></image>
-      <image src='/assets/images/activity/invitation-false.png'  class='icon-false' mode='widthFix'></image>
-    </view>
-    <view class='invitation-item'>
-      <text>135 **** **11</text>
-      <image src='/assets/images/activity/invitation-true.png' class='icon-true' mode='widthFix'></image>
-      <image src='/assets/images/activity/invitation-false.png'  class='icon-false' mode='widthFix'></image>
+      <image src='/assets/images/activity/invitation-{{ item.useStatus == 1 ? "false" : "true" }}.png' class='{{ item.useStatus == 1 ? "icon-false" : "icon-true" }}' mode='widthFix'></image>
     </view>
   </view>
 
 
-   <view class='footer'>
-    <view class='foot-h1'><view>送好友100 元代金券</view><view>好友到店后即可获奖品</view></view>
+  <view class='footer'>
+    <view class='foot-h1'><view>送好友{{ shopInfo.coupon }}元代金券</view><view>好友到店后即可获奖品</view></view>
     <view class='foot-share'>
       <button open-type='share'>立即分享给好友</button>
     </view>

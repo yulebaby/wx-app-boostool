@@ -19,7 +19,6 @@ Component({
    */
   methods: {
     radioChange(e) {
-      console.log(e.detail.value);
       this.setData({
         selectTime: e.detail.value
       })

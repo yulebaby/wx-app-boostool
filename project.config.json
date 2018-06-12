@@ -34,13 +34,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 20,
+			"current": 18,
 			"list": [
 				{
 					"id": 0,
 					"name": "门店详情",
 					"pathName": "pages/index/detail/detail",
-					"query": "shopId=197"
+					"query": "shopId=214"
 				},
 				{
 					"id": 1,
@@ -139,10 +139,10 @@
 					"query": "shopId=741"
 				},
 				{
-					"id": -1,
+					"id": 17,
 					"name": "鱼乐贝贝-代金券",
 					"pathName": "pages/activity/activity",
-					"query": ""
+					"query": "phone=13508904500"
 				},
 				{
 					"id": -1,
@@ -151,10 +151,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 19,
 					"name": "活动详情",
 					"pathName": "pages/activity/detail/detail",
-					"query": ""
+					"query": "shopId=197"
 				},
 				{
 					"id": -1,

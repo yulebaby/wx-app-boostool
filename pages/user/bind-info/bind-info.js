@@ -1,15 +1,19 @@
 const App = getApp();
 const Http = require('./../../../utils/request.js');
 const getUserInfo = require('./../../../utils/getUserInfo.js');
+const format = require('./../../../utils/format.js');
+
 Page({
   data: {
     userHeadImg: null,
     relationshipIndex: null,
     relationshipArray: ['爸爸', '妈妈', '爷爷', '奶奶', '外公', '外婆', '其他'],
     birthday: '',
-    babyname: ''
+    babyname: '',
+    nowDate: null
   },
   onLoad: function (options) {
+    this.setData({ nowDate: format.formatTime(new Date()) });
     getUserInfo(false).then( userInfo => this.setData({ userInfo }));
   },
   /**********验证宝宝姓名生日关系----提交*************/

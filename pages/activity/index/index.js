@@ -1,29 +1,21 @@
 const app = getApp();
-const getAddress = require('./../../utils/getAddress.js');
-const Http = require('./../../utils/request.js');
-const cityAddress = require('./../../data/cityAddress.js');
+const getAddress = require('./../../../utils/getAddress.js');
+const Http = require('./../../../utils/request.js');
+const cityAddress = require('./../../../data/cityAddress.js');
 
-const getUserInfo = require('./../../utils/getUserInfo.js');
+const getUserInfo = require('./../../../utils/getUserInfo.js');
 
 var addresslist = cityAddress.postList;
 Page({
   data: {
-    swiperArray: [
-      'https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/index-banner2.png'
-    ],
-    pageNo    : 1,
-    pageSize  : 10,
     storeItems: [],
     address   : ['', '定位中', '']
   },
   onLoad: function (options) {
-
+    
   },
   onShow() {
     this.getaddressIndex();
-  },
-  onReachBottom: function () {
-    this.getStoreItems();
   },
   /* ------------------- 获取用户地理位置信息 ------------------- */
   getaddressIndex() {
@@ -121,13 +113,11 @@ Page({
         province: provincecode,
         city: citycode,
         lon: this.data.location.lng,
-        lat: this.data.location.lat,
-        pageNo: this.data.pageNo,
-        pageSize: this.data.pageSize
+        lat: this.data.location.lat
       });
     }
     wx.showLoading({ title: '加载中...' });
-    Http.post('/shop/listShop', { paramJson }).then(res => {
+    Http.post('/shop/listActivityShop', { paramJson }).then(res => {
       wx.hideLoading();
       if (res.code == 1000 && res.result.shopList) {
         let storeItem = res.result.shopList;

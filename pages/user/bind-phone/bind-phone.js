@@ -59,7 +59,7 @@ Page({
     let interval = setInterval(_ => {
       let getCodeTime = this.data.getCodeTime - 1;
       this.setData({ getCodeTime });
-      if (getCodeTime <= 0) { clearInterval(interval); }
+      if (getCodeTime <= 0) { clearInterval(interval); this.setData({ getCodeTime: 60 }); }
     }, 1000)
   },
 

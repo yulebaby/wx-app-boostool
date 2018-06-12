@@ -105,7 +105,6 @@ Page({
       reserveId: reserveId,
     }).then(res => {
       wx.hideLoading();
-      console.log(res);
       if (res.code == 1000) {
         wx.showToast({
           title: '操作成功',
@@ -139,7 +138,6 @@ Page({
       })
     }).then(res => {
       wx.hideLoading();
-      //console.log(res);
       if (res.code == 1000) {
         wx.showToast({
           title: '操作成功',
@@ -173,7 +171,6 @@ Page({
           if (res.confirm) {//用户点击确定
             that.reserveCancel(reserveId, that.data.isMember);
           } else if (res.cancel) {
-            console.log('用户点击取消')
           }
         }
       })
@@ -188,7 +185,6 @@ Page({
           if (res.confirm) {//用户点击确定
             that.reserveCancelFei(reserveId);
           } else if (res.cancel) {
-            console.log('用户点击取消')
           }
         }
       })
