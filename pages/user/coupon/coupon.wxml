@@ -18,7 +18,7 @@
 
 <view class='alert-box {{ showAlert ? "active" : "" }}'>
   <view class='alert'>
-    <view class='alert-title'>{{ useStatus == 1 ? '温馨提示' : '该代金券已使用' }}</view>
+    <view class='alert-title'>{{ useStatus == 1 ? '温馨提示' : '首次游泳代金券已使用' }}</view>
     <view class='alert-cell' wx:if="{{ useStatus == 1 }}">
       <view>请保持手机畅通，门店客服会与您沟通预约的信息</view>
       <view>到店后出示代金券，门店验证后即可使用</view>

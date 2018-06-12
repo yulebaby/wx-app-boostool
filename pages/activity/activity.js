@@ -72,7 +72,7 @@ Page({
       wx.showToast({ title: '请输入宝宝小名' });
       return;
     }
-    if (!params.nickName) {
+    if (!params.birthday) {
       wx.showToast({ title: '请选择宝宝生日' });
       return;
     }
@@ -144,7 +144,44 @@ Page({
         wx.hideLoading();
         this.getCoupon(userInfo);
       });
-    })
+    });
+
+    /* ----------- 推送数据到客多多 ----------- */
+    // Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
+    //   phone: this.data.userx.userPhone,
+    //   birthday: this.data.userx.birthday,
+    //   shopId: this.data.optimumShop.id,
+    //   activityId: '5',
+    //   spreadId: '17',
+    // }).then(res => {
+    //   wx.hideLoading();
+    //   //判断参没参加过   
+    //   if (res.code == 1000) {
+    //     //预约成功
+    //     that.setData({
+    //       showx: true,
+    //       showtit: '报名成功！',
+    //       textshow1: '请保持手机通畅，稍后门店会联系您',
+    //       textshow2: '您可以将活动分享给朋友，好东西给好朋友',
+    //     });
+    //   } else if (res.code == 1020) {
+
+    //     that.setData({
+    //       showx: true,
+    //       showtit: '温馨提示',
+    //       textshow1: '您已经参加过“5.1欢乐游”的活动咯~',
+    //       textshow2: '您可以将活动分享给朋友，好东西给好朋友',
+    //     });
+
+    //   } else {
+    //     wx.showModal({
+    //       title: '提示',
+    //       content: '系统错误',
+    //     })
+    //   }
+
+    // });
+
   },
   /* ---------------- 倒计时 ---------------- */
   setIntervalCode() {

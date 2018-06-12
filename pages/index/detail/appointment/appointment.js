@@ -155,7 +155,7 @@ Page({
       }
       setTimeout(function () {
         wx.switchTab({
-          url: '../../../serve/serve',
+          url: '/pages/serve/serve',
         })
       }, 2000)
     });
