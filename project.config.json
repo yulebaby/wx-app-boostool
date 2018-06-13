@@ -34,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 17,
 			"list": [
 				{
 					"id": 0,
@@ -142,7 +142,7 @@
 					"id": 17,
 					"name": "鱼乐贝贝-代金券",
 					"pathName": "pages/activity/activity",
-					"query": "phone=13508904500"
+					"query": "phone=13508904500&shopId=1458"
 				},
 				{
 					"id": -1,

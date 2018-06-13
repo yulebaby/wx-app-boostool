@@ -23,58 +23,76 @@ Page({
   onLoad: function (options) {
     this.setData({
       nowDate: format.formatTime(new Date()),
-      sharePhone: options.phone || null
+      sharePhone: options.phone || null,
+      shopId: options.shopId || null
     });
     wx.setStorageSync('sharePhone', options.phone || null);
 
     getUserInfo(false).then(userInfo => {
       this.setData({ userInfo });
-      if (userInfo.status == 1) {
+      if (userInfo.isMember == 1) {
+        wx.redirectTo({
+          url: `/pages/activity/detail/detail?text=温馨提示&shopId=${options.shopId}`,
+        });
+      } else if (userInfo.status == 1) {
         this.setData({ hidePage: true });
         Http.post('/coupon/countCoupon', { onlyId: userInfo.openid }).then(res => {
           if (res.code == 1000) {
-            wx.showModal({
-              title: '温馨提示',
-              content: '选择离您最近的门店领劵吧',
-              showCancel: false,
-              confirmText: '去领取',
-              success(res) {
-                if (res.confirm) {
-                  wx.redirectTo({
-                    url: '/pages/activity/index/index',
-                  })
+            if (options.shopId) {
+              wx.redirectTo({
+                url: `/pages/index/detail/detail?shopId=${options.shopId}`,
+              });
+            } else {
+              wx.showModal({
+                title: '温馨提示',
+                content: '选择离您最近的门店领劵吧',
+                showCancel: false,
+                confirmText: '去领取',
+                success(res) {
+                  if (res.confirm) {
+                    wx.redirectTo({
+                      url: '/pages/activity/index/index',
+                    });
+                  }
                 }
-              }
-            })
+              });
+            }
           } else {
-            wx.showModal({
-              title: '温馨提示',
-              content: '您的代金券已经领取过咯~',
-              showCancel: false,
-              confirmText: '好的',
-              success(res) {
-                if (res.confirm) {
-                  wx.redirectTo({
-                    url: '/pages/activity/detail/detail'
-                  })
-                }
-              }
+            wx.redirectTo({
+              url: `/pages/activity/detail/detail?text=您的代金券已经领取过咯~&shopId=${options.shopId}`,
             });
           }
         })
       } else {
         wx.showLoading({ title: '加载中...' });
         getAddress(address => {
-          let paramJson = JSON.stringify({
-            lon: address.location.lng,
-            lat: address.location.lat
-          });
-          Http.post('/shop/listActivityShop', { paramJson }).then(res => {
-            let optimumShop = res.result.shopList[0] || {};
-            optimumShop.distance = optimumShop.distance > 1000 ? (optimumShop.distance / 1000).toFixed(1) + 'km' : optimumShop.distance + 'm';
-            this.setData({ optimumShop });
-            wx.hideLoading();
-          })
+          if (options.shopId) {
+            Http.post('/shop/getShopDetail', {
+              paramJson: JSON.stringify({
+                id: optioins.shopId,
+                lon: address.location.lng,
+                lat: address.location.lat
+              })
+            }).then(res => {
+              let shopInfo = res.result;
+              shopInfo.distance = shopInfo.distance > 1000 ?
+                `${(shopInfo.distance / 1000).toFixed(1)}km` :
+                `${shopInfo.distance}m`;
+              this.setData({ optimumShop: shopInfo });
+              wx.hideLoading();
+            })
+          } else {
+            let paramJson = JSON.stringify({
+              lon: address.location.lng,
+              lat: address.location.lat
+            });
+            Http.post('/shop/listActivityShop', { paramJson }).then(res => {
+              let optimumShop = res.result.shopList[0] || {};
+              optimumShop.distance = optimumShop.distance > 1000 ? (optimumShop.distance / 1000).toFixed(1) + 'km' : optimumShop.distance + 'm';
+              this.setData({ optimumShop });
+              wx.hideLoading();
+            })
+          }
         })
       }
     })
