@@ -2,7 +2,7 @@
   <view class='header' wx:if="{{ type }}">
     <view class='head-h1'>{{ type }}</view>
     <view class='head-p'>
-      {{ type == '温馨提示' ? '会员无法领取，代金券进针对首次游泳体验有效' : '请保持手机通畅，稍后门店会联系您' }}
+      {{ type == '温馨提示' ? '会员无法领取，代金券仅对首次游泳体验有效' : '请保持手机通畅，稍后门店会联系您' }}
     </view>
     <view class='head-btn' wx:if="{{ type != '温馨提示' }}"><navigator url="/pages/user/coupon/coupon" hover-class="active">查看代金券</navigator></view>
     <view class='head-btn' wx:if="{{ type == '温馨提示' }}"><navigator url="/pages/user/prize/prize" hover-class="active">查看我的奖品</navigator></view>
