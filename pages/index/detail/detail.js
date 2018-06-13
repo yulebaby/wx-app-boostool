@@ -108,11 +108,9 @@ Page({
     let formId = e.detail.formId;
     getUserInfo().then(userInfo => {
       if (userInfo.isMember == 1) {
-        wx.showModal({
-          title: '提示',
-          content: '会员无法领取，代金券进针对首次游泳体验有效',
-          showCancel: false
-        })
+        wx.navigateTo({
+          url: `/pages/activity/detail/detail?text=温馨提示&shopId=${this.data.shopId}`,
+        });
         return; 
       }
       let sharePhone = wx.getStorageSync('sharePhone') || '';
