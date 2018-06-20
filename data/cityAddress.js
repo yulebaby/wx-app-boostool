@@ -798,11 +798,6 @@ const cityAddressItems = [
             isLeaf: true
           },
           {
-            "value": "130682",
-            "label": "定州市",
-            isLeaf: true
-          },
-          {
             "value": "130683",
             "label": "安国市",
             isLeaf: true

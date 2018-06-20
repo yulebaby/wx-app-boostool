@@ -105,6 +105,7 @@ Page({
 
   /* --------------- 领取代金券 --------------- */
   couponSubmit(e) {
+    wx.showLoading({ title: '领取中...', mask: true });
     let formId = e.detail.formId;
     getUserInfo().then(userInfo => {
       if (userInfo.isMember == 1) {
@@ -121,7 +122,6 @@ Page({
         couponAmount: this.data.shopInfo.coupon,
         formId: formId
       });
-      wx.showLoading({ title: '领取中...', mask: true });
       Http.post('/coupon/saveCoupon', { paramJson: param }).then( res => {
         if (res.code == 1000) {
           this.pushKdd(userInfo, '19');
@@ -129,6 +129,7 @@ Page({
         wx.navigateTo({
           url: `/pages/activity/detail/detail?text=${res.code == 1000 ? '领取代金券成功' : res.info}&shopId=${this.data.shopId}`,
         });
+        wx.hideLoading();
       });
 
     })
@@ -136,7 +137,7 @@ Page({
   /* ----------- 推送数据到客多多 ----------- */
   pushKdd(userInfo, spreadId) {
     if (spreadId == 18) {
-      wx.showLoading({ title: '加载中...' });
+      wx.showLoading({ title: '加载中...', mask: true });
     }
     Http.post('/user/getBabyInfoByPhone', {
       userPhone: userInfo.userPhone,

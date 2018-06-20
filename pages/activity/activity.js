@@ -69,7 +69,7 @@ Page({
           if (options.shopId) {
             Http.post('/shop/getShopDetail', {
               paramJson: JSON.stringify({
-                id: optioins.shopId,
+                id: options.shopId,
                 lon: address.location.lng,
                 lat: address.location.lat
               })
@@ -129,6 +129,9 @@ Page({
   /* -------------------- 获取验证码 -------------------- */
   getCode(phone) {
     if (this.data.getCodeTime != 60) { return; }
+    if (phone.type) {
+      phone = this.data.userx.userPhone
+    }
     wx.showLoading({
       title: '正在获取验证码',
       mask: true
@@ -210,7 +213,8 @@ Page({
             onlyId: userInfo.openid,
             storeId: _this.data.optimumShop.id,
             sendPhone: sharePhone,
-            couponAmount: _this.data.optimumShop.couponPrice,
+            receivePhone: userInfo.userPhone,
+            couponAmount: _this.data.optimumShop.couponPrice || _this.data.optimumShop.coupon,
             formId: _this.data.formId
           });
           wx.showLoading({ title: '领取中...', mask: true });

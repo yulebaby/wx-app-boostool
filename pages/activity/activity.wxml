@@ -10,7 +10,7 @@
 
   <view class='content'>
     <view class='content-box'>
-      <view class='activity-amount'>{{ optimumShop.couponPrice }}</view>
+      <view class='activity-amount'>{{ optimumShop.couponPrice || optimumShop.coupon }}</view>
       <form class='form' bindsubmit="formSubmit" report-submit='true'>
         <view class='form-item'>
           <view class='form-label'>宝宝小名</view>
