@@ -14,9 +14,7 @@
     "pages/index/detail/appointment/appointment",
     "pages/serve/serve-reward/serve-reward",
     "pages/serve/serve-evaluate/serve-evaluate",
-    "pages/activity/activity",
     "pages/user/prize/prize",
-    "pages/activity/detail/detail",
     "pages/activity/index/index"
   ],
   "window": {
