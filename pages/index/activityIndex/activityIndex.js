@@ -1,20 +1,20 @@
 const app = getApp();
-const getAddress = require('./../../utils/getAddress.js');
-const Http = require('./../../utils/request.js');
-const cityAddress = require('./../../data/cityAddress.js');
+const getAddress = require('../../../utils/getAddress.js');
+const Http = require('../../../utils/request.js');
+const cityAddress = require('../../../data/cityAddress.js');
 
-const getUserInfo = require('./../../utils/getUserInfo.js');
+const getUserInfo = require('../../../utils/getUserInfo.js');
 
 var addresslist = cityAddress.postList;
 Page({
   data: {
     swiperArray: [
-      'http://ylbb-business.oss-cn-beijing.aliyuncs.com/jdPlusBanner.png'
+      'http://ylbb-business.oss-cn-beijing.aliyuncs.com/JDbanneractivity.png'
     ],
-    pageNo    : 1,
-    pageSize  : 10,
+    pageNo: 1,
+    pageSize: 10,
     storeItems: [],
-    address   : ['', '定位中', '']
+    address: ['', '定位中', '']
   },
   onLoad: function (options) {
     this.getaddressIndex();
@@ -124,7 +124,7 @@ Page({
       });
     }
     wx.showLoading({ title: '加载中...' });
-    Http.post('/shop/listShop', { paramJson }).then(res => {
+    Http.post('/shop/listActivityShop', { paramJson }).then(res => {
       wx.hideLoading();
       if (res.code == 1000 && res.result.shopList) {
         let storeItem = res.result.shopList;

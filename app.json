@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/index/activityIndex/activityIndex", 
+    "pages/index/activityIndex/JDexplain/JDexplain",
     "pages/index/detail/detail",
     "pages/user/user",
     "pages/user/bind-phone/bind-phone",

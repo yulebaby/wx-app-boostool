@@ -68,7 +68,8 @@ Page({
   },
   //非会员录入信息
   branchpost(userInfo) {
-    Http.post('https://sale.beibeiyue.com/kb/manager/register', {
+    //Http.post('https://sale.beibeiyue.com/kb/manager/register', {
+    Http.post('http://192.168.1.110:8090/kb/manager/register', {      
       typeStyle: 1,
       phone: userInfo.userPhone,
       spreadId: '10000002',

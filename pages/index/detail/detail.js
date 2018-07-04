@@ -3,10 +3,20 @@ const getUserInfo = require('../../../utils/getUserInfo.js');
 const Http = require('../../../utils/request.js');
 const app = getApp();
 Page({
-  data: {},
+  data: {
+    vouchertext: '',
+    voucher : false,
+  },
   onLoad: function (options) {
-    this.setData({ shopId: options.shopId });
-  
+    this.setData({ 
+      shopId: options.shopId
+      });
+  if(options.activityType){
+      this.setData({
+        activityType: options.activityType 
+      }) 
+  }    
+     console.log(this.data.activityType) ;
     getAddress(address => {
       this.setData({
         lat: address.location.lat,
@@ -45,6 +55,7 @@ Page({
         }
         /* --------------- 判断门店是否有轮播图 --------------- */
         shopInfo.shopInfoImag = shopInfo.shopInfoImag ? shopInfo.shopInfoImag.split(',') : [];
+        shopInfo.shopInfoImag.pop();
         this.setData({ shopInfo });
       }
     }, _ => {
@@ -71,69 +82,154 @@ Page({
   },
   /* --------------- 点击预约 --------------- */
   makeAppointment() {
+    let that = this;
     getUserInfo().then(userInfo => {
-      if (userInfo.isMember == 0) {
-        /* --------- 非会员 获取到用户信息推送到客多多 --------- */
-        this.pushKdd(userInfo, '18');
-      } else if (userInfo.storeId == this.data.shopId) {
-        /* ---------- 是会员 归属门店与当前门店一致 ---------- */
-        wx.navigateTo({
-          url: './appointment/appointment?shopId=' + this.data.shopId,
-        });
-      } else if (userInfo.tongMember == 0) {
-        /* ---------- 不是通卡会员 ---------- */
-        wx.showModal({
-          title: '提示',
-          showCancel: false,
-          content: '您的卡不支持跨店预约'
-        })
-      } else if (this.data.shopInfo.countryCardStatus == 1) {
-        /* ----------- 是通卡店 ----------- */
-        wx.navigateTo({
-          url: './appointment/appointment?shopId=' + this.data.shopId,
-        });
-      } else {
-        /* ---------- 不是通卡店 ---------- */
-        wx.showModal({
-          title: '提示',
-          showCancel: false,
-          content: '当前门店不是通卡店'
-        })
+      /* -------- 判断是从首页还是京东券页面进入---------  */
+      if (that.data.activityType==1){
+          if (userInfo.isMember == 0) { 
+            that.setData({
+              voucher:true
+            })
+          }else{
+            
+          }
+      }else{       
+          if (userInfo.isMember == 0) { 
+          /* --------- 非会员 获取到用户信息推送到客多多 --------- */
+              this.pushKdd(userInfo, '18');
+          } else if (userInfo.storeId == this.data.shopId) {
+            /* ---------- 是会员 归属门店与当前门店一致 ---------- */
+            wx.navigateTo({
+              url: './appointment/appointment?shopId=' + this.data.shopId,
+            });
+          } else if (userInfo.tongMember == 0) {
+            /* ---------- 不是通卡会员 ---------- */
+            wx.showModal({
+              title: '提示',
+              showCancel: false,
+              content: '您的卡不支持跨店预约'
+            })
+          } else if (this.data.shopInfo.countryCardStatus == 1) {
+            /* ----------- 是通卡店 ----------- */
+            wx.navigateTo({
+              url: './appointment/appointment?shopId=' + this.data.shopId,
+            });
+          } else {
+            /* ---------- 不是通卡店 ---------- */
+            wx.showModal({
+              title: '提示',
+              showCancel: false,
+              content: '当前门店不是通卡店'
+            })
+          }
       }
     })
   },
-
-  /* --------------- 领取代金券 --------------- */
-  couponSubmit(e) {
-    wx.showLoading({ title: '领取中...', mask: true });
-    let formId = e.detail.formId;
+  //京东弹窗关闭
+  voucherClose(){
+    this.setData({
+      voucher: false
+    })
+  },
+  voucherInput(e){
+    this.setData({
+      vouchertext: e.detail.value
+    })
+  },
+  voucherSubmit() {
+    let that = this;
     getUserInfo().then(userInfo => {
-      if (userInfo.isMember == 1) {
-        wx.navigateTo({
-          url: `/pages/activity/detail/detail?text=温馨提示&shopId=${this.data.shopId}`,
-        });
-        return; 
+    Http.post('/jdCoupon/judgeJdCoupon', {
+      phone: userInfo.userPhone,
+      openId: userInfo.openid,
+      jdCoupon: that.data.vouchertext,
+      shopId: that.data.shopId
+    }).then(res => {
+      if(res.code==1000){
+        that.JDkddPost();
+        this.setData({
+          voucher: false
+        })
+      }else{
+        wx.showModal({
+          title: '温馨提示',
+          showCancel: false,
+          content: res.info,
+        })
       }
-      let sharePhone = wx.getStorageSync('sharePhone') || '';
-      let param = JSON.stringify({
-        onlyId: userInfo.openid,
-        storeId: this.data.shopId,
-        sendPhone: sharePhone,
-        couponAmount: this.data.shopInfo.coupon,
-        formId: formId
-      });
-      Http.post('/coupon/saveCoupon', { paramJson: param }).then( res => {
-        if (res.code == 1000) {
-          this.pushKdd(userInfo, '19');
-        }
-        wx.navigateTo({
-          url: `/pages/activity/detail/detail?text=${res.code == 1000 ? '领取代金券成功' : res.info}&shopId=${this.data.shopId}`,
-        });
+
+
+    });
+   
+    });
+
+  },
+ /* --------------- 京东活动向客多多推送 --------------- */
+ JDkddPost(){
+   let that = this;
+   getUserInfo().then(userInfo => {  
+  Http.post('/user/getBabyInfoByPhone', {
+    userPhone: userInfo.userPhone,
+  }).then(res => {
+    let birthday = res.result.birthday;
+    let babyName = res.result.nickName;
+    //Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
+    Http.post('http://192.168.1.110:8090/customerDetail/weChatWithNoVerifyNum', {
+      phone: userInfo.userPhone,
+      birthday: birthday,
+      shopId: that.data.shopId,
+      babyName: babyName,
+      activityId: '8',
+      spreadId: '20',
+
+    }).then(res => {
+      if(res.code==1000){
+        wx.showModal({
+          title: '温馨提示',
+          showCancel: false,
+          content: '请保持手机通畅，门店客服会与您沟通预约的信息，体验结束后，向门店支付29.9即可。',
+      
+        })
+      }
+
         wx.hideLoading();
-      });
+    });
+  });
+   });
+ },
 
-    })
-  },
+
+  // /* --------------- 领取代金券 --------------- */
+  // couponSubmit(e) {
+  //   wx.showLoading({ title: '领取中...', mask: true });
+  //   let formId = e.detail.formId;
+  //   getUserInfo().then(userInfo => {
+  //     if (userInfo.isMember == 1) {
+  //       wx.navigateTo({
+  //         url: `/pages/activity/detail/detail?text=温馨提示&shopId=${this.data.shopId}`,
+  //       });
+  //       return; 
+  //     }
+  //     let sharePhone = wx.getStorageSync('sharePhone') || '';
+  //     let param = JSON.stringify({
+  //       onlyId: userInfo.openid,
+  //       storeId: this.data.shopId,
+  //       sendPhone: sharePhone,
+  //       couponAmount: this.data.shopInfo.coupon,
+  //       formId: formId
+  //     });
+  //     Http.post('/coupon/saveCoupon', { paramJson: param }).then( res => {
+  //       if (res.code == 1000) {
+  //         this.pushKdd(userInfo, '19');
+  //       }
+  //       wx.navigateTo({
+  //         url: `/pages/activity/detail/detail?text=${res.code == 1000 ? '领取代金券成功' : res.info}&shopId=${this.data.shopId}`,
+  //       });
+  //       wx.hideLoading();
+  //     });
+
+  //   })
+  // },
   /* ----------- 推送数据到客多多 ----------- */
   pushKdd(userInfo, spreadId) {
     if (spreadId == 18) {
@@ -144,8 +240,8 @@ Page({
     }).then(res => {
       let birthday = res.result.birthday;
       let babyName = res.result.nickName;
-      Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
-      // Http.post('http://192.168.1.110:8090/customerDetail/weChatWithNoVerifyNum', {
+      //Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
+       Http.post('http://192.168.1.110:8090/customerDetail/weChatWithNoVerifyNum', {
         phone: userInfo.userPhone,
         birthday: birthday,
         shopId: this.data.shopId,
