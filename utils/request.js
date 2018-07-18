@@ -12,7 +12,7 @@
  */
 const App = getApp();
 
-const Get = (url, params) => {
+const Get = (url, params,) => {
   return new Promise((resolve, reject) => {
     let requestPath = url.substr(0, 4) === 'http' ? url : `${App.domain + url}`;
     wx.request({

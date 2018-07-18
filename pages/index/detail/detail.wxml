@@ -16,7 +16,7 @@
           </block>
         </swiper>  
       </view>
-      <image src='{{ shopInfo.shopImg || "/assets/images/shop-default.jpg" }}' wx:else></image>
+      <image  src='{{ shopInfo.shopImg || "/assets/images/shop-default.jpg" }}' wx:else></image>
     </view>
 
     <view class='head-box'>
@@ -43,22 +43,26 @@
   <!-- 卡券 -->
   
   <!-- 京东会员券 -->
-    <view class='jdVoucher' wx-if="{{voucher}}">
-        <view class='vouchermain'>
-            <view class='voucherbg'></view>
+    <view class='jdVoucher' hidden="{{voucher}}">
+
+
             <view class='voucher'>
+            <text>请输入京东/一号店兑换码进行预约</text>
             <form bindsubmit="submit" report-submit='true'>
                 <input placeholder="请输入兑换码" bindinput="voucherInput"   />
-            </form>    
+              
                 <view class='voucherClose' bindtap='voucherClose'>取消</view>
-                 <view class='voucherSubmit' bindtap='voucherSubmit'>确定</view>               
-            </view>
+                 <view class='voucherSubmit' >
+                 确定
+                   <button class='ipt-submit'  form-type="submit" type="default">提 交</button>
+                 </view>               
+             </form> 
         </view>
     </view>
 
   <!-- 详情 -->
   <view class='storeinfo'>
-    <view class='storeinfo-title'>门店信息</view>
+    <view class='storeinfo-title' >门店信息</view>
     <view class='storeinfo-content'>
       <view class='info-item function' wx:if="{{ shopInfo.hasFacilitie }}">
         <view class='item-icon' wx:if="{{ shopInfo.facilitie[0]}}">

@@ -19,7 +19,7 @@
             <view class='fwlist'>
               <view class='item-detail-image'><image mode="widthFix" src="{{ item.shopCoverImag }}"></image></view> 
               <view class='item-detail-title'></view>
-              <view>时间：{{ item.reserveDate }}</view>
+              <view>时间：{{ item.time }}</view>
               <view>类型：婴幼儿游泳</view>
               <view>老师：{{ item.teacher }}</view>
             </view>
@@ -50,7 +50,7 @@
           <view class='fwlist'>
                 <view class='item-detail-image'><image mode="widthFix" src="{{item.shopCoverImag}}"></image></view> 
               <view class='item-detail-title'></view>
-              <view>时间：{{item.reserveDate}}</view>
+              <view>时间：{{item.time}}</view>
               <view>类型：婴幼儿游泳</view>
               <view>老师：{{item.teacher}}</view>
               </view>

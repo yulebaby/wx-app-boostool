@@ -5,7 +5,8 @@ const app = getApp();
 Page({
   data: {
     vouchertext: '',
-    voucher : false,
+    voucher :true,
+    onsub:false,
   },
   onLoad: function (options) {
     this.setData({ 
@@ -55,7 +56,12 @@ Page({
         }
         /* --------------- 判断门店是否有轮播图 --------------- */
         shopInfo.shopInfoImag = shopInfo.shopInfoImag ? shopInfo.shopInfoImag.split(',') : [];
-        shopInfo.shopInfoImag.pop();
+        //判断是否最后有逗号脏数据
+        console.log(shopInfo.shopInfoImag);
+        if (shopInfo.shopInfoImag[shopInfo.shopInfoImag.length - 1] == "," || !shopInfo.shopInfoImag[shopInfo.shopInfoImag.length - 1]){
+          shopInfo.shopInfoImag.pop();
+        }
+        
         this.setData({ shopInfo });
       }
     }, _ => {
@@ -84,14 +90,21 @@ Page({
   makeAppointment() {
     let that = this;
     getUserInfo().then(userInfo => {
+
+      that.statistics(userInfo.openid, 2);
       /* -------- 判断是从首页还是京东券页面进入---------  */
       if (that.data.activityType==1){
           if (userInfo.isMember == 0) { 
             that.setData({
-              voucher:true
+              voucher:false
             })
           }else{
-            
+            that.statistics(userInfo.openid, 3);
+            wx.showModal({
+              title: '温馨提示',
+              showCancel: false,
+              content: '本次活动仅针对非会员首次游泳体验有效哟',
+            })
           }
       }else{       
           if (userInfo.isMember == 0) { 
@@ -128,7 +141,7 @@ Page({
   //京东弹窗关闭
   voucherClose(){
     this.setData({
-      voucher: false
+      voucher: true
     })
   },
   voucherInput(e){
@@ -136,19 +149,29 @@ Page({
       vouchertext: e.detail.value
     })
   },
-  voucherSubmit() {
-    let that = this;
+  submit(e) {
+    let that = this;    
+    var formId = e.detail.formId; //获取formid
+    if (!that.data.vouchertext){
+      wx.showModal({
+        title: '温馨提示',
+        showCancel: false,
+        content: '兑换码不能为空',
+      })
+    }
+    wx.showLoading({ title: '加载中...', mask: true });
     getUserInfo().then(userInfo => {
     Http.post('/jdCoupon/judgeJdCoupon', {
       phone: userInfo.userPhone,
       openId: userInfo.openid,
+      formId: formId,
       jdCoupon: that.data.vouchertext,
       shopId: that.data.shopId
     }).then(res => {
       if(res.code==1000){
         that.JDkddPost();
         this.setData({
-          voucher: false
+          voucher: true
         })
       }else{
         wx.showModal({
@@ -156,8 +179,9 @@ Page({
           showCancel: false,
           content: res.info,
         })
+        wx.hideLoading();
       }
-
+     
 
     });
    
@@ -173,8 +197,8 @@ Page({
   }).then(res => {
     let birthday = res.result.birthday;
     let babyName = res.result.nickName;
-    //Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
-    Http.post('http://192.168.1.110:8090/customerDetail/weChatWithNoVerifyNum', {
+    Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
+    //Http.post('http://101.200.177.83:7988/kb/customerDetail/weChatWithNoVerifyNum', {
       phone: userInfo.userPhone,
       birthday: birthday,
       shopId: that.data.shopId,
@@ -198,50 +222,19 @@ Page({
    });
  },
 
-
-  // /* --------------- 领取代金券 --------------- */
-  // couponSubmit(e) {
-  //   wx.showLoading({ title: '领取中...', mask: true });
-  //   let formId = e.detail.formId;
-  //   getUserInfo().then(userInfo => {
-  //     if (userInfo.isMember == 1) {
-  //       wx.navigateTo({
-  //         url: `/pages/activity/detail/detail?text=温馨提示&shopId=${this.data.shopId}`,
-  //       });
-  //       return; 
-  //     }
-  //     let sharePhone = wx.getStorageSync('sharePhone') || '';
-  //     let param = JSON.stringify({
-  //       onlyId: userInfo.openid,
-  //       storeId: this.data.shopId,
-  //       sendPhone: sharePhone,
-  //       couponAmount: this.data.shopInfo.coupon,
-  //       formId: formId
-  //     });
-  //     Http.post('/coupon/saveCoupon', { paramJson: param }).then( res => {
-  //       if (res.code == 1000) {
-  //         this.pushKdd(userInfo, '19');
-  //       }
-  //       wx.navigateTo({
-  //         url: `/pages/activity/detail/detail?text=${res.code == 1000 ? '领取代金券成功' : res.info}&shopId=${this.data.shopId}`,
-  //       });
-  //       wx.hideLoading();
-  //     });
-
-  //   })
-  // },
   /* ----------- 推送数据到客多多 ----------- */
   pushKdd(userInfo, spreadId) {
     if (spreadId == 18) {
       wx.showLoading({ title: '加载中...', mask: true });
     }
+    
     Http.post('/user/getBabyInfoByPhone', {
       userPhone: userInfo.userPhone,
     }).then(res => {
       let birthday = res.result.birthday;
       let babyName = res.result.nickName;
-      //Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
-       Http.post('http://192.168.1.110:8090/customerDetail/weChatWithNoVerifyNum', {
+      Http.post('https://sale.beibeiyue.com/kb/customerDetail/weChatWithNoVerifyNum', {
+      //Http.post('http://101.200.177.83:7988/kb/customerDetail/weChatWithNoVerifyNum', {
         phone: userInfo.userPhone,
         birthday: birthday,
         shopId: this.data.shopId,
@@ -265,5 +258,19 @@ Page({
     wx.makePhoneCall({
       phoneNumber: e.target.dataset.num
     })
+  },
+  statistics(openid,accessType){
+    let that = this;
+    wx.showLoading({ title: '加载中...' });
+    getUserInfo().then(userInfo => {
+         Http.post('/shop/activitystatistics', {
+          openId: userInfo.openid,
+          accessType: accessType,
+      }).then(res => {
+        wx.hideLoading();
+      }, _ => {
+        wx.hideLoading();
+      });
+  })
   }
 })

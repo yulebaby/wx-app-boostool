@@ -27,6 +27,7 @@ Page({
         title: '正在获取验证码',
         mask: true
       });
+      
       Http.post('/user/sendVerificationCode', {
         phoneNum: this.data.phone
       }).then(res => {

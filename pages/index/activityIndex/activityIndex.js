@@ -18,6 +18,7 @@ Page({
   },
   onLoad: function (options) {
     this.getaddressIndex();
+    this.statistics();
   },
   onReachBottom: function () {
     this.getStoreItems();
@@ -147,5 +148,19 @@ Page({
     }, _ => {
       wx.hideLoading();
     });
+  },
+  statistics(){
+    let that = this;
+    wx.showLoading({ title: '加载中...' });
+    getUserInfo().then(userInfo => {
+         Http.post('/shop/activitystatistics', {  
+                openId: userInfo.openid,
+                accessType: '1'
+         }).then(res => {
+                  wx.hideLoading();
+                }, _ => {
+                  wx.hideLoading();
+                });
+    })
   }
 })

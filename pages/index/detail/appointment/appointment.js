@@ -55,7 +55,7 @@ Page({
   },
   /* ----------------------- 获取门店可预约日期 ----------------------- */
   getWeeks(shopId) {
-    wx.showLoading({ title: '加载中...' });
+    wx.showLoading({ title: '加载中...', mask: true }); 
     Http.post('/reserve/getStoreHoursConfig', { storeId: shopId }).then(res => {
       wx.hideLoading();
       if (res.code == 1000) {
@@ -69,7 +69,7 @@ Page({
   getHours(e) {
     let weekIndex = e ? e.currentTarget.dataset.index : 0;
     if (e && this.data.checkWeekIndex == weekIndex) { return; }
-    wx.showLoading({ title: '加载中...' });
+    wx.showLoading({ title: '加载中...', mask: true }); 
     let params = { 
       storeId  : this.data.shopId,
       memberId : this.data.userInfo.memberId,
@@ -92,7 +92,7 @@ Page({
   },
   /* ------------------------ 获取可预约老师 ------------------------ */
   getTeachers() {
-    wx.showLoading({ title: '加载中...' });
+    wx.showLoading({ title: '加载中...', mask: true }); 
     Http.post('/reserve/listTeachers', {
       paramJson: JSON.stringify({
         storeId: this.data.shopId,
@@ -127,7 +127,7 @@ Page({
       wx.showToast({ icon: 'none', title: '请选择预约时间' });
       return;
     }
-    wx.showLoading({ title: '加载中...' });
+    wx.showLoading({ title: '加载中...', mask: true }); 
     let pageData = this.data;
     Http.post('/reserve/doReserve', {
       paramJson: JSON.stringify({
@@ -162,7 +162,7 @@ Page({
   },
   /* ----------------- 获取会员卡信息 ----------------- */
   getCardDetail(memberId) {
-    wx.showLoading({ title: '加载中...' });
+    wx.showLoading({ title: '加载中...', mask: true }); 
     Http.post('/reserve/getCardDetail', { memberId }).then(res => {
       wx.hideLoading();
       if (res.code == 1000) {

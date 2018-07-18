@@ -192,7 +192,7 @@ swiper image{
   margin-top: 26rpx;
 }
 .activity-icon{
-  width: auto;
+  width: 25rpx;
   height: 34rpx;
   padding: 0 5rpx;
   background: #ffdcc5;

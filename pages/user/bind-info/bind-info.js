@@ -44,9 +44,7 @@ Page({
       })
       return false;
     }
-    wx.showLoading({
-      title: '加载中...',
-    })
+    wx.showLoading({ title: '加载中...', mask: true }); 
     
 
     //erp接口 
@@ -68,8 +66,9 @@ Page({
   },
   //非会员录入信息
   branchpost(userInfo) {
-    //Http.post('https://sale.beibeiyue.com/kb/manager/register', {
-    Http.post('http://192.168.1.110:8090/kb/manager/register', {      
+    // http://101.200.177.83:7988/kb/customerDetail/weChatWithNoVerifyNum
+    Http.post('https://sale.beibeiyue.com/kb/manager/register', {
+    //Http.post('http://101.200.177.83:7988/kb/manager/register', {
       typeStyle: 1,
       phone: userInfo.userPhone,
       spreadId: '10000002',

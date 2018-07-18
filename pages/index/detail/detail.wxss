@@ -336,7 +336,8 @@ page{
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 99;
+  background: rgba(0,0,0,.5);
 }
 .vouchermain{
   width: 100%;
@@ -352,7 +353,7 @@ page{
 }
 .voucher{
   width: 650rpx;
-  height: 367rpx;
+  height: 387rpx;
   background: #fff;
   position: absolute;
   top: 350rpx;
@@ -365,7 +366,7 @@ page{
   height: 100rpx;
   display: block;
   margin: 0 auto;
-  margin-top: 62rpx;
+  margin-top: 0rpx;
   border-radius:5px;
   padding: 0 10rpx;
   font-size: 28rpx;
@@ -373,15 +374,33 @@ page{
 }
 .voucherClose,.voucherSubmit{
   width: 50%;
-  height: 120rpx;
+  height: 100rpx;
   float: left;
   text-align: center;
-  line-height: 120rpx;
+  line-height: 100rpx;
   border-top: solid 1px #ccc;
   margin-top: 80rpx;
 }
 .voucherSubmit{
   width: 323rpx;
-  border-left: solid 1rpx #ccc;
+  border-left: solid 1px #ccc;
   color: #3db922;
+  position: relative;
+}
+.voucherSubmit button{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.voucher text{
+  width: 570rpx;
+  height: 80rpx;
+  display: block;
+  margin: 0 auto;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  margin-top: 20rpx;
 }

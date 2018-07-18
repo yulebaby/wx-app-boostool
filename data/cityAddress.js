@@ -85,12 +85,12 @@ const cityAddressItems = [
           },
           {
             "value": "110228",
-            "label": "密云县",
+            "label": "密云区",
             isLeaf: true
           },
           {
             "value": "110229",
-            "label": "延庆县",
+            "label": "延庆区",
             isLeaf: true
           }
         ],
@@ -12946,6 +12946,11 @@ const cityAddressItems = [
       {
         "children": [
           {
+            "value": "500223",
+            "label": "潼南区",
+            isLeaf: true
+          },
+          {
             "value": "500101",
             "label": "万州区",
             isLeaf: true
@@ -13036,11 +13041,7 @@ const cityAddressItems = [
             "label": "綦江县",
             isLeaf: true
           },
-          {
-            "value": "500223",
-            "label": "潼南县",
-            isLeaf: true
-          },
+
           {
             "value": "500224",
             "label": "铜梁县",
