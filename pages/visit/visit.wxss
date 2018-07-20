@@ -1,0 +1,94 @@
+/* pages/visit/visit.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  background: #F5F5F5;
+}
+.header{
+  width: 100%;
+  height: 242rpx;
+  background: url('http://ylbb-business.oss-cn-beijing.aliyuncs.com/visit454534534.png') no-repeat;
+  background-size:100% 100%; 
+  padding-top: 30rpx;
+  
+}
+.visit_top{
+  width: 670rpx;
+  height: 212rpx;
+  margin: 0 auto;
+  border-radius: 10rpx;
+  background: url('http://ylbb-business.oss-cn-beijing.aliyuncs.com/icon-ylbaby15454564.png') no-repeat 570rpx 150rpx #5EA3FE;
+  background-size:104rpx 78rpx; 
+}
+.visit_tit{
+  width: 160rpx;
+  height:56rpx;
+  color: #fff;
+  float: right;
+  font-size: 40rpx;
+  margin: 24rpx 32rpx;
+}
+.visit_wait,.visit_solve{
+  width: 50%;
+  float: left;
+  color: #fff;
+  margin-top: 52rpx;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+  margin-left: 24rpx;
+}
+.visit_solve{
+  margin-top: 0;
+}
+.visit_wait text,.visit_solve text{
+  font-size: 48rpx;
+  padding-left: 16rpx;
+}
+.visit_list{
+  width: 670rpx;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.list_main{
+  width: 100%;
+  height: 124rpx;
+  background: #fff;
+  border-radius:10rpx;
+  margin-top: 30rpx;  
+}
+.visit_left,.visit_right{
+  width: 50%;
+  float: left;
+}
+.visitName{
+  width: 100%;
+  height: 44rpx;
+  line-height: 44rpx;  
+  float: left;
+  font-size: 32rpx;
+  color: #333;
+  margin-top: 22rpx;
+  text-indent: 32rpx;
+}
+.visitPhone{
+   width: 100%;
+  height: 34rpx;
+  line-height: 34rpx;   
+  float: left;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 2rpx;
+  text-indent: 32rpx; 
+}
+.visitIcon{
+  width: 56rpx;
+  height: 56rpx;
+  float: right;
+   margin: 38rpx 34rpx;
+   
+}
+.visitIcon image{
+  width: 100%;
+  height: 100%;
+ 
+}

@@ -1,149 +1,56 @@
 const app = getApp();
-const getAddress = require('./../../utils/getAddress.js');
 const Http = require('./../../utils/request.js');
-const cityAddress = require('./../../data/cityAddress.js');
-
-const getUserInfo = require('./../../utils/getUserInfo.js');
-
-var addresslist = cityAddress.postList;
+let ctx = wx.createCanvasContext('canvasArcCir');
+let WXwidth = wx.getSystemInfoSync().windowWidth;
+let cxtWidth = 350 / 750 * WXwidth;
 Page({
   data: {
-    swiperArray: [
-      'http://ylbb-business.oss-cn-beijing.aliyuncs.com/jdPlusBanner.png'
-    ],
-    pageNo    : 1,
-    pageSize  : 10,
-    storeItems: [],
-    address   : ['', '定位中', '']
+
   },
   onLoad: function (options) {
-    this.getaddressIndex();
+    
   },
-  onReachBottom: function () {
-    this.getStoreItems();
+  onReady: function () {
+    this.drawCircle();
+    let cxt_arc = wx.createCanvasContext('canvasCircle');
+    cxt_arc.setLineWidth(15);
+    cxt_arc.setStrokeStyle('#eaeaea');
+    cxt_arc.setLineCap('round');
+    cxt_arc.beginPath();
+    cxt_arc.arc(cxtWidth / 2, cxtWidth / 2, cxtWidth / 2-15, 0, 2 * Math.PI, false);
+    cxt_arc.stroke();
+    cxt_arc.draw();
   },
-  /* ------------------- 获取用户地理位置信息 ------------------- */
-  getaddressIndex() {
-    wx.showLoading({ title: '加载中...' });
-    getAddress(address => {
-      this.setData({
-        location: address.location,
-        address: [address.address_component.province, address.address_component.city],
-        lat: address.location.lat,
-        lon: address.location.lng,
-        province: address.address_component.province,
-        city: address.address_component.city,
-        area: null,
-        pageNo: 1,
-        storeItems: [],
-        district: null,
-      });
-      wx.hideLoading();
-      this.getStoreItems();
-    })
-  },
-
-  /* ------------------ 选择城市列表 ------------------ */
-  bindRegionChange: function (e) {
-    this.setData({
-      address: e.detail.value
-    });
-    var province = this.data.address[0];
-    var city = this.data.address[1];
-    var district = this.data.address[2];
-    var provincecode = '';
-    var citycode = '';
-    var districtcode = '';
-    for (var i = 0; i < addresslist.length; i++) {
-      if (addresslist[i].label == province) {
-        provincecode = addresslist[i].value;
-        for (var r = 0; r < addresslist[i].children.length; r++) {
-          if (city == addresslist[i].children[r].label) {
-            citycode = addresslist[i].children[r].value;
-            for (var j = 0; j < addresslist[i].children[r].children.length; j++) {
-              if (district == addresslist[i].children[r].children[j].label) {
-                districtcode = addresslist[i].children[r].children[j].value;
-              }
-            }
-          }
-        }
-      }
+  drawCircle: function () {
+    function drawArc(s, e) {
+      ctx.setFillStyle('white');
+      ctx.clearRect(0, 0, cxtWidth, cxtWidth);
+      ctx.draw();
+      var x = cxtWidth / 2, y = cxtWidth / 2, radius = cxtWidth / 2-15;
+      ctx.setLineWidth(15);
+      //渐变失效
+      // let grd = ctx.createCircularGradient(cxtWidth / 2, cxtWidth / 2, cxtWidth / 2)
+      // grd.addColorStop(0, '#5EA3FE')
+      // grd.addColorStop(1, '#B8D0FF')
+      ctx.setStrokeStyle('#5EA3FE');
+      ctx.setLineCap('round');
+      ctx.beginPath();
+      ctx.arc(x, y, radius, s, e, false);
+      ctx.stroke()
+      ctx.draw()
     }
-    this.setData({
-      province: provincecode,
-      city: citycode,
-      district: districtcode,
-      pageNo: 1,
-      storeItems: []
-    });
-    this.getStoreItems();
+    let step = 50, startAngle = 1.5 * Math.PI, endAngle = 0;
+    let n = 100;
+        endAngle = step * 2 * Math.PI / n + 1.5 * Math.PI;
+        drawArc(startAngle, endAngle);
   },
   /* ------------ 获取列表数据 ------------ */
   getStoreItems(param) {
     var paramJson;
-    if (this.data.district) {
-      paramJson = JSON.stringify({
-        province: this.data.province,
-        city: this.data.city,
-        area: this.data.district,
-        lon: this.data.location.lng,
-        lat: this.data.location.lat,
-        pageNo: this.data.pageNo,
-        pageSize: this.data.pageSize
-      });
-    } else {
 
-      var province = this.data.province;
-      var city = this.data.city;
-      var district = this.data.district;
-      var provincecode = '';
-      var citycode = '';
-      var districtcode = '';
-      for (var i = 0; i < addresslist.length; i++) {
-        if (addresslist[i].label == province) {
-          provincecode = addresslist[i].value;
-          for (var r = 0; r < addresslist[i].children.length; r++) {
-            if (city == addresslist[i].children[r].label) {
-              citycode = addresslist[i].children[r].value;
-              for (var j = 0; j < addresslist[i].children[r].children.length; j++) {
-                if (district == addresslist[i].children[r].children[j].label) {
-                  districtcode = addresslist[i].children[r].children[j].value;
-                }
-              }
-            }
-          }
-        }
-      }
-      paramJson = JSON.stringify({
-        province: provincecode,
-        city: citycode,
-        lon: this.data.location.lng,
-        lat: this.data.location.lat,
-        pageNo: this.data.pageNo,
-        pageSize: this.data.pageSize
-      });
-    }
     wx.showLoading({ title: '加载中...' });
     Http.post('/shop/listShop', { paramJson }).then(res => {
       wx.hideLoading();
-      if (res.code == 1000 && res.result.shopList) {
-        let storeItem = res.result.shopList;
-        for (let i = 0; i < storeItem.length; i++) {
-          if (storeItem[i].distance > 1000) {
-            storeItem[i].distance = (storeItem[i].distance / 1000).toFixed(1) + 'km';
-          } else {
-            storeItem[i].distance = storeItem[i].distance + 'm';
-          }
-        }
-        if (storeItem) {
-          this.setData({
-            storeItems: this.data.storeItems.concat(storeItem),
-            pageNo: this.data.pageNo + 1
-          })
-
-        }
-      } else {
-      }
     }, _ => {
       wx.hideLoading();
     });

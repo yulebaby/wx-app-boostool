@@ -1,11 +1,12 @@
-// pages/user/user.js
+// pages/login/login.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    userName:'',
+    passWord:''
   },
 
   /**
@@ -62,5 +63,15 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  userName(e){
+    this.setData({
+      userName:e.detail.value
+    })
+  },
+  passWord(e){
+    this.setData({
+      passWord: e.detail.value
+    })
   }
 })

@@ -13,8 +13,10 @@
 const App = getApp();
 
 const Get = (url, params,) => {
+
   return new Promise((resolve, reject) => {
     let requestPath = url.substr(0, 4) === 'http' ? url : `${App.domain + url}`;
+    
     wx.request({
       url: requestPath,
       method: 'GET',
@@ -34,6 +36,7 @@ const Get = (url, params,) => {
 const Post = (url, params) => {
   return new Promise( (resolve, reject) => {
     let requestPath = url.substr(0, 4) === 'http' ? url : `${App.domain + url}`;
+    params.token = App.globalData.token;
     wx.request({
       url: requestPath,
       method: "POST",

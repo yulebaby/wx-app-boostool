@@ -1,54 +1,42 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/index/activityIndex/activityIndex", 
-    "pages/index/activityIndex/JDexplain/JDexplain",
-    "pages/index/detail/detail",
+    "pages/login/login",
+    "pages/visit/visit",
     "pages/user/user",
-    "pages/user/bind-phone/bind-phone",
-    "pages/user/bind-info/bind-info",
-    "pages/user/coupon/coupon",
-    "pages/user/evaluate/evaluate",
-    "pages/user/reward/reward",
-    "pages/serve/serve",
-    "pages/serve/order/order",
-    "pages/serve/serve-details/serve-details",
-    "pages/index/detail/appointment/appointment",
-    "pages/serve/serve-reward/serve-reward",
-    "pages/serve/serve-evaluate/serve-evaluate",
-    "pages/user/prize/prize",
-    "pages/activity/index/index"
+    "pages/index/IndexChange/IndexChange"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "鱼乐贝贝",
+    "navigationBarTitleText": "鱼乐老板工具",
     "navigationBarTextStyle": "black"
   },
-  "tabBar": {
-    "color": "#C2C2C3",
-    "selectedColor": "#FF839A",
-    "borderStyle": "black",
-    "backgroundColor": "#fff",
-    "list": [
-      {
-        "selectedIconPath": "assets/images/tabbar-fish-active.png",
-        "iconPath": "assets/images/tabbar-fish.png",
-        "pagePath": "pages/index/index",
-        "text": "门店"
-      },
-      {
-        "selectedIconPath": "assets/images/tabbar-serve-active.png",
-        "iconPath": "assets/images/tabbar-serve.png",
-        "pagePath": "pages/serve/serve",
-        "text": "服务"
-      },
-      {
-        "selectedIconPath": "assets/images/tabbar-baby-active.png",
-        "iconPath": "assets/images/tabbar-baby.png",
-        "pagePath": "pages/user/user",
-        "text": "我的"
-      }
-    ]
-  }
+    "tabBar": {
+      "color": "#C2C2C3",
+      "selectedColor": "#5EA3FE",
+      "borderStyle": "black",
+      "backgroundColor": "#fff",
+      "list": [
+        {
+          "selectedIconPath": "assets/images/tabbar-fish-active.png",
+          "iconPath": "assets/images/tabbar-fish.png",
+          "pagePath": "pages/index/index",
+          "text": "业绩"
+        },
+        {
+          "selectedIconPath": "assets/images/tabbar-serve-active.png",
+          "iconPath": "assets/images/tabbar-serve.png",
+          "pagePath": "pages/visit/visit",
+          "text": "回访"
+        },
+        {
+          "selectedIconPath": "assets/images/tabbar-baby-active.png",
+          "iconPath": "assets/images/tabbar-baby.png",
+          "pagePath": "pages/user/user",
+          "text": "我的"
+        }
+      ]
+    }
+
 }

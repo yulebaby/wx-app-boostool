@@ -1,0 +1,112 @@
+<view class='content'>
+      <view class='changeNav'>
+          <view class="{{currentTab==1?'cli':''}}" data-current="1" bindtap='switchTab'><text>线索</text></view>   
+          <view class="{{currentTab==2?'cli':''}}" data-current="2" bindtap='switchTab'><text>体验</text></view> 
+          <view class="{{currentTab==3?'cli':''}}" data-current="3" bindtap='switchTab'><text>办卡</text></view> 
+      </view>
+      <!-- 线索
+       -->
+      <view class='clue' hidden="{{currentTab!=1}}">
+          <view class='clueTop'>
+                <view class='clueTop_left'>
+                    <view class='leftTop'>已完成<text>200条</text></view>
+                    <view class='leftBottom'>线索任务400条</view>
+                </view>
+                <view class='clueTop_right'>
+                            <view class="wrap">
+                              <view class="circle-box">
+                                <canvas class="circle" style=" width:144rpx; height:144rpx;" canvas-id="canvasCircle">
+                                </canvas>
+                                <canvas class="circle" style=" z-index:5; width:144rpx; height:144rpx;" canvas-id="canvasArcCir">
+                                </canvas>
+                                <view class="draw_text">
+                                    完成50%
+                                </view>
+                              </view>
+                            </view>
+                </view>                
+          </view>
+          <view class='headquarters'>
+              <view class='headquartersTop'>
+                  <text>总部活动引流</text>
+              </view>
+              <view class='headquartersFoot'>
+                  <text>总部活动线索</text><text>110条</text>
+              </view>
+          </view>
+
+          <view class='headquarters'>
+              <view class='headquartersTop'>
+                  <text>门店活动引流</text>
+              </view>
+              <view class='headquartersFoot'>
+                  <text>总部活动线索</text><text>110条</text>
+              </view>
+          </view>
+      </view>
+<!-- 体验  -->
+<view class='clue' hidden="{{currentTab!=2}}">
+          <view class='clueTop'>
+                <view class='clueTop_left'>
+                    <view class='leftTop'>已完成<text>33条</text> (45%)</view>
+                    <view class='leftBottom'>体验任务70条</view>
+                </view>
+                <view class='clueTop_right'>
+                            <view class="wrap">
+                              <view class="circle-box">
+                                <canvas class="circle" style=" width:144rpx; height:144rpx;" canvas-id="canvasCircle1">
+                                </canvas>
+                                <canvas class="circle" style=" z-index:5; width:144rpx; height:144rpx;" canvas-id="canvasArcCir1">
+                                </canvas>
+                                <view class="draw_text">
+                                    完成50%
+                                </view>
+                              </view>
+                            </view>
+                </view>                
+          </view>
+      </view>
+<!--  办卡   -->
+<view class='clue' hidden="{{currentTab!=3}}">
+          <view class='clueTop'>
+                <view class='clueTop_left'>
+                    <view class='leftTop'>已完成<text>33条</text> (45%)</view>
+                    <view class='leftBottom'>办卡任务70条</view>
+                </view>
+                <view class='clueTop_right'>
+                            <view class="wrap">
+                              <view class="circle-box">
+                                <canvas class="circle" style=" width:144rpx; height:144rpx;" canvas-id="canvasCircle2">
+                                </canvas>
+                                <canvas class="circle" style=" z-index:5; width:144rpx; height:144rpx;" canvas-id="canvasArcCir2">
+                                </canvas>
+                                <view class="draw_text">
+                                    完成50%
+                                </view>
+                              </view>
+                            </view>
+                </view>                
+          </view>
+          <view class='tocard'>
+              <view class='cardList'>
+                  <view class='List'>卡类目</view>
+                  <view class='List'>金额</view>
+                  <view class='List'>办理张数</view>                                    
+              </view>
+              <view class='cardList' wx:for="[1,2,3]" wx:key="index" >
+                  <view class='List'>至尊卡</view>
+                  <view class='List'>{{index}}</view>
+                  <view class='List'>{{item}}</view>                                    
+              </view> 
+              <view class='cardList' >
+                  <view class='List'>总计</view>
+                  <view class='List'></view>
+                  <view class='List'></view>                                    
+              </view> 
+          </view>
+      </view>
+
+
+
+   
+</view>

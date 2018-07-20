@@ -1,0 +1,21 @@
+<view>
+  <view class='login_header'>
+      <view class='login_icon'>
+          <image src='/assets/images/login_icon.png'></image>
+      </view>
+      <view class='login_tit'>
+        鱼乐老板工具
+      </view>
+  </view>
+  <view class='form_text'>
+  <view>
+      <image src='/assets/images/user_icon.png'></image>
+      <input placeholder="请输入账号" bindinput="userName" />
+  </view>
+  <view>
+      <image src='/assets/images/password_icon.png'></image>
+      <input placeholder="请输入密码" bindinput="passWord"  />
+  </view>
+      <button class='landing' hover-class='cli' type="primary">登陆</button>
+  </view>    
+</view>

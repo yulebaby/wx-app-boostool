@@ -1,0 +1,20 @@
+<view class='content'>
+    <view class='header'>
+        <view class='visit_top'>
+            <view class='visit_tit'>今日任务</view>
+            <view class='visit_wait'>需回访线索<text>15条</text></view>
+            <view class='visit_solve'>已回访线索<text>0条</text></view>            
+        </view>
+    </view>
+  <view class='visit_list'>
+       <view class='list_main' wx:for="[1]" wx:key="index">
+            <view class='visit_left'>
+              <view class='visitName'>客户姓名</view>
+              <view class='visitPhone'>客户电话：15911112222</view>
+             </view>  
+             <view class='visit_right'> 
+              <view class='visitIcon'><image src='/assets/images/visitIcon.png'></image></view>
+             </view> 
+      </view>
+  </view>
+</view>

@@ -1,45 +1,44 @@
-<view class='head'> 
-  <view class='head-image'>
-    <image mode='widthFix' src='/assets/images/head-default.png'></image>
-  </view>
-
-   <!-- <view class='head-name'>{{userInfo.nickName}}</view>  -->
-  <view class='head-phone'>{{ userphone }}</view>
-</view>
-
-
-<view class='container' >
-
-  <view class='header' wx:if='{{ userInfo.tongMember == 1 }}'>
-    <view>
-      <text>{{totalTimes}}</text>
-      <text>总卡次</text>
+<view class='content'>
+    <view class='header'>
+        <view class='userIcon'>
+          <image src='/assets/images/userIcon.png'></image>
+        </view>
+        <view class='userName'>
+            门店名称
+        </view>        
     </view>
-    <view>
-      <text>{{remainTimes}}</text>
-      <text>剩余总数</text>
-    </view>
-    <view>
-      <text>{{remainTong}}</text>
-      <text>通卡剩余</text>
-    </view>
-  </view>
 
-  <!-- <view class='activity-banner' hover-class='tap-active'>
-    <image mode='widthFix' src='/assets/images/user/activity-banner.png'></image>
-  </view> -->
-
-  <view class='tab-box'>
-    <view class='item' hover-class='active'>
-      <navigator url="/pages/user/coupon/coupon?ab=1" hover-class="none">我的卡券</navigator>
+    <view class='user_main'>
+        <view class='userTitle'><text>上月数据参考</text></view>
+        <view class='userLists'>
+              <view class='list'>
+                  <view class='listTit'>线索量</view>
+                  <view class='listNumber'>200</view>
+              </view>
+              <view class='list'>
+                  <view class='listTit'>体验量</view>
+                  <view class='listNumber'>200</view>
+              </view>
+              <view class='list'>
+                  <view class='listTit'>办卡量</view>
+                  <view class='listNumber'>200</view>
+              </view>
+              <view class='list'>
+                  <view class='listTit'>平均卡单价</view>
+                  <view class='listNumber'>200</view>
+              </view>
+              <view class='list'>
+                  <view class='listTit'>体验转化率</view>
+                  <view class='listNumber'>20%</view>
+              </view>
+              <view class='list'>
+                  <view class='listTit'>办卡成功率</view>
+                  <view class='listNumber'>20%</view>
+              </view>                                                                      
+        </view>
     </view>
-    <view class='item' hover-class='active'>
-      <navigator url="/pages/user/prize/prize" hover-class="none">我的奖品</navigator>
-    </view>
-  </view>
-</view>
-
-<view class='footer'>
+  <view class='footer'>
   <view class='footer-phone' bindtap='makePhone' data-num='400-6321531'>客服电话：400-6321531</view>
   <view class='footer-time'>客服时间：09:00 - 18:00 周一至周日</view>
+</view>
 </view>

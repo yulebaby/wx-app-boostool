@@ -1,46 +1,74 @@
-<view class='list-box'>
-  <view class='city'>
-    <picker mode="region" bindchange="bindRegionChange" value="{{ address }}">
-      <text class="picker">{{ address[0] }}  {{ address[2] }}</text>
-      <view class='icon-slide'></view>
-    </picker>
-  </view>
- 
-  <view class='swiper'>
-    <swiper indicator-dots="{{ swiperArray.length > 1 }}" autoplay="true" interval="5000" duration="300"  indicator-active-color="#FFF" circular="true">
-      <block wx:for="{{ swiperArray }}" wx:key="key">
-        <swiper-item>
-          <navigator url='activityIndex/activityIndex'><image src="{{ item }}" class="slide-image" width="355" height="178"/></navigator>
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
+<view>
   <view class='header'>
-    <view class='head-title'>附近门店{{ baseInfo }}{{ tongk }}</view>
-    <view class='head-desc'>为您精选的附近门店</view>
-  </view>
-  <view class='item-container'>
-    <view class='no-data' hidden="{{ storeItems.length || requestLoading }}">您的附近没有合适的门店</view>
-    <view class='item' wx:for="{{ storeItems }}" wx:key="id">
-      <navigator  hover-class="none" url="/pages/index/detail/detail?shopId={{ item.id }}" hover-class="navigator-hover">
-        <view class='item-image'><image src='{{ item.coverImag }}' mode='widthFix' ></image></view>
-        <view class='item-card' wx:if = '{{ item.countryCardStatus }}' >全国通卡店</view>
-        <view class='item-title'>
-          <view>{{ item.shopName }}<text class='parent-offspring' wx:if="{{ !!item.storeType && item.storeType!=0 && item.storeType!=1 }}">亲子店</text>
-          <text class='flagship' wx:if="{{ item.storeType == 1 }}">旗舰店</text><view class='item-icon' wx:if="{{ item.visitStatus }}">最近使用</view></view>
-        </view>
-        <view class='item-address'>
-          <view>{{ item.address }}</view>
-          <text>{{ item.distance }}</text>
-        </view>
-        <view class='activity' wx:if="{{ item.isActivity == 1 }}">
-          <view class='activity-icon'>劵</view>
-          <view class='activity-text'>{{ item.couponName }}</view>
-        </view>
+      <view class='date'>2018-02-02</view>
 
-      </navigator>
+      <view class="wrap">
+      <view class="circle-box">
+        <canvas class="circle" style="z-index: -99; width:350rpx; height:350rpx;" canvas-id="canvasCircle">
+        </canvas>
+        <canvas class="circle" style="width:350rpx; height:350rpx;" canvas-id="canvasArcCir">
+        </canvas>
+        <view class="draw_text">
+            <view class='money_text'>10000<text>元</text></view>
+            <view class='percent'>本月已完成130%</view>
+        </view>
+      </view>
     </view>
   </view>
-
-
+  <view class='information'>
+      <view class='information_left'>
+          <view class='information_tit'>现状</view>
+          <view class='information_status'>本月已完成</view>          
+          <view class='information_money'>5.00<text> 万元</text></view>              
+      </view>
+      <view class='information_right'>
+          <view class='information_tit'>目标</view>
+          <view class='information_status'>本月已完成</view>          
+          <view class='information_money'>8.00<text> 万元</text></view>          
+      </view>      
+  </view>  
+  <view class='showList'>
+    <view class='list_title_main'>
+      <view class='List_title'>本月计划</view>
+    </view>  
+      <view class='Listmain'>
+          <navigator hover-class='cli' url='IndexChange/IndexChange?status=1'>
+              <view class='list_active'>
+                  <view class='listNumber'>250条线索</view>
+                  <view class='listName'>线索</view>
+                  <view class='listSchedule'>
+                      <view class='listSchedule_main'>
+                          <text>80%</text>
+                      </view>
+                  </view>
+              </view>
+          </navigator>
+      </view>
+      <view class='Listmain'>
+          <navigator url='IndexChange/IndexChange?status=2'>
+              <view class='list_active'>
+                  <view class='listNumber'>100次体验</view>
+                  <view class='listName'>体验</view>
+                  <view class='listSchedule'>
+                      <view class='listSchedule_main'>
+                          <text>80%</text>
+                      </view>
+                  </view>
+              </view>
+          </navigator>
+      </view>    
+      <view class='Listmain'>
+          <navigator url='IndexChange/IndexChange?status=3'>
+              <view class='list_active'>
+                  <view class='listNumber'>0次办卡</view>
+                  <view class='listName'>办卡</view>
+                  <view class='listSchedule'>
+                      <view class='listSchedule_main'>
+                          <text>80%</text>
+                      </view>
+                  </view>
+              </view>
+          </navigator>
+      </view>         
+  </view>
 </view>

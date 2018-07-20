@@ -1,0 +1,190 @@
+/* pages/index/IndexChange/IndexChange.wxss */
+page{
+  width:100%;
+  height:100%;
+  background: #F5F5F5;
+}
+.content{
+  width: 100%;
+  height: 100%;
+}
+.changeNav{
+  width: 588rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  margin: 0 auto;
+  background: #fff;
+  padding: 0 81rpx;
+  border-top: solid 2rpx #F5F5F5;
+}
+.changeNav view{
+  width: 56rpx;
+  padding: 0 70rpx;
+  float: left;
+  font-size:28rpx; 
+  color:#333333;
+
+}
+.changeNav view text{
+  width: 56rpx;
+  float: left;
+  font-size:28rpx; 
+  color:#333333;
+
+}
+.changeNav view.cli text{
+  width: 56rpx;
+  float: left;
+  font-size:28rpx; 
+  color:#5EA3FE;
+  border-bottom: solid 4rpx #5EA3FE;
+}
+.clue{
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+}
+.clueTop{
+  width: 670rpx;
+  height: 212rpx;
+  background: #5EA3FE;
+  border-radius: 10rpx;
+  margin: 0 auto;
+  margin-top: 30rpx;
+ box-shadow: 5rpx 5rpx 5rpx #ccc;  
+}
+.clueTop_left{
+  width: 50%;
+  float: left;
+  color: #fff;
+}
+.clueTop_right{
+  width: 50%;
+  float: left;
+  color: #fff;
+  position: relative;
+}
+.leftTop{
+  font-size: 28rpx;
+  margin-top: 52rpx;
+  margin-left: 24rpx;
+}
+.leftTop text{
+   font-size: 48rpx;
+   margin-left: 16rpx;
+}
+.leftBottom{
+  font-size: 28rpx;
+  margin-left: 24rpx;
+}
+/* canvas部分 */
+.wrap{
+  width: 144rpx;
+  height: 144rpx;
+  /* overflow: hidden; */
+  float: right;
+  position: relative;
+  margin:34rpx 48rpx; 
+}
+.circle-box {
+  text-align: center; 
+  height: 144rpx;
+}
+
+.circle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+}
+.draw_text {
+  position: absolute;
+  top: 54rpx;
+  right: 0;
+  left: 0;
+  font-size: 24rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+
+}
+.draw_text text{
+  font-size: 28rpx;
+}
+.headquarters{
+  width: 670rpx;
+  height: 212rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  position: relative;
+  clear: both;
+   box-shadow: 5rpx 5rpx 5rpx #ccc;
+}
+.headquartersTop{
+  width: 100%;
+  font-size: 32rpx;
+  color: #333;
+  padding: 28rpx 0;
+  border-bottom: solid 1px #F5F5F5;
+}
+.headquartersTop text{
+  width: 100%;
+  height: 44rpx;
+  line-height: 44rpx;
+  padding-left: 20rpx;
+  border-left: solid  4rpx #5EA3FE;
+}
+.headquartersFoot{
+  width: 610rpx;
+  margin: 0 auto;
+  height: 98rpx;
+  line-height: 98rpx;
+  font-size: 28rpx;
+  color: #5EA3FE;
+
+   
+}
+.headquartersFoot text{
+  width: 50%;
+  float: left;
+}
+.headquartersFoot text:nth-child(2){
+  text-align: right;
+}
+.tocard{
+  width: 670rpx;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 10rpx;
+  background: #fff;
+  margin-top: 30rpx;
+  box-shadow: 5rpx 5rpx 5rpx #ccc;
+  margin-bottom: 200rpx;
+ 
+}
+.cardList{
+  width: 100%;
+  border-bottom: solid 1px #D8D8D8;
+  overflow: hidden;
+}
+.cardList:first-child{
+  background: #E9F2FF;
+}
+.cardList:last-child{
+ border-bottom: none;
+}
+.cardList .List{
+  width:222rpx;
+  border-right: solid 2rpx  #D8D8D8;
+  float: left;
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  color: #333;
+  font-size: 28rpx;
+}
+.cardList .List:nth-child(3){
+  border-right: none;
+}

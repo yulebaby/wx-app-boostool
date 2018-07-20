@@ -1,217 +1,166 @@
-/* 门店列表 */
-
-.list-box{
-  padding: 10px 15px 0;
+page{
+  width: 100%;
+  height: 100%;
+  background: url(http://ylbb-business.oss-cn-beijing.aliyuncs.com/indexBG5545451.png) no-repeat  0 368rpx;
+  background-size: 100% 224rpx;
 }
-
-/* -------------------- 城市 -------------------- */
-.city{
-  margin-bottom: 30rpx;
-  color: #7f7f7f;
-  font-size: 26rpx;
-  text-align: center;
-}
-.icon-slide{
-  display: inline-block;
-  width: 0px;
-  height: 0px;
-  margin-top: 3px;
-  vertical-align: middle;
-  margin-left: 6px;
-  border-top: solid 6px #7f7f7f;
-  border-right: solid 6px #fff;
-  border-bottom: solid 6px #fff;
-  border-left: solid 6px #fff;
-  overflow: hidden;
-}
-
-/* ------------------- banner ------------------- */
-swiper{
-  height: 350rpx;
-  margin-bottom: 45rpx;
-}
-swiper image{
-   width: 691rpx;
-   height: 350rpx;
-
-}
-
-
-/* ------------------- header ------------------- */
-.header .head-title{
-  font-size: 35rpx;
-  line-height: 35rpx;
-  padding-bottom: 18rpx;
-}
-.header .head-desc{
-  color: #989898;
-  font-size: 24rpx;
-  line-height: 24rpx;
-}
-
-
-
-/* ------------------- items ------------------- */
-.item-container{
-  padding-top: 40rpx;
-}
-.item{
-  padding-bottom: 54rpx;
-  position: relative;
-}
-.item navigator{
-  padding-bottom: 40rpx;
-  border-bottom: solid 0.5px #e4e4e4;
-}
-.item-image{
-  height: 430rpx;
-  overflow: hidden;
-  position: relative;
-  border-radius: 10rpx;
-}
-.item-image image{
-  min-width: 100%;
-  min-height: 100%;
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -237rpx;
-  margin-left: -50%;
-    border-radius: 10rpx;
-}
-.item-title{
-  padding: 38rpx 0 36rpx;
-  overflow: hidden;
-}
-.item-title > view{
-  font-size: 36rpx;
-  line-height: 36rpx;
-
-  font-weight: bold;
-  
-}
-.item-address{
-  height: 30rpx;
-  padding-left: 32rpx;
-  background: url('http://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/icon-marker.png') no-repeat 0 center;
-  background-size: contain;
-  position: relative;
-}
-.item-address > view{
-  padding-right: 65px;
-  font-size: 26rpx;
-  line-height: 30rpx;
-  box-sizing: border-box;
-  color: rgba(0, 0, 0, .5);
-  overflow:hidden;
-  white-space:nowrap;
-  text-overflow:ellipsis;
-}
-.item-address > text{
-  display: block;
-  opacity: .5;
-  padding: 0 8px;
- font-size: 26rpx;
-  line-height: 30rpx;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-.item-card{
-  width:132rpx;
-  height:40rpx;
-  color: #fff;
-  font-size: 21rpx;
-  line-height: 40rpx;
-  text-align: center;
-  background: #ff839a;
-  border-radius: 4rpx;
-  position: absolute;
-  top: 26rpx;
-  right: 15rpx;
-}
-.no-data{
-  padding-top: 100px;
-  color: #ccc;
-  font-size: 12px;
-  text-align: center;
-}
-.list-po{
-  position: absolute;
-  bottom: -0rpx;
-  left: 0;
-  z-index: 999;
-  width: 750rpx;
-  background: #fff;
-}
-.picker{
-    color: #63686e;
-}
-.dzf{
+.header{
   width: 100%;
   overflow: hidden;
 }
-.dzf view{
-  width: 20%;
-  float: left;
-  text-align: center;
-  border-right: solid 1px #ccc;
-  font-size: 30rpx;
-  }
-  /* 活动 */
- .item-title text{
-  display: inline-block;
-  width: 101rpx;
-  height: 100%;
-  font-size:22rpx;
-  line-height: 36rpx;
-  text-indent: 10rpx;
-  color: #fff;
-  font-weight: normal;
-  margin-left: 18rpx;
-  vertical-align:top
-
-} 
-.parent-offspring{
-  background: url('https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/parent-offspring.png') no-repeat center center;
-  background-size:100% 100%; 
-}
-
-
-.flagship{
-  background: url('https://ylbb-wxapp.oss-cn-beijing.aliyuncs.com/store/flagship.png') no-repeat center center;
-  background-size:100% 100%; 
-}
-
-  .activity{
-  width: 690rpx;
-  height: 60rpx;
-  background: #FFFBF2;
-  margin: 0 auto;
-  margin-top: 26rpx;
-}
-.activity-icon{
-  width: auto;
+.header .date{
+  font-size: 24rpx;
   height: 34rpx;
-  padding: 0 5rpx;
-  background: #FF7664;
-  border:solid 1rpx #FF7664;
- 
-  color: #fff;
-  font-size: 22rpx;
-  text-align: center;
   line-height: 34rpx;
+  float: right;
+  margin-right: 40rpx;
+  margin-top: 18rpx;
+}
+/* canvas部分  */
+.wrap{
+  width: 100%;
+  overflow: hidden;
+}
+.circle-box {
+  text-align: center;
+  margin-top: 20rpx;
+  height: 350rpx;
+}
+
+.circle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+}
+
+.draw_text {
+  position: absolute;
+  top: 180rpx;
+  right: 0;
+  left: 0;
+  margin: auto;
+  font-size: 60rpx;
+}
+.draw_text text{
+  font-size: 28rpx;
+}
+.percent{
+  font-size: 28rpx;
+  color: #999999;
+}
+.information{
+  width: 670rpx;
+  margin: 0 auto;
+  margin-top: 50rpx;
+  padding-bottom: 30rpx;
+  border-bottom: solid 16rpx #f5f5f5;
+  overflow: hidden;
+  padding: 0 40rpx 30rpx 40rpx;
+}
+.information_left,.information_right{
+  width: 320rpx;
+  height: 188rpx;
+  background: #5EA3FE;
+  border-radius:10rpx; 
   float: left;
-  margin-top: 13rpx;
+  box-shadow: 4rpx 5rpx 10rpx #5EA3FE;
+  background: url('http://ylbb-business.oss-cn-beijing.aliyuncs.com/icon-ylbaby15454564.png')no-repeat 230rpx 120rpx #5EA3FE;
+  background-size:104rpx 78rpx; 
+}
+.information_right{
+  margin-left: 30rpx;
+}
+.information_tit{
+  width: 76rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  margin-top: 33rpx;
+  color: #fff;
+  font-size: 28rpx;
+  text-align: right;
+  border-left: solid 2px #fff;
+}
+.information_status{
+  height: 28rpx;
+  font-size: 20rpx;
+  color: #fff;
+  margin-left: 20rpx;
+  margin-top: 11rpx;
+}
+.information_money{
+  color: #fff;
+  font-size: 48rpx;
   margin-left: 20rpx;
 }
-.activity-text{
-  width: auto;
+.information_money text{
+  font-size: 28rpx;
+}
+.showList{
+  width: 100%;
+  clear: both;
+  padding-bottom: 44rpx;
+  border-bottom: solid 16rpx #F5F5F5;
+}
+.List_title{
+  height: 44rpx;
+  line-height: 44rpx;
+  margin: 26rpx 0;
+  font-size: 32rpx;
+  padding-left: 32rpx;
+  border-left: solid 4rpx #5EA3FE;
+}
+.list_title_main{
+  width: 100%;
+  overflow: hidden;
+  border-bottom: solid 2rpx #F5F5F5;
+}
+.list_active{
+  width:750rpx; 
+  margin-top: 8rpx;
+}
+.listNumber{
+  text-align: right;
+  font-size: 20rpx;
+  color: #999999;
+  height: 28rpx;
+  line-height: 28rpx;
+  margin-right: 40rpx;
+}
+.listName{
+  width: 56rpx;
+  height: 40rpx;
   float: left;
-  font-size: 26rpx;
-  color: #f63;
-  height: 60rpx;
-  line-height: 60rpx;
-  margin-left: 18rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #5EA3FE;
+  margin-left: 36rpx;
+    margin-top: 8rpx;
+}
+.listSchedule{
+  width: 600rpx;
+  height: 40rpx;
+  background: #F5F5F5;
+  border-radius: 8rpx;
+  float: left;
+  margin-left: 20rpx;
+  margin-top: 8rpx;
+ 
+}
+.listSchedule_main{
+  width: 80%;
+  background: #509BFB;
+  height: 40rpx;
+  line-height: 40rpx;
+  border-radius: 8rpx;
+  font-size: 20rpx;
+  color: #fff;
+}
+.listSchedule_main text{
+  float: right;
+  padding: 0 10rpx;
+}
+.Listmain{
+  overflow: hidden;
 }
