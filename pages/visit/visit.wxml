@@ -1,12 +1,41 @@
 <view class='content'>
+      <view class='changeNav'>
+          <view class="{{currentTab==1?'cli':''}}" data-current="1" bindtap='switchTab'><text>线索回访</text></view>   
+          <view class="{{currentTab==2?'cli':''}}" data-current="2" bindtap='switchTab'><text>体验回访</text></view> 
+          <view class="{{currentTab==3?'cli':''}}" data-current="3" bindtap='switchTab'><text>会员回访</text></view> 
+      </view>
     <view class='header'>
-        <view class='visit_top'>
+        <view class='visit_top'  wx:if="{{currentTab==1}}">
             <view class='visit_tit'>今日任务</view>
-            <view class='visit_wait'>需回访线索<text>15条</text></view>
-            <view class='visit_solve'>已回访线索<text>0条</text></view>            
+            <view class='visit_wait'>需回访线索<text>{{tab1.todayTask}}条</text></view>
+            <view class='visit_solve'>已回访线索<text>{{tab1.doneTodayTask}}条</text></view>            
         </view>
+        <view class='visit_top'  wx:if="{{currentTab==2}}">
+            <view class='visit_tit'>今日任务</view>
+            <view class='visit_wait'>需回访体验线索<text>15条</text></view>
+            <view class='visit_solve'>已回访体验线索<text>0条</text></view>            
+        </view>
+        <view class='visit_top'  wx:if="{{currentTab==3}}">
+            <view class='visit_tit'>今日任务</view>
+            <view class='visit_wait'>需回访会员用户<text>15人</text></view>
+            <view class='visit_solve'>已回访会员用户<text>0人</text></view>            
+        </view>                
     </view>
-  <view class='visit_list'>
+  <!-- 线索回访 -->
+  <view class='visit_list' wx:if="{{currentTab==1}}">
+       <view class='list_mains' wx:for="{{tab1.todayTaskList}}" wx:key="index">
+            <view class='visit_left'>
+              <view class='visitNames'>{{item.name}}</view>
+              <view class='visitstatus'>获客渠道：{{item.sourceName}}</view>              
+              <view class='visitPhones'>客户电话：{{item.mobilePhone}}</view>
+             </view>  
+             <view class='visit_right'> 
+              <view class='visitIcon visitIcons' wx:if="{{item.followStage}}"><image src='/assets/images/visitIcon.png'></image></view>
+             </view> 
+      </view>
+  </view>
+  <!-- 体验回访 -->
+  <view class='visit_list' wx:if="{{currentTab==2}}">
        <view class='list_main' wx:for="[1]" wx:key="index">
             <view class='visit_left'>
               <view class='visitName'>客户姓名</view>
@@ -17,4 +46,25 @@
              </view> 
       </view>
   </view>
+  <!-- 会员回访 -->
+  <view class='visit_list' wx:if="{{currentTab==3}}">
+       <view class='list_mains' wx:for="[1]" wx:key="index">
+            <view class='visit_lefts'>
+              <view class='usericon'>
+                  <image src='http://www.qqzhi.com/uploadpic/2015-01-11/072917257.jpg'></image>
+              </view>
+            <view class='usertext'> 
+              <view class='visitNames'>客户姓名</view>
+              <view class='visitstatus'>金卡</view>              
+              <view class='visitPhones'>剩余卡次：10次</view>
+             </view>  
+             </view> 
+             <view class='visit_rights'> 
+              <view class='visitIcon visitIcons'><image src='/assets/images/visitIcon.png'></image></view>
+             </view> 
+      </view>
+  </view>
+
+
+
 </view>

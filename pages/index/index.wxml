@@ -1,6 +1,6 @@
 <view>
   <view class='header'>
-      <view class='date'>2018-02-02</view>
+      <view class='date'>{{dates}}</view>
 
       <view class="wrap">
       <view class="circle-box">
@@ -8,9 +8,11 @@
         </canvas>
         <canvas class="circle" style="width:350rpx; height:350rpx;" canvas-id="canvasArcCir">
         </canvas>
+        <canvas class="circle" style="width:350rpx; z-index:9; height:350rpx;" canvas-id="canvasArcpos">
+        </canvas>        
         <view class="draw_text">
-            <view class='money_text'>10000<text>元</text></view>
-            <view class='percent'>本月已完成130%</view>
+            <view class='money_text'>{{form.doneTarget}}<text>元</text></view>
+            <view class='percent'>本月已完成{{percent}}%</view>
         </view>
       </view>
     </view>
@@ -19,12 +21,12 @@
       <view class='information_left'>
           <view class='information_tit'>现状</view>
           <view class='information_status'>本月已完成</view>          
-          <view class='information_money'>5.00<text> 万元</text></view>              
+          <view class='information_money'>{{form.doneTarget}}<text>元</text></view>              
       </view>
       <view class='information_right'>
           <view class='information_tit'>目标</view>
-          <view class='information_status'>本月已完成</view>          
-          <view class='information_money'>8.00<text> 万元</text></view>          
+          <view class='information_status'>本月完成</view>          
+          <view class='information_money'>{{form.target}}<text>元</text></view>          
       </view>      
   </view>  
   <view class='showList'>
@@ -32,39 +34,42 @@
       <view class='List_title'>本月计划</view>
     </view>  
       <view class='Listmain'>
-          <navigator hover-class='cli' url='IndexChange/IndexChange?status=1'>
+          <navigator hover-class='bgw' url='IndexChange/IndexChange?status=1'>
               <view class='list_active'>
-                  <view class='listNumber'>250条线索</view>
+                  <view class='listNumber'>{{forms.cluesNum}}条线索</view>
                   <view class='listName'>线索</view>
                   <view class='listSchedule'>
-                      <view class='listSchedule_main'>
-                          <text>80%</text>
+                      <view class='listSchedule_main  {{clue>0?"":"cli"}}' style='width:{{clue<=13?13:(clue<=100?clue:100)}}%;'>
+                        <view class='main_cc' wx:if="{{clue>100}}" style="width:{{clue-100<100?card-100:100}}%"></view>
+                          <text>{{clue}}%</text>
                       </view>
                   </view>
               </view>
           </navigator>
       </view>
       <view class='Listmain'>
-          <navigator url='IndexChange/IndexChange?status=2'>
+          <navigator hover-class='bgw'  url='IndexChange/IndexChange?status=2'>
               <view class='list_active'>
-                  <view class='listNumber'>100次体验</view>
+                  <view class='listNumber'>{{forms.experienceNum}}次体验</view>
                   <view class='listName'>体验</view>
-                  <view class='listSchedule'>
-                      <view class='listSchedule_main'>
-                          <text>80%</text>
+                  <view class='listSchedule' >
+                      <view class='listSchedule_main  {{sup>0?"":"cli"}}' style='width:{{sup<=13?13:(sup<=100?sup:100)}}%;'>
+                          <view class='main_cc' wx:if="{{sup>100}}" style="width:{{sup-100<100?sup-100:100}}%"></view>
+                          <text>{{sup}}%</text>
                       </view>
                   </view>
               </view>
           </navigator>
       </view>    
       <view class='Listmain'>
-          <navigator url='IndexChange/IndexChange?status=3'>
+          <navigator hover-class='bgw'  url='IndexChange/IndexChange?status=3'>
               <view class='list_active'>
-                  <view class='listNumber'>0次办卡</view>
+                  <view class='listNumber'>{{forms.doCardNum}}次办卡</view>
                   <view class='listName'>办卡</view>
-                  <view class='listSchedule'>
-                      <view class='listSchedule_main'>
-                          <text>80%</text>
+                  <view class='listSchedule' >
+                      <view class='listSchedule_main {{card>0?"":"cli"}}' style='width:{{card<=13?13:(card<=100?card:100)}}%;'>
+                          <view class='main_cc' wx:if="{{card>100}}" style="width:{{card-100<100?card-100:100}}%"></view>
+                          <text>{{card}}%</text>
                       </view>
                   </view>
               </view>

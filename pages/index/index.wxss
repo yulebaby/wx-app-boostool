@@ -4,6 +4,12 @@ page{
   background: url(http://ylbb-business.oss-cn-beijing.aliyuncs.com/indexBG5545451.png) no-repeat  0 368rpx;
   background-size: 100% 224rpx;
 }
+navigator{
+  overflow: hidden;
+}
+.list_active{
+  overflow: hidden;
+}
 .header{
   width: 100%;
   overflow: hidden;
@@ -156,11 +162,34 @@ page{
   border-radius: 8rpx;
   font-size: 20rpx;
   color: #fff;
+  position: relative;
+}
+.cli.cli{
+    background: #F5F5F5;
+}
+.cli.cli text{
+  color: #999;
 }
 .listSchedule_main text{
   float: right;
   padding: 0 10rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
 }
 .Listmain{
   overflow: hidden;
+}
+.main_cc{
+  background: #F97398;
+  line-height: 40rpx;
+  border-radius: 8rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height:40rpx;
+}
+.bgw{
+  background: #fff;
 }

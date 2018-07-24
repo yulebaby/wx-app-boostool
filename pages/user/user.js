@@ -1,66 +1,58 @@
-// pages/user/user.js
+const app = getApp();
+const Http = require('./../../utils/request.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    form:{},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
-  },
+    if (app.globalData.storeId) {
+      this.getData();
+    } else {
+      wx.showToast({
+        title: '登陆失效,请重新登陆',
+        icon: 'none'
+      })
+      setTimeout(function () {
+        wx.redirectTo({
+          url: '../login/login',
+        })
+      }, 1500)
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
+    }
+    this.setData({
+      shopName: app.globalData.userName
+    })
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  getData() {
+    let that = this;
+    wx.showLoading({ title: '加载中...' });
+    /* 查询完成百分比 */
+    Http.post('/user/personalCenter', {
+      storeId: app.globalData.storeId
+    }).then(res => {
+      that.setData({
+        forms: res.result
+      })
+      wx.hideLoading();
+    }, _ => {
+      wx.hideLoading();
+    });
   }
 })

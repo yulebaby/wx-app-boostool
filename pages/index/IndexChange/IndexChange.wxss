@@ -103,7 +103,7 @@ page{
   top: 54rpx;
   right: 0;
   left: 0;
-  font-size: 24rpx;
+  font-size: 22rpx;
   height: 34rpx;
   line-height: 34rpx;
 

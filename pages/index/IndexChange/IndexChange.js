@@ -1,4 +1,6 @@
 // pages/index/IndexChange/IndexChange.js
+const app = getApp();
+const Http = require('../../../utils/request.js');
 let ctx = wx.createCanvasContext('canvasArcCir');
 let ctx1 = wx.createCanvasContext('canvasArcCir1');
 let ctx2 = wx.createCanvasContext('canvasArcCir2');
@@ -10,7 +12,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentTab:1
+    currentTab:1,
+    tab1:{},
+    tab2:{},
+    tab3:{},
+    clue:'',
+    experience:'',
+    personalCenter:'',
+
   },
 
   /**
@@ -19,16 +28,29 @@ Page({
   onLoad: function (options) {
     this.setData({
       currentTab: options.status
-    })
+    });
+    
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.drawCircle();
-    this.drawCircle1();
-    this.drawCircle2(); 
+    if (app.globalData.storeId) {
+      this.getData();
+    } else {
+      wx.showToast({
+        title: '登陆失效,请重新登陆',
+        icon: 'none'
+      })
+      setTimeout(function () {
+        wx.redirectTo({
+          url: '../../login/login',
+        })
+      }, 1500)
+
+    }
     let cxt_arc = wx.createCanvasContext('canvasCircle');
     cxt_arc.setLineWidth(5);
     cxt_arc.setStrokeStyle('#6eacfe');
@@ -58,8 +80,9 @@ Page({
   },
   switchTab(e){
     this.setData({ currentTab: e.currentTarget.dataset.current})
+    this.getData();
   },
-  drawCircle: function () {
+  drawCircle: function (clue) {
     function drawArc(s, e) {
       ctx.setFillStyle('white');
       ctx.clearRect(0, 0, cxtWidth, cxtWidth);
@@ -73,12 +96,12 @@ Page({
       ctx.stroke()
       ctx.draw()
     }
-    let step = 50, startAngle = 1.5 * Math.PI, endAngle = 0;
+    let step = clue, startAngle = 1.5 * Math.PI, endAngle = 0;
     let n = 100;
     endAngle = step * 2 * Math.PI / n + 1.5 * Math.PI;
     drawArc(startAngle, endAngle);
   },
-  drawCircle1: function () {
+  drawCircle1: function (num) {
     function drawArc(s, e) {
       ctx1.setFillStyle('white');
       ctx1.clearRect(0, 0, cxtWidth, cxtWidth);
@@ -92,12 +115,12 @@ Page({
       ctx1.stroke()
       ctx1.draw()
     }
-    let step = 50, startAngle = 1.5 * Math.PI, endAngle = 0;
+    let step = num, startAngle = 1.5 * Math.PI, endAngle = 0;
     let n = 100;
     endAngle = step * 2 * Math.PI / n + 1.5 * Math.PI;
     drawArc(startAngle, endAngle);
   }, 
-  drawCircle2: function () {
+  drawCircle2: function (num) {
     function drawArc(s, e) {
       ctx2.setFillStyle('white');
       ctx2.clearRect(0, 0, cxtWidth, cxtWidth);
@@ -111,9 +134,59 @@ Page({
       ctx2.stroke()
       ctx2.draw()
     }
-    let step = 50, startAngle = 1.5 * Math.PI, endAngle = 0;
+    let step = num, startAngle = 1.5 * Math.PI, endAngle = 0;
     let n = 100;
     endAngle = step * 2 * Math.PI / n + 1.5 * Math.PI;
     drawArc(startAngle, endAngle);
-  } 
+  },
+  getData(){
+    let that = this;
+    if (that.data.currentTab==1){
+      wx.showLoading({ title: '加载中...' });
+      Http.post('/analysis/clue', {
+        storeId: app.globalData.storeId
+      }).then(res => {
+        let clue =  (res.result.doneClueNum / res.result.cluesNum).toFixed(2);
+        that.setData({
+          tab1: res.result,
+          clue:clue
+        })
+        that.drawCircle(clue);
+        wx.hideLoading();
+      }, _ => {
+        wx.hideLoading();
+      });
+    } else if (that.data.currentTab == 2){
+        wx.showLoading({ title: '加载中...' });
+        Http.post('/analysis/experience', {
+          storeId: app.globalData.storeId
+        }).then(res => {
+          let num = (res.result.doneExperienceNum / res.result.experienceNum).toFixed(2);
+          that.setData({
+            tab2: res.result,
+            experience: num
+          })
+          that.drawCircle1(num);
+          wx.hideLoading();
+        }, _ => {
+          wx.hideLoading();
+        });
+    }else if(that.data.currentTab==3){
+        wx.showLoading({ title: '加载中...' });
+        Http.post('/analysis/doCart', {
+          storeId: app.globalData.storeId
+        }).then(res => {
+          let num = (res.result.doneDoCardNum / res.result.doCardNum).toFixed(2);
+          that.setData({
+            tab3: res.result,
+            personalCenter: num
+          })
+          console.log(num);
+          that.drawCircle2(num);
+          wx.hideLoading();
+        }, _ => {
+          wx.hideLoading();
+        });
+    }
+  }
 })

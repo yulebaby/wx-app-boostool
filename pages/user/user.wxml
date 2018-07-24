@@ -4,7 +4,7 @@
           <image src='/assets/images/userIcon.png'></image>
         </view>
         <view class='userName'>
-            门店名称
+            {{shopName}}
         </view>        
     </view>
 
@@ -13,27 +13,27 @@
         <view class='userLists'>
               <view class='list'>
                   <view class='listTit'>线索量</view>
-                  <view class='listNumber'>200</view>
+                  <view class='listNumber'>{{forms.cluesNum}}</view>
               </view>
               <view class='list'>
                   <view class='listTit'>体验量</view>
-                  <view class='listNumber'>200</view>
+                  <view class='listNumber'>{{forms.experienceNum}}</view>
               </view>
               <view class='list'>
                   <view class='listTit'>办卡量</view>
-                  <view class='listNumber'>200</view>
+                  <view class='listNumber'>{{forms.doCardNum}}</view>
               </view>
               <view class='list'>
                   <view class='listTit'>平均卡单价</view>
-                  <view class='listNumber'>200</view>
+                  <view class='listNumber'>{{forms.avgPrice}}</view>
               </view>
               <view class='list'>
                   <view class='listTit'>体验转化率</view>
-                  <view class='listNumber'>20%</view>
+                  <view class='listNumber'>{{forms.experienceTran*100}}%</view>
               </view>
               <view class='list'>
                   <view class='listTit'>办卡成功率</view>
-                  <view class='listNumber'>20%</view>
+                  <view class='listNumber'>{{forms.cardTran*100}}%</view>
               </view>                                                                      
         </view>
     </view>

@@ -1,3 +1,5 @@
+const app = getApp();
+const Http = require('./../../utils/request.js');
 // pages/login/login.js
 Page({
 
@@ -29,41 +31,34 @@ Page({
   onShow: function () {
   
   },
+login(){
+  let that = this;
+  wx.showLoading({ title: '加载中...' });
+  Http.post('/user/login', { 
+    userName: that.data.userName,
+    password:that.data.passWord
+   }).then(res => {
+      if(res.code==1000){
+        app.globalData.userName = res.result.userName;
+        app.globalData.storeName = res.result.storeName; 
+        app.globalData.storeId = res.result.storeId;
+        wx.switchTab({
+          url: '../index/index'
+        })    
+      }else{
+        wx.showModal({
+          title: '登陆失败',
+          content: res.info,
+          showCancel:false
+        })
+      }
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+    wx.hideLoading();
+  }, _ => {
+    wx.hideLoading();
+  });
+},
   
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   userName(e){
     this.setData({
       userName:e.detail.value

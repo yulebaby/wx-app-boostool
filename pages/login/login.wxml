@@ -14,8 +14,8 @@
   </view>
   <view>
       <image src='/assets/images/password_icon.png'></image>
-      <input placeholder="请输入密码" bindinput="passWord"  />
+      <input placeholder="请输入密码" password='true' bindinput="passWord"  />
   </view>
-      <button class='landing' hover-class='cli' type="primary">登陆</button>
+      <button class='landing' hover-class='cli' bindtap='login' type="primary">登陆</button>
   </view>    
 </view>
