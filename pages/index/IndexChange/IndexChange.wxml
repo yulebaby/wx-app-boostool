@@ -1,13 +1,13 @@
-<view class='content'>
+<view class='content'  bindtouchstart = "handletouchtart" bindtouchmove="handletouchmove" bindtouchend="handletouchend">
       <view class='changeNav'>
-          <view class="{{currentTab==1?'cli':''}}" data-current="1" bindtap='switchTab'><text>线索</text></view>   
-          <view class="{{currentTab==2?'cli':''}}" data-current="2" bindtap='switchTab'><text>体验</text></view> 
-          <view class="{{currentTab==3?'cli':''}}" data-current="3" bindtap='switchTab'><text>办卡</text></view> 
+          <view class="{{currentTab==0?'cli':''}}" data-current="0" bindtap='switchTab'><text>线索</text></view>   
+          <view class="{{currentTab==1?'cli':''}}" data-current="1" bindtap='switchTab'><text>体验</text></view> 
+          <view class="{{currentTab==2?'cli':''}}" data-current="2" bindtap='switchTab'><text>办卡</text></view> 
       </view>
       <!-- 线索
        -->
-      <view class='clue' hidden="{{currentTab!=1}}">
-          <view class='clueTop'>
+            <view hidden="{{currentTab!=0}}">   
+          <view class='clueTop'  >
                 <view class='clueTop_left'>
                     <view class='leftTop'>已完成<text>{{tab1.doneClueNum}}条</text></view>
                     <view class='leftBottom'>线索任务{{tab1.cluesNum}}条</view>
@@ -15,7 +15,7 @@
                 <view class='clueTop_right'>
                             <view class="wrap">
                               <view class="circle-box">
-                                <canvas class="circle" style=" width:144rpx; height:144rpx;" canvas-id="canvasCircle">
+                                <canvas class="circle" style=" width:144rpx; height:144rpx; " canvas-id="canvasCircle">
                                 </canvas>
                                 <canvas class="circle" style=" z-index:5; width:144rpx; height:144rpx;" canvas-id="canvasArcCir">
                                 </canvas>
@@ -43,12 +43,12 @@
                   <text>门店活动线索</text><text>{{tab1.doneStoreClueNum}}条</text>
               </view>
           </view>
-      </view>
+       </view>
 <!-- 体验  -->
-<view class='clue' hidden="{{currentTab!=2}}">
-          <view class='clueTop'>
+         <view hidden="{{currentTab!=1}}">
+          <view class='clueTop' >
                 <view class='clueTop_left'>
-                    <view class='leftTop'>已完成<text>{{tab2.doneExperienceNum}}条</text> ({{experience}}%)</view>
+                    <view class='leftTop'>已完成<text>{{tab2.doneExperienceNum}}条</text> </view>
                     <view class='leftBottom'>体验任务{{tab2.experienceNum}}条</view>
                 </view>
                 <view class='clueTop_right'>
@@ -65,13 +65,13 @@
                             </view>
                 </view>                
           </view>
-      </view>
+ </view>
 <!--  办卡   -->
-<view class='clue' hidden="{{currentTab!=3}}">
-          <view class='clueTop'>
+    <view hidden="{{currentTab!=2}}">
+          <view class='clueTop' >
                 <view class='clueTop_left'>
-                    <view class='leftTop'>已完成<text>{{tab3.doneDoCardNum}}条</text> ({{personalCenter}}%)</view>
-                    <view class='leftBottom'>办卡任务{{tab3.doCardNum}}条</view>
+                    <view class='leftTop'>已完成<text>{{tab3.doneDoCardNum}}张</text> </view>
+                    <view class='leftBottom'>办卡任务{{tab3.doCardNum}}张</view>
                 </view>
                 <view class='clueTop_right'>
                             <view class="wrap">
@@ -100,7 +100,7 @@
               </view> 
 
           </view>
-      </view>
+</view>
 
 
 

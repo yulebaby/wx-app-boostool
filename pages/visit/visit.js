@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentTab: 1,
+    currentTab: 0,
     tab1:{},
     tab2: {},
     tab3: {}        
@@ -37,7 +37,7 @@ Page({
   },
   getData() {
     let that = this;
-    if (that.data.currentTab == 1) {
+    if (that.data.currentTab == 0) {
       wx.showLoading({ title: '加载中...' });
       Http.post('/returnVisit/clueVisit', {
         storeId: app.globalData.storeId
@@ -50,34 +50,34 @@ Page({
       }, _ => {
         wx.hideLoading();
       });
-    } else if (that.data.currentTab == 2) {
+    } else if (that.data.currentTab == 1) {
       wx.showLoading({ title: '加载中...' });
-      Http.post('/analysis/experience', {
+      Http.post('/returnVisit/experienceVisit', {
         storeId: app.globalData.storeId
       }).then(res => {
-        let num = (res.result.doneExperienceNum / res.result.experienceNum).toFixed(2);
         that.setData({
           tab2: res.result,
-          experience: num
         })
         wx.hideLoading();
       }, _ => {
         wx.hideLoading();
       });
-    } else if (that.data.currentTab == 3) {
+    } else if (that.data.currentTab == 2) {
       wx.showLoading({ title: '加载中...' });
-      Http.post('/analysis/doCart', {
+      Http.post('/returnVisit/memberVisit', {
         storeId: app.globalData.storeId
       }).then(res => {
-        let num = (res.result.doneDoCardNum / res.result.doCardNum).toFixed(2);
         that.setData({
           tab3: res.result,
-          personalCenter: num
         })
         wx.hideLoading();
       }, _ => {
         wx.hideLoading();
       });
     }
+  },
+  switchChange(e) {
+    this.setData({ currentTab: e.detail.current });
+    this.getData();
   }
 })

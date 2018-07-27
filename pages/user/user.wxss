@@ -23,7 +23,7 @@ image{
   float: left;
 }
 .userName{
-  width: auto;
+  width: 510rpx;
   height: 56rpx;
   line-height: 56rpx;
   font-size:40rpx;
@@ -65,6 +65,7 @@ image{
   background: url('http://ylbb-business.oss-cn-beijing.aliyuncs.com/icon-ylbaby15454564.png')no-repeat 110rpx 120rpx #5EA3FE;
   background-size:104rpx 78rpx; 
   float: left;
+  box-shadow: -2rpx 2rpx 5rpx #5EA3FE;
 }
 .listTit{
   height: 30rpx;
@@ -86,17 +87,16 @@ image{
   width: 100%;
   text-align: center;
   position: fixed;
-  bottom: 50rpx;
+  bottom: 12rpx;
 }
 .footer-phone{
    color: rgb(150, 150, 150);
-  font-size: 26rpx;
-  line-height: 36rpx;
+  font-size: 20rpx;
+  line-height: 28rpx;
 
 }
 .footer-time{
   color: rgb(150, 150, 150);
-  font-size: 23rpx;
-  line-height: 23rpx;
-  padding-top: 15rpx;
+  font-size: 20rpx;
+  line-height: 28rpx;
 }

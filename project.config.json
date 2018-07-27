@@ -1,5 +1,8 @@
 {
 	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
@@ -8,14 +11,10 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.90",
+	"libVersion": "2.2.0",
 	"appid": "wx07c52dc88a9a834c",
-	"projectname": "%E9%B1%BC%E4%B9%90%E8%B4%9D%E8%B4%9D",
-	"svr": "",
-	"client": "",
-	"qcloudRoot": "",
-	"miniprogramRoot": "",
-	"pluginRoot": "",
+	"projectname": "%E9%B1%BC%E4%B9%90%E8%80%81%E6%9D%BF%E5%B7%A5%E5%85%B7",
+	"isGameTourist": false,
 	"condition": {
 		"search": {
 			"current": -1,
@@ -30,7 +29,7 @@
 			"list": []
 		},
 		"game": {
-			"current": -1,
+			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
@@ -38,27 +37,14 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "登陆",
-					"pathName": "pages/login/login",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "回访",
-					"pathName": "pages/visit/visit",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "个人中心",
-					"pathName": "pages/user/user",
-					"query": ""
-				},
-				{
-					"id": 3,
 					"name": "内页",
 					"pathName": "pages/index/IndexChange/IndexChange",
-					"query": "status=3"
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index"
 				}
 			]
 		}

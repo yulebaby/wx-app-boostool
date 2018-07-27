@@ -12,14 +12,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentTab:1,
+    currentTab:0,
     tab1:{},
     tab2:{},
     tab3:{},
     clue:'',
     experience:'',
     personalCenter:'',
-
+    lastX: 0,          //滑动开始x轴位置
+    btns:''
   },
 
   /**
@@ -41,7 +42,7 @@ Page({
       this.getData();
     } else {
       wx.showToast({
-        title: '登陆失效,请重新登陆',
+        title: '请登陆',
         icon: 'none'
       })
       setTimeout(function () {
@@ -141,27 +142,27 @@ Page({
   },
   getData(){
     let that = this;
-    if (that.data.currentTab==1){
+    if (that.data.currentTab==0){
       wx.showLoading({ title: '加载中...' });
       Http.post('/analysis/clue', {
         storeId: app.globalData.storeId
       }).then(res => {
-        let clue =  (res.result.doneClueNum / res.result.cluesNum).toFixed(2);
+        let clue =  ((res.result.doneClueNum / res.result.cluesNum)*100).toFixed(2);
         that.setData({
           tab1: res.result,
           clue:clue
         })
-        that.drawCircle(clue);
+          that.drawCircle(clue);
         wx.hideLoading();
       }, _ => {
         wx.hideLoading();
       });
-    } else if (that.data.currentTab == 2){
+    } else if (that.data.currentTab == 1){
         wx.showLoading({ title: '加载中...' });
         Http.post('/analysis/experience', {
           storeId: app.globalData.storeId
         }).then(res => {
-          let num = (res.result.doneExperienceNum / res.result.experienceNum).toFixed(2);
+          let num = ((res.result.doneExperienceNum / res.result.experienceNum)*100).toFixed(2);
           that.setData({
             tab2: res.result,
             experience: num
@@ -171,22 +172,61 @@ Page({
         }, _ => {
           wx.hideLoading();
         });
-    }else if(that.data.currentTab==3){
+    }else if(that.data.currentTab==2){
         wx.showLoading({ title: '加载中...' });
         Http.post('/analysis/doCart', {
           storeId: app.globalData.storeId
         }).then(res => {
-          let num = (res.result.doneDoCardNum / res.result.doCardNum).toFixed(2);
+          let num = ((res.result.doneDoCardNum / res.result.doCardNum)*100).toFixed(2);
           that.setData({
             tab3: res.result,
             personalCenter: num
           })
-          console.log(num);
           that.drawCircle2(num);
           wx.hideLoading();
         }, _ => {
           wx.hideLoading();
         });
     }
+  },
+  switchChange(e) {
+    this.setData({ currentTab: e.detail.current });
+    this.getData();
+  },
+  handletouchtart: function (event) {
+       this.data.lastX = event.touches[0].pageX;
+  },
+  handletouchmove(event){
+      let currentX = event.touches[0].pageX;
+      let tx = currentX - this.data.lastX;
+    if (tx>30){
+      this.setData({
+        btns: 'left',
+      })
+    }
+    if (tx < -30) {
+      this.setData({
+        btns:  'right',
+      })
+    }
+    this.setData({
+      lastX: currentX
+    })
+  },
+  handletouchend(){
+    if(this.data.btns=='left'){
+      if(this.data.currentTab > 0){
+          this.setData({
+            currentTab: this.data.currentTab - 1,
+          })
+      }
+    } else if (this.data.btns == 'right'){
+        if (this.data.currentTab < 2) {
+          this.setData({
+            currentTab: parseInt(this.data.currentTab) + 1,
+          })
+        }
+    }
+    this.getData();
   }
 })

@@ -19,13 +19,13 @@ Page({
     let year = date.getFullYear();
     let month  = date.getMonth()+1;
     let day = date.getDate();
-    if (month<10){
-      month = '0'+month;
-    }
-    if (day < 10) {
-      day = '0' + day;
-    }    
-    let dates = year+'-'+month+'-'+day;
+    // if (month<10){
+    //   month = '0'+month;
+    // }
+    // if (day < 10) {
+    //   day = '0' + day;
+    // }    
+    let dates = year+'年'+month+'月';
 
     this.setData({
       dates:dates
@@ -36,7 +36,7 @@ Page({
       this.getData();
     }else{
       wx.showToast({
-        title: '登陆失效,请重新登陆',
+        title: '请登陆',
         icon: 'none'
       }) 
      setTimeout(function(){
@@ -47,11 +47,11 @@ Page({
 
     }
     let cxt_arc = wx.createCanvasContext('canvasCircle');
-    cxt_arc.setLineWidth(15);
+    cxt_arc.setLineWidth(18);
     cxt_arc.setStrokeStyle('#eaeaea');
     cxt_arc.setLineCap('round');
     cxt_arc.beginPath();
-    cxt_arc.arc(cxtWidth / 2, cxtWidth / 2, cxtWidth / 2-15, 0, 2 * Math.PI, false);
+    cxt_arc.arc(cxtWidth / 2, cxtWidth / 2, cxtWidth / 2-16, 0, 2 * Math.PI, false);
     cxt_arc.stroke();
     cxt_arc.draw();
   },
@@ -62,8 +62,8 @@ Page({
       ctx.setFillStyle('white');
       ctx.clearRect(0, 0, cxtWidth, cxtWidth);
       ctx.draw();
-      var x = cxtWidth / 2, y = cxtWidth / 2, radius = cxtWidth / 2-15;
-      ctx.setLineWidth(15);
+      var x = cxtWidth / 2, y = cxtWidth / 2, radius = cxtWidth / 2-16;
+      ctx.setLineWidth(12);
       ctx.setStrokeStyle('#5EA3FE');
       ctx.setLineCap('round');
       ctx.beginPath();
@@ -75,9 +75,9 @@ Page({
       ctxpos.setFillStyle('white');
       ctxpos.clearRect(0, 0, cxtWidth, cxtWidth);
       ctxpos.draw();
-      var x = cxtWidth / 2, y = cxtWidth / 2, radius = cxtWidth / 2 - 15;
-      ctxpos.setLineWidth(15);
-      ctxpos.setStrokeStyle('#F97398');
+      var x = cxtWidth / 2, y = cxtWidth / 2, radius = cxtWidth / 2 - 16;
+      ctxpos.setLineWidth(13);
+      ctxpos.setStrokeStyle('#FFDF3B');
       ctxpos.setLineCap('round');
       ctxpos.beginPath();
       ctxpos.arc(x, y, radius, s, e, false);
@@ -104,8 +104,9 @@ Page({
       storeId: app.globalData.storeId 
      }).then(res => {
        if(res.code==1000){
-       let percent = (res.result.doneTarget / res.result.target).toFixed(2);
-        //  let percent = parseInt(res.result.doneTarget / res.result.target*100);
+         let percent = ((res.result.doneTarget / res.result.target) * 100).toFixed(2);
+ 
+       console.log(percent);
         that.setData({
           form:res.result,
           percent: percent
@@ -114,7 +115,7 @@ Page({
        }else{
          wx.showModal({
            title: '网络错误',
-           content: '请刷新重试',
+           content: '请检查网络',
            showCancel: false
          })
        }
@@ -127,9 +128,9 @@ Page({
       storeId: app.globalData.storeId
     }).then(res => {
       if (res.code == 1000) {
-        let cluenum = (res.result.doneClueNum / res.result.cluesNum).toFixed(2);
-        let supnum = (res.result.doneExperienceNum / res.result.experienceNum).toFixed(2);
-        let cardnum = (res.result.doneDoCardNum / res.result.doCardNum).toFixed(2);        
+          let cluenum = ((res.result.doneClueNum / res.result.cluesNum) * 100).toFixed(2);
+        let supnum = ((res.result.doneExperienceNum / res.result.experienceNum) * 100).toFixed(2);
+        let cardnum = ((res.result.doneDoCardNum / res.result.doCardNum) * 100).toFixed(2);        
           that.setData({
             forms:res.result,
             clue : cluenum,
@@ -139,7 +140,7 @@ Page({
       } else {
         wx.showModal({
           title: '网络错误',
-          content: '请刷新重试',
+          content: '请检查网络',
           showCancel: false
         })
       }
@@ -147,11 +148,16 @@ Page({
     }, _ => {
       wx.showModal({
         title: '网络错误',
-        content: '请刷新重试',
+        content: '请检查网络',
         showCancel: false
       })
       wx.hideLoading();
     });
 
+  },
+  qk(){
+    wx.navigateTo({
+      url: './indexChange/indexChange',
+    })
   }
 })

@@ -7,6 +7,7 @@ Page({
    */
   data: {
     form:{},
+    storeName:''
   },
 
   /**
@@ -24,7 +25,7 @@ Page({
       this.getData();
     } else {
       wx.showToast({
-        title: '登陆失效,请重新登陆',
+        title: '请登陆',
         icon: 'none'
       })
       setTimeout(function () {
@@ -35,7 +36,7 @@ Page({
 
     }
     this.setData({
-      shopName: app.globalData.userName
+      storeName: app.globalData.storeName
     })
 
 
@@ -54,5 +55,10 @@ Page({
     }, _ => {
       wx.hideLoading();
     });
+  },
+  makePhone(e) {
+    wx.makePhoneCall({
+      phoneNumber: e.target.dataset.num
+    })
   }
 })

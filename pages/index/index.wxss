@@ -43,11 +43,12 @@ navigator{
 
 .draw_text {
   position: absolute;
-  top: 180rpx;
+  top: 195rpx;
   right: 0;
   left: 0;
   margin: auto;
-  font-size: 60rpx;
+  font-size: 56rpx;
+  
 }
 .draw_text text{
   font-size: 28rpx;
@@ -66,13 +67,13 @@ navigator{
   padding: 0 40rpx 30rpx 40rpx;
 }
 .information_left,.information_right{
+  color: #5EA3FE;
   width: 320rpx;
   height: 188rpx;
-  background: #5EA3FE;
   border-radius:10rpx; 
   float: left;
-  box-shadow: 4rpx 5rpx 10rpx #5EA3FE;
-  background: url('http://ylbb-business.oss-cn-beijing.aliyuncs.com/icon-ylbaby15454564.png')no-repeat 230rpx 120rpx #5EA3FE;
+  box-shadow: 2rpx 2rpx 5rpx #5EA3FE;
+  background: url('http://ylbb-business.oss-cn-beijing.aliyuncs.com/icon-ylbaby1545456411.png')no-repeat 230rpx 120rpx #fff;
   background-size:104rpx 78rpx; 
 }
 .information_right{
@@ -83,22 +84,19 @@ navigator{
   height: 30rpx;
   line-height: 30rpx;
   margin-top: 33rpx;
-  color: #fff;
   font-size: 28rpx;
   text-align: right;
-  border-left: solid 2px #fff;
+  border-left: solid 2px #5EA3FE;
 }
 .information_status{
   height: 28rpx;
   font-size: 20rpx;
-  color: #fff;
-  margin-left: 20rpx;
+  margin-left: 22rpx;
   margin-top: 11rpx;
 }
 .information_money{
-  color: #fff;
   font-size: 48rpx;
-  margin-left: 20rpx;
+  margin-left: 22rpx;
 }
 .information_money text{
   font-size: 28rpx;
@@ -135,7 +133,7 @@ navigator{
   margin-right: 40rpx;
 }
 .listName{
-  width: 56rpx;
+  width: 112rpx;
   height: 40rpx;
   float: left;
   text-align: center;
@@ -145,7 +143,7 @@ navigator{
     margin-top: 8rpx;
 }
 .listSchedule{
-  width: 600rpx;
+  width: 542rpx;
   height: 40rpx;
   background: #F5F5F5;
   border-radius: 8rpx;
@@ -180,16 +178,24 @@ navigator{
 }
 .Listmain{
   overflow: hidden;
+  margin-top: 12rpx;
 }
 .main_cc{
-  background: #F97398;
+  background: #FFDF3B;
   line-height: 40rpx;
   border-radius: 8rpx;
   position: absolute;
   top: 0;
   left: 0;
   height:40rpx;
+
 }
 .bgw{
   background: #fff;
+}
+.qk{
+  float: right;
+  margin-right: 32rpx;
+  font-size: 28rpx;
+  color:#5EA3FE;
 }

@@ -4,7 +4,7 @@
           <image src='/assets/images/userIcon.png'></image>
         </view>
         <view class='userName'>
-            {{shopName}}
+            {{storeName}}
         </view>        
     </view>
 
