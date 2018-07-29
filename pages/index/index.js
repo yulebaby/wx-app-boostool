@@ -32,30 +32,56 @@ Page({
     })
   },
   onReady: function () {
-    if (app.globalData.storeId){
+    // if (app.globalData.storeId){
+    //   this.getData();
+    // }else{
+    //   wx.showToast({
+    //     title: '请登陆',
+    //     icon: 'none'
+    //   }) 
+    //  setTimeout(function(){
+    //    wx.redirectTo({
+    //      url: '../login/login',
+    //    })
+    //  },1500) 
+
+    // }
+    // let cxt_arc = wx.createCanvasContext('canvasCircle');
+    // cxt_arc.setLineWidth(18);
+    // cxt_arc.setStrokeStyle('#eaeaea');
+    // cxt_arc.setLineCap('round');
+    // cxt_arc.beginPath();
+    // cxt_arc.arc(cxtWidth / 2, cxtWidth / 2, cxtWidth / 2-16, 0, 2 * Math.PI, false);
+    // cxt_arc.stroke();
+    // cxt_arc.draw();
+  },
+  onShow: function () {
+    if (app.globalData.storeId) {
       this.getData();
-    }else{
+    } else {
       wx.showToast({
         title: '请登陆',
         icon: 'none'
-      }) 
-     setTimeout(function(){
-       wx.redirectTo({
-         url: '../login/login',
-       })
-     },1500) 
+      })
+      setTimeout(function () {
+        wx.redirectTo({
+          url: '../login/login',
+        })
+      }, 1500)
 
     }
     let cxt_arc = wx.createCanvasContext('canvasCircle');
-    cxt_arc.setLineWidth(18);
+    cxt_arc.setLineWidth(18);   
     cxt_arc.setStrokeStyle('#eaeaea');
     cxt_arc.setLineCap('round');
     cxt_arc.beginPath();
-    cxt_arc.arc(cxtWidth / 2, cxtWidth / 2, cxtWidth / 2-16, 0, 2 * Math.PI, false);
+    cxt_arc.arc(cxtWidth / 2, cxtWidth / 2, cxtWidth / 2 - 16, 0, 2 * Math.PI, false);
     cxt_arc.stroke();
     cxt_arc.draw();
   },
-
+  renovate(){
+    this.getData();
+  },
   //canvas
   drawCircle: function (data) {
     function drawArc(s, e) {
@@ -159,5 +185,16 @@ Page({
     wx.navigateTo({
       url: './indexChange/indexChange',
     })
-  }
+  },
+  //下拉刷新
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    this.getData();
+    //模拟加载
+    setTimeout(function () {
+      // complete
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+    }, 1500);
+  },
 })

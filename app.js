@@ -11,6 +11,7 @@ App({
     userName:'',
     storeName:'',
     storeId:'1458'
-  }
+  },
+  
 
 })

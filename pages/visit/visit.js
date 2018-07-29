@@ -43,6 +43,22 @@ Page({
         storeId: app.globalData.storeId
       }).then(res => {
         let clue = (res.result.doneClueNum / res.result.cluesNum).toFixed(2);
+        console.log(res.result.doneTodayTaskList.length);
+      
+        for (let i = 0; i < res.result.doneTodayTaskList.length; i++){
+          let str = res.result.doneTodayTaskList[i].mobilePhone;
+          str = str.split('');
+          str.splice(3, 4, '****');
+          str = str.join('');
+          res.result.doneTodayTaskList[i].mobilePhone = str;
+        }
+        for (let i = 0; i < res.result.todayTaskList.length; i++) {
+          let str = res.result.todayTaskList[i].mobilePhone;
+          str = str.split('');
+          str.splice(3, 4, '****');
+          str = str.join('');
+          res.result.todayTaskList[i].mobilePhone = str;
+        }
         that.setData({
           tab1: res.result,
         })
@@ -55,6 +71,20 @@ Page({
       Http.post('/returnVisit/experienceVisit', {
         storeId: app.globalData.storeId
       }).then(res => {
+        for (let i = 0; i < res.result.doneTodayTaskList.length; i++) {
+          let str = res.result.doneTodayTaskList[i].mobilePhone;
+          str = str.split('');
+          str.splice(3, 4, '****');
+          str = str.join('');
+          res.result.doneTodayTaskList[i].mobilePhone = str;
+        }
+        for (let i = 0; i < res.result.todayTaskList.length; i++) {
+          let str = res.result.todayTaskList[i].mobilePhone;
+          str = str.split('');
+          str.splice(3, 4, '****');
+          str = str.join('');
+          res.result.todayTaskList[i].mobilePhone = str;
+        }
         that.setData({
           tab2: res.result,
         })
