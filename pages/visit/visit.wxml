@@ -8,6 +8,7 @@
   <!-- 线索回访 -->
       <swiper current="{{currentTab}}" class="swiper-box" duration="300" bindchange="switchChange">
       <swiper-item>
+   <view class='mains'>  
    <view class='header'>
         <view class='visit_top'>
             <view class='visit_tit'>今日任务</view>
@@ -34,14 +35,16 @@
              </view>              
       </view>      
   </view>
+  </view> 
   </swiper-item>
   <!-- 体验回访 -->
       <swiper-item>
+   <view class='mains'>      
      <view class='header'>
                 <view class='visit_top'  >
             <view class='visit_tit'>今日任务</view>
-            <view class='visit_wait'>需回访体验用户<text>{{tab2.todayTask}}条</text></view>
-            <view class='visit_solve'>已回访体验用户<text>{{tab2.doneTodayTask}}条</text></view>            
+            <view class='visit_wait'>需回访体验用户<text>{{tab2.todayTask}}人</text></view>
+            <view class='visit_solve'>已回访体验用户<text>{{tab2.doneTodayTask}}人</text></view>            
         </view>
      </view>
       <view class='visit_list' >
@@ -51,8 +54,7 @@
               <view class='visitPhone'>客户电话：{{item.mobilePhone}}</view>
              </view>  
       </view>
-  </view>
-  <view class='visit_list'>
+
        <view class='list_main' wx:for="{{tab2.doneTodayTaskList}}" wx:key="index">
             <view class='visit_lefts'>
               <view class='visitName'>{{item.name}}</view>
@@ -63,9 +65,11 @@
              </view> 
       </view>
   </view>
+  </view>
 </swiper-item>
   <!-- 会员回访 -->
   <swiper-item>
+     <view class='mains'>
          <view class='header'>
             <view class='visit_top' >
                 <view class='visit_tit'>今日任务</view>
@@ -102,6 +106,7 @@
               <view class='visitIcon visitIcons'><image src='/assets/images/visitIcon.png'></image></view>
              </view> 
       </view>
+  </view>
   </view>
   </swiper-item>
 </swiper>

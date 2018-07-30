@@ -116,7 +116,7 @@ swiper-item{
   top: 54rpx;
   right: 0;
   left: 0;
-  font-size: 22rpx;
+  font-size: 19rpx;
   height: 34rpx;
   line-height: 34rpx;
 

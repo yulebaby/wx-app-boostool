@@ -20,7 +20,8 @@ Page({
     experience:'',
     personalCenter:'',
     lastX: 0,          //滑动开始x轴位置
-    btns:''
+    btns:'',
+    meanMonsy:''
   },
 
   /**
@@ -178,9 +179,12 @@ Page({
           storeId: app.globalData.storeId
         }).then(res => {
           let num = ((res.result.doneDoCardNum / res.result.doCardNum)*100).toFixed(2);
+          let meanMonsy = parseInt(res.result.doCartList[res.result.doCartList.length - 1].total / res.result.doCartList[res.result.doCartList.length - 1].cnt);
+          meanMonsy = meanMonsy ? meanMonsy : 0;
           that.setData({
             tab3: res.result,
-            personalCenter: num
+            personalCenter: num,
+            meanMonsy: meanMonsy
           })
           that.drawCircle2(num);
           wx.hideLoading();
@@ -195,16 +199,19 @@ Page({
   },
   handletouchtart: function (event) {
        this.data.lastX = event.touches[0].pageX;
+    this.setData({
+      btns: '',
+    })
   },
   handletouchmove(event){
       let currentX = event.touches[0].pageX;
       let tx = currentX - this.data.lastX;
-    if (tx>30){
+    if (tx>25){
       this.setData({
         btns: 'left',
       })
     }
-    if (tx < -30) {
+    if (tx < -25) {
       this.setData({
         btns:  'right',
       })
@@ -215,18 +222,22 @@ Page({
   },
   handletouchend(){
     if(this.data.btns=='left'){
+      
       if(this.data.currentTab > 0){
+        this.getData();
           this.setData({
             currentTab: this.data.currentTab - 1,
           })
       }
     } else if (this.data.btns == 'right'){
+     
         if (this.data.currentTab < 2) {
+          this.getData();
           this.setData({
             currentTab: parseInt(this.data.currentTab) + 1,
           })
         }
     }
-    this.getData();
+    
   }
 })

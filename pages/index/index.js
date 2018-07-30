@@ -19,69 +19,54 @@ Page({
     let year = date.getFullYear();
     let month  = date.getMonth()+1;
     let day = date.getDate();
-    // if (month<10){
-    //   month = '0'+month;
-    // }
-    // if (day < 10) {
-    //   day = '0' + day;
-    // }    
-    let dates = year+'年'+month+'月';
-
+    console.log(day);
+    let dates = year + '年' + month + '月' + day+'日';
+    let days = getCountDays() - day ;
     this.setData({
-      dates:dates
+      dates:dates,
+      days: days
     })
+
+    function getCountDays() {
+      var curDate = new Date();
+      /* 获取当前月份 */
+      var curMonth = curDate.getMonth();
+      /*  生成实际的月份: 由于curMonth会比实际月份小1, 故需加1 */
+      curDate.setMonth(curMonth + 1);
+      /* 将日期设置为0, 这里为什么要这样设置, 我不知道原因, 这是从网上学来的 */
+      curDate.setDate(0);
+      /* 返回当月的天数 */
+      return curDate.getDate();
+    }
+
+    
+
   },
   onReady: function () {
-    // if (app.globalData.storeId){
-    //   this.getData();
-    // }else{
-    //   wx.showToast({
-    //     title: '请登陆',
-    //     icon: 'none'
-    //   }) 
-    //  setTimeout(function(){
-    //    wx.redirectTo({
-    //      url: '../login/login',
-    //    })
-    //  },1500) 
-
-    // }
-    // let cxt_arc = wx.createCanvasContext('canvasCircle');
-    // cxt_arc.setLineWidth(18);
-    // cxt_arc.setStrokeStyle('#eaeaea');
-    // cxt_arc.setLineCap('round');
-    // cxt_arc.beginPath();
-    // cxt_arc.arc(cxtWidth / 2, cxtWidth / 2, cxtWidth / 2-16, 0, 2 * Math.PI, false);
-    // cxt_arc.stroke();
-    // cxt_arc.draw();
-  },
-  onShow: function () {
-    if (app.globalData.storeId) {
+    if (app.globalData.storeId){
       this.getData();
-    } else {
+    }else{
       wx.showToast({
         title: '请登陆',
         icon: 'none'
-      })
-      setTimeout(function () {
-        wx.redirectTo({
-          url: '../login/login',
-        })
-      }, 1500)
+      }) 
+     setTimeout(function(){
+       wx.redirectTo({
+         url: '../login/login',
+       })
+     },1500) 
 
     }
     let cxt_arc = wx.createCanvasContext('canvasCircle');
-    cxt_arc.setLineWidth(18);   
+    cxt_arc.setLineWidth(18);
     cxt_arc.setStrokeStyle('#eaeaea');
     cxt_arc.setLineCap('round');
     cxt_arc.beginPath();
-    cxt_arc.arc(cxtWidth / 2, cxtWidth / 2, cxtWidth / 2 - 16, 0, 2 * Math.PI, false);
+    cxt_arc.arc(cxtWidth / 2, cxtWidth / 2, cxtWidth / 2-16, 0, 2 * Math.PI, false);
     cxt_arc.stroke();
     cxt_arc.draw();
   },
-  renovate(){
-    this.getData();
-  },
+
   //canvas
   drawCircle: function (data) {
     function drawArc(s, e) {
@@ -154,7 +139,7 @@ Page({
       storeId: app.globalData.storeId
     }).then(res => {
       if (res.code == 1000) {
-          let cluenum = ((res.result.doneClueNum / res.result.cluesNum) * 100).toFixed(2);
+          let cluenum =((res.result.doneClueNum / res.result.cluesNum) * 100).toFixed(2);
         let supnum = ((res.result.doneExperienceNum / res.result.experienceNum) * 100).toFixed(2);
         let cardnum = ((res.result.doneDoCardNum / res.result.doCardNum) * 100).toFixed(2);        
           that.setData({

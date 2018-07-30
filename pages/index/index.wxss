@@ -22,6 +22,14 @@ navigator{
   margin-right: 40rpx;
   margin-top: 18rpx;
 }
+.header .date1{
+  font-size: 24rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  position: absolute;
+  top: 52rpx;
+  right: 40rpx;
+}
 /* canvas部分  */
 .wrap{
   width: 100%;

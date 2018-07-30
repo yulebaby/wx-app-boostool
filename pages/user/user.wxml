@@ -29,11 +29,11 @@
               </view>
               <view class='list'>
                   <view class='listTit'>体验转化率</view>
-                  <view class='listNumber'>{{forms.experienceTran*100}}%</view>
+                  <view class='listNumber'>{{forms.experienceTran}}%</view>
               </view>
               <view class='list'>
                   <view class='listTit'>办卡成功率</view>
-                  <view class='listNumber'>{{forms.cardTran*100}}%</view>
+                  <view class='listNumber'>{{forms.cardTran}}%</view>
               </view>                                                                      
         </view>
     </view>

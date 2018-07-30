@@ -48,8 +48,8 @@
          <view hidden="{{currentTab!=1}}">
           <view class='clueTop' >
                 <view class='clueTop_left'>
-                    <view class='leftTop'>已完成<text>{{tab2.doneExperienceNum}}条</text> </view>
-                    <view class='leftBottom'>体验任务{{tab2.experienceNum}}条</view>
+                    <view class='leftTop'>已完成<text>{{tab2.doneExperienceNum}}次</text> </view>
+                    <view class='leftBottom'>体验任务{{tab2.experienceNum}}次</view>
                 </view>
                 <view class='clueTop_right'>
                             <view class="wrap">
@@ -98,7 +98,10 @@
                   <view class='List'>{{item.total}}</view>
                   <view class='List'>{{item.cnt}}</view>                                    
               </view> 
-
+              <view class='cardList'  >
+                  <view class='List' style='font-size:24rpx;'>当前平均卡单价</view>
+                  <view class='List' style="width:66%; text-align:center; border:none;">{{meanMonsy}}</view>                                    
+              </view> 
           </view>
 </view>
 
