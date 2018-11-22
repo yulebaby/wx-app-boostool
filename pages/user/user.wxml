@@ -37,6 +37,11 @@
               </view>                                                                      
         </view>
     </view>
+
+          <view class='Exits'>
+              <view class='Exits_btn' bindtap='exit'>退出</view>
+          </view>
+
   <view class='footer'>
   <view class='footer-phone' bindtap='makePhone' data-num='400-6321531'>客服电话：400-6321531</view>
   <view class='footer-time'>客服时间：09:00 - 18:00 周一至周日</view>

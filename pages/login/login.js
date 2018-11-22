@@ -42,6 +42,7 @@ login(){
         app.globalData.userName = res.result.userName;
         app.globalData.storeName = res.result.storeName; 
         app.globalData.storeId = res.result.storeId;
+        app.globalData.province = res.result.province;
         wx.switchTab({
           url: '../index/index'
         })    

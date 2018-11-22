@@ -81,7 +81,7 @@
                                 <canvas class="circle" style=" z-index:5; width:144rpx; height:144rpx;" canvas-id="canvasArcCir2">
                                 </canvas>
                                 <view class="draw_text">
-                                    完成{{personalCenter}}%
+                                    完成{{tab3.avgPrice}}%
                                 </view>
                               </view>
                             </view>

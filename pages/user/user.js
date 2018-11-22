@@ -100,7 +100,9 @@ Page({
     wx.showLoading({ title: '加载中...' });
     /* 查询完成百分比 */
     Http.post('/user/personalCenter', {
-      storeId: app.globalData.storeId
+      storeId: app.globalData.storeId,
+      province: app.globalData.province,
+      province: app.globalData.province,
     }).then(res => {
 
       res.result.experienceTran = calc.Mul(res.result.experienceTran,100);
@@ -116,6 +118,14 @@ Page({
   makePhone(e) {
     wx.makePhoneCall({
       phoneNumber: e.target.dataset.num
+    })
+  },
+  exit(){
+
+    app.globalData.storeName = "";
+    app.globalData.storeId = "";
+    wx.redirectTo({
+      url: '../login/login',
     })
   }
 })

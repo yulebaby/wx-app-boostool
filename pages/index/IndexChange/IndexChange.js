@@ -179,7 +179,7 @@ Page({
           storeId: app.globalData.storeId
         }).then(res => {
           let num = ((res.result.doneDoCardNum / res.result.doCardNum)*100).toFixed(2);
-          let meanMonsy = parseInt(res.result.doCartList[res.result.doCartList.length - 1].total / res.result.doCartList[res.result.doCartList.length - 1].cnt);
+          // let meanMonsy = parseInt(res.result.doCartList[res.result.doCartList.length - 1].total / res.result.doCartList[res.result.doCartList.length - 1].cnt);
           meanMonsy = meanMonsy ? meanMonsy : 0;
           that.setData({
             tab3: res.result,
